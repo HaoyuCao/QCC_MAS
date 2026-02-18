@@ -1,0 +1,313 @@
+{
+  "case_id": "agentclinic_medqa_113",
+  "prediction": "Bacillus cereus food poisoning (emetic-type)",
+  "ground_truth": "Bacillus cereus infection",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is the main symptom or problem that brought you in today?",
+      "duration": 2.539126396179199
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient presents with complaints of abdominal cramps\n\n[RESPONSE] My main problem is abdominal cramps.",
+      "duration": 5.896453619003296
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How long have you had the abdominal cramps?",
+      "duration": 6.343712568283081
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient presents with complaints of abdominal cramps\n[REFERENCE] 6. The symptoms started 2 hours ago\n[RESPONSE] I've had the abdominal cramps for about 2 hours.",
+      "duration": 4.760283708572388
+    },
+    {
+      "role_id": "doctor",
+      "content": "Turns used: 3 / 16.",
+      "duration": 2.6934969425201416
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 6. The symptoms started 2 hours ago\n7. Reports eating reheated food from the afternoon about an hour before symptoms started\n\n[RESPONSE] My symptoms started about 2 hours ago, and I ate reheated food from the afternoon roughly an hour before the symptoms began.",
+      "duration": 8.417287111282349
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had any vomiting since the cramps began? If yes, how many episodes?",
+      "duration": 5.795862197875977
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient presents with complaints of vomiting\n6. The symptoms started 2 hours ago\n\n[RESPONSE] Yes — I have been vomiting. The symptoms began about 2 hours ago.",
+      "duration": 10.111402988433838
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had diarrhea since the cramps began? (Yes or No)",
+      "duration": 6.05595850944519
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. The patient presents with complaints of diarrhea\n6. The symptoms started 2 hours ago\n\n[RESPONSE] Yes — I've had diarrhea since the cramps began about 2 hours ago.",
+      "duration": 5.494757175445557
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What exactly was the reheated food you ate? (Describe the dish and main ingredients.)",
+      "duration": 6.385803699493408
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall the specific dish or its main ingredients.",
+      "duration": 5.55715012550354
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you have a fever or chills right now or since the symptoms began?",
+      "duration": 9.341070413589478
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 12. Denies fever, headache, rash, chest pain, dysuria, or cough.\n[RESPONSE] I do not have a fever.",
+      "duration": 10.80067777633667
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Is there blood in your stool (visible red blood or black/tarry stool)?",
+      "duration": 8.295562744140625
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall seeing any blood in my stool.",
+      "duration": 3.5112111568450928
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Did anyone else who ate the same reheated food become ill? (Yes or No)",
+      "duration": 10.019594192504883
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. Denies any recent travel, sick contacts, or similar symptoms in people around him\n\n[RESPONSE] No — no one else who ate the same reheated food became ill.",
+      "duration": 4.362314939498901
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How many times have you vomited since the symptoms began?",
+      "duration": 6.442332983016968
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall how many times I've vomited since the symptoms began.",
+      "duration": 5.200424671173096
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Which symptom is worse right now — vomiting or diarrhea?",
+      "duration": 7.982918977737427
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall which is worse right now.",
+      "duration": 4.9020819664001465
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Bacillus cereus food poisoning (emetic-type)",
+      "duration": 11.780952453613281
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 11,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is the main symptom or problem that brought you in today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main problem is abdominal cramps.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How long have you had the abdominal cramps?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI've had the abdominal cramps for about 2 hours.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "Turns used: 3 / 16."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nMy symptoms started about 2 hours ago, and I ate reheated food from the afternoon roughly an hour before the symptoms began.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had any vomiting since the cramps began? If yes, how many episodes?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nYes — I have been vomiting. The symptoms began about 2 hours ago.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had diarrhea since the cramps began? (Yes or No)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nYes — I've had diarrhea since the cramps began about 2 hours ago.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What exactly was the reheated food you ate? (Describe the dish and main ingredients.)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nI'm not sure — I don't recall the specific dish or its main ingredients.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have a fever or chills right now or since the symptoms began?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI do not have a fever.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is there blood in your stool (visible red blood or black/tarry stool)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nI don't recall seeing any blood in my stool.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Did anyone else who ate the same reheated food become ill? (Yes or No)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\nNo — no one else who ate the same reheated food became ill.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How many times have you vomited since the symptoms began?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\nLast reply:\nI'm not sure — I don't recall how many times I've vomited since the symptoms began.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Which symptom is worse right now — vomiting or diarrhea?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\nLast reply:\nI'm not sure — I don't recall which is worse right now.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Bacillus cereus food poisoning (emetic-type)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1911
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 20-year-old male college student\n2. The patient presents with complaints of abdominal cramps\n3. The patient presents with complaints of nausea\n4. The patient presents with complaints of vomiting\n5. The patient presents with complaints of diarrhea\n6. The symptoms started 2 hours ago\n7. Reports eating reheated food from the afternoon about an hour before symptoms started\n8. Denies any recent travel, sick contacts, or similar symptoms in people around him\n9. No significant medical or surgical history.\n10. Reports studying for exams late at night\n11. No history of alcohol or drug abuse.\n12. Denies fever, headache, rash, chest pain, dysuria, or cough.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall which is worse right now."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 364
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. WBC: 9,000 /μL\n2. Hemoglobin: 14 g/dL\n3. Platelets: 300,000 /μL\n4. Sodium: 138 mEq/L\n5. Potassium: 3.9 mEq/L\n6. Chloride: 100 mEq/L\n7. Bicarbonate: 24 mEq/L\n8. Stool_Culture: Pending\n9. Blood_Cultures: No growth in 24 hours\n10. Temperature: 37°C (98.6°F)\n11. Blood_Pressure: 90/78 mm Hg\n12. Heart_Rate: 106 bpm\n13. Respiratory_Rate: 15 breaths/min\n14. Inspection: No distension or visible rashes.\n15. Auscultation: Hyperactive bowel sounds.\n16. Percussion: Tympanic throughout, no dullness.\n17. Palpation: Diffuse abdominal tenderness without guarding or rebound.\n18. No hepatosplenomegaly.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 343
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.23333333333333334,
+    "patient_coverage": 0.5833333333333334,
+    "exam_coverage": 0.0,
+    "ground_truth_patient_facts": [
+      "1. 20-year-old male college student",
+      "2. The patient presents with complaints of abdominal cramps",
+      "3. The patient presents with complaints of nausea",
+      "4. The patient presents with complaints of vomiting",
+      "5. The patient presents with complaints of diarrhea",
+      "6. The symptoms started 2 hours ago",
+      "7. Reports eating reheated food from the afternoon about an hour before symptoms started",
+      "8. Denies any recent travel, sick contacts, or similar symptoms in people around him",
+      "9. No significant medical or surgical history.",
+      "10. Reports studying for exams late at night",
+      "11. No history of alcohol or drug abuse.",
+      "12. Denies fever, headache, rash, chest pain, dysuria, or cough."
+    ],
+    "ground_truth_exam_facts": [
+      "1. WBC: 9,000 /μL",
+      "2. Hemoglobin: 14 g/dL",
+      "3. Platelets: 300,000 /μL",
+      "4. Sodium: 138 mEq/L",
+      "5. Potassium: 3.9 mEq/L",
+      "6. Chloride: 100 mEq/L",
+      "7. Bicarbonate: 24 mEq/L",
+      "8. Stool_Culture: Pending",
+      "9. Blood_Cultures: No growth in 24 hours",
+      "10. Temperature: 37°C (98.6°F)",
+      "11. Blood_Pressure: 90/78 mm Hg",
+      "12. Heart_Rate: 106 bpm",
+      "13. Respiratory_Rate: 15 breaths/min",
+      "14. Inspection: No distension or visible rashes.",
+      "15. Auscultation: Hyperactive bowel sounds.",
+      "16. Percussion: Tympanic throughout, no dullness.",
+      "17. Palpation: Diffuse abdominal tenderness without guarding or rebound.",
+      "18. No hepatosplenomegaly."
+    ],
+    "collected_patient_facts": [
+      "2. The patient presents with complaints of abdominal cramps",
+      "4. The patient presents with complaints of vomiting",
+      "5. The patient presents with complaints of diarrhea",
+      "6. The symptoms started 2 hours ago",
+      "7. Reports eating reheated food from the afternoon about an hour before symptoms started",
+      "8. Denies any recent travel, sick contacts, or similar symptoms in people around him",
+      "12. Denies fever, headache, rash, chest pain, dysuria, or cough."
+    ],
+    "collected_exam_facts": []
+  },
+  "judge_response": "ANALYSIS: The prediction specifies a common clinical manifestation/subtype (emetic-type food poisoning) of Bacillus cereus infection. This is a more specific but clinically equivalent formulation.\n\nVERDICT: CORRECT"
+}

@@ -1,0 +1,467 @@
+{
+  "case_id": "agentclinic_medqa_92",
+  "prediction": "Miliary (disseminated) tuberculosis",
+  "ground_truth": "Tuberculosis",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] I have no information about the patient's problem yet. I need the chief complaint and duration to direct further focused questions and tests.\n\n[QUERY] What is your main symptom (chief complaint), and how long have you had it?",
+      "duration": 4.272572755813599
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Patient reports fever persisting for 6 months.\n\n[RESPONSE] My main symptom is fever, and I've had it for 6 months.",
+      "duration": 4.276273250579834
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic fever for 6 months requires assessment for systemic signs that narrow differential (infectious like TB, malignancy, autoimmune). Unintentional weight loss is high-yield for malignancy/TB/infection.\n\n[QUERY] Have you had any unintentional weight loss since the fever began? If yes, how much (in kilograms or pounds) and over what time?",
+      "duration": 4.473306894302368
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Patient reports fever persisting for 6 months.\n[REFERENCE] 7. He has lost 7.5 kg (16.5 lb) over this period.\n\n[RESPONSE] Yes — I have lost 7.5 kg (16.5 lb) over the past 6 months since the fever began.",
+      "duration": 4.138258457183838
+    },
+    {
+      "role_id": "doctor",
+      "content": "Turns used: 3 / 16.\nI will wait for the patient's answer.",
+      "duration": 4.797537803649902
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Patient reports fever persisting for 6 months.\n3. Patient reports cough persisting for 6 months.\n\n[RESPONSE] I have had a fever and a cough for the past 6 months.",
+      "duration": 9.899886846542358
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic cough with prolonged fever and weight loss strongly suggests pulmonary tuberculosis; presence or absence of hemoptysis will help assess pulmonary involvement and severity. I should ask one focused symptom question next.\n\n[QUERY] Have you had any coughing up blood (hemoptysis) at any time during these 6 months?",
+      "duration": 5.699260234832764
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall having any coughing up blood.",
+      "duration": 3.9658782482147217
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Night sweats would strongly support tuberculosis or other chronic infections/malignancy; it's a single high-yield symptom to ask next.\n\n[QUERY] Have you been experiencing drenching night sweats (waking at night soaked) during these 6 months?",
+      "duration": 2.868037462234497
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. Patient reports night sweats persisting for 6 months.\n\n[RESPONSE] Yes — I have had night sweats for the past 6 months.",
+      "duration": 3.824305772781372
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic fever, cough, weight loss and night sweats point strongly to pulmonary tuberculosis but HIV status greatly affects risk and management. I need to know if the patient is HIV-positive or has been tested.\n\n[QUERY] Have you ever tested positive for HIV, or been told you are HIV-positive?",
+      "duration": 5.168782949447632
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall ever testing positive for HIV or being told I'm HIV-positive.",
+      "duration": 3.5168497562408447
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Determining whether the cough is productive and sputum characteristics will help target pulmonary TB vs other chronic pulmonary infections.\n\n[QUERY] Is your cough productive (do you bring up sputum)? If yes, what color/consistency is the sputum?",
+      "duration": 5.551888942718506
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether my cough brings up sputum or what color/consistency it would be.",
+      "duration": 4.373527526855469
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic fever, cough, weight loss and night sweats strongly suggest pulmonary tuberculosis as the leading diagnosis. The patient is uncertain about sputum production, so a chest radiograph is the next high-yield, noninvasive test to localize pulmonary disease, identify cavitation, guide sputum collection (induced if needed), and narrow differential (e.g., malignancy, fungal infection). I'll request a PA and lateral chest x-ray.\n\n[TEST] Chest x-ray (posteroanterior and lateral)",
+      "duration": 7.1691508293151855
+    },
+    {
+      "role_id": "reporter",
+      "content": "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "duration": 3.6883881092071533
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic cough, fever, weight loss, night sweats and diffuse infiltrates on chest x-ray strongly suggest pulmonary tuberculosis. The highest-yield next diagnostic step is a nucleic acid amplification test (NAAT) for Mycobacterium tuberculosis on an early morning sputum sample to rapidly confirm TB and detect rifampin resistance. I'll request that test first.\n\n[TEST] Sputum nucleic acid amplification test (NAAT/PCR) for Mycobacterium tuberculosis on an early morning sputum specimen.",
+      "duration": 6.745628595352173
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 7.065544128417969
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] A negative NAAT doesn't fully exclude TB and the differential depends heavily on immune status. A fourth-generation HIV antigen/antibody test is rapid and will meaningfully narrow causes and guide next diagnostics/treatment.\n\n[TEST] HIV antigen/antibody (4th-generation) test (rapid).",
+      "duration": 5.060267210006714
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 3.5670015811920166
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] With negative TB NAAT and negative HIV but persistent systemic symptoms and diffuse chest x-ray infiltrates, a chest CT will better define the pattern (miliary nodules, cavitation, lymphadenopathy, mass) and narrow the differential (miliary TB, fungal infection, diffuse malignancy/interstitial disease) and guide further sampling.\n\n[TEST] Chest CT (contrast-enhanced) to characterize the lung infiltrates and mediastinum.",
+      "duration": 5.020054578781128
+    },
+    {
+      "role_id": "reporter",
+      "content": "6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n9. Chest X-ray: Image shows diffuse infiltrates.",
+      "duration": 5.91804313659668
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic fever, cough, weight loss, night sweats, generalized lymphadenopathy, diffuse lung infiltrates and negative rapid TB NAAT/HIV make disseminated tuberculosis still the leading possibility but lymphoma or fungal infection remain plausible. The single most informative next step is direct tissue diagnosis from an enlarged peripheral lymph node to distinguish TB (caseating granulomas, AFB), lymphoma (malignant cells, flow cytometry), or fungal disease.\n\n[TEST] Excisional biopsy of an accessible enlarged peripheral lymph node with histopathology, acid-fast bacilli (AFB) staining, mycobacterial culture, fungal stains/culture, and flow cytometry.",
+      "duration": 7.483875513076782
+    },
+    {
+      "role_id": "reporter",
+      "content": "6. Generalized lymphadenopathy present on general examination.\n10. Tuberculin skin test: Negative.",
+      "duration": 7.597692489624023
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] With chronic systemic symptoms, generalized lymphadenopathy and diffuse pulmonary infiltrates, the single most decisive next piece of information is the excisional lymph node biopsy results to differentiate TB (caseating granulomas/AFB), lymphoma (malignant cells, positive flow cytometry), or fungal infection. I need the histopathology, AFB and fungal stains, mycobacterial and fungal cultures, and flow cytometry results from that biopsy.\n\n[TEST] Provide the excisional lymph node biopsy results: histopathology report, AFB (Ziehl–Neelsen) stain, fungal (GMS/PAS) stains, mycobacterial and fungal culture results, and flow cytometry.",
+      "duration": 8.985275506973267
+    },
+    {
+      "role_id": "reporter",
+      "content": "Histopathology (excisional lymph node biopsy): Normal\nAFB (Ziehl–Neelsen) stain: Normal\nFungal (GMS/PAS) stains: Normal\nMycobacterial and fungal cultures: Normal\nFlow cytometry: Normal",
+      "duration": 6.958285570144653
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Persistent systemic symptoms with diffuse pulmonary infiltrates and nondiagnostic peripheral node biopsy leave lung sampling as the highest-yield next step to detect occult TB, fungal infection, Pneumocystis, interstitial lung disease, or malignancy that peripheral node biopsy missed. Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy will provide tissue and fluid for comprehensive testing.\n\n[TEST] Bronchoscopy with bronchoalveolar lavage and transbronchial lung biopsy. Send BAL for bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, and cytology; send biopsy for histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, and malignancy evaluation.",
+      "duration": 7.448613882064819
+    },
+    {
+      "role_id": "reporter",
+      "content": "1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.",
+      "duration": 6.965052843093872
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The combination of chronic fever and cough with night sweats, generalized lymphadenopathy, hepatomegaly, diffuse bilateral crackles and chest x-ray infiltrates, plus the ophthalmoscopic finding of multiple small (0.5–1.0 mm) yellow posterior pole lesions (classic choroidal tubercles) strongly points to disseminated (miliary) tuberculosis. A negative tuberculin skin test and sputum NAAT do not exclude miliary TB, and peripheral node biopsy/cultures may be non-diagnostic. The overall clinical picture makes miliary (disseminated) Mycobacterium tuberculosis infection the single most likely diagnosis.\n\n[FINISH]",
+      "duration": 11.57912826538086
+    },
+    {
+      "role_id": "summarizer",
+      "content": "[THOUGHT]\nExtracted facts: patient reports fever and cough for 6 months, associated unintentional weight loss 7.5 kg (16.5 lb) over same 6 months, and drenching night sweats for 6 months. Patient does not recall hemoptysis and is unsure about sputum production. Temperature recorded 38.1°C (100.6°F). General exam: generalized lymphadenopathy and hepatomegaly. Pulmonary exam: diffuse crackles throughout lung fields bilaterally. Ophthalmoscopy: three discrete yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole. Chest x-ray (PA and lateral): diffuse infiltrates. Tuberculin skin test: Negative. Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal. HIV antigen/antibody (4th-generation) rapid test: Normal. Excisional peripheral lymph node biopsy: histopathology Normal; AFB (Ziehl–Neelsen) stain Normal; fungal (GMS/PAS) stains Normal; mycobacterial and fungal cultures Normal; flow cytometry Normal. Bronchoscopy with BAL and transbronchial biopsy was performed and a list of specimens/tests was sent (no results provided). Chest CT was ordered (no explicit CT results reported). Do not infer diagnoses; report only documented findings and pending tests.\n\n[SUMMARY]\nIdentifying information:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever for 6 months.\n- Cough for 6 months. Patient is unsure whether cough is productive and does not recall any hemoptysis.\n- Drenching night sweats for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over the past 6 months.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout the lung fields bilaterally on auscultation.\n- Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Ordered to characterize lung infiltrates and mediastinum — no CT result provided in the record.\n\nMicrobiology / Laboratory testing:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology (excisional lymph node biopsy): Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (documented findings only):\n- Chronic fever and cough ×6 months with associated unintentional weight loss (7.5 kg / 16.5 lb) and drenching night sweats.\n- Objective findings: temperature 38.1°C; diffuse bilateral pulmonary crackles; diffuse pulmonary infiltrates on chest x-ray; generalized lymphadenopathy; hepatomegaly; three posterior-pole retinal lesions (0.5–1.0 mm).\n- Infectious disease testing documented as negative/normal: sputum NAAT for Mycobacterium tuberculosis (Normal), tuberculin skin test (Negative), HIV 4th-generation antigen/antibody (Normal).\n- Excisional lymph node biopsy and associated stains/cultures and flow cytometry reported as Normal.\n\nPending / Not available in record:\n- Results of BAL bacterial/fungal/mycobacterial cultures, Pneumocystis PCR, viral PCR panel, cytology.\n- Results of transbronchial biopsy histopathology, AFB and fungal stains, and malignancy evaluation.\n- Chest CT report (if performed) — no result included.\n\nMedications, allergies, past medical history, social history, and family history: Not provided in the dialogue.",
+      "duration": 24.565096855163574
+    },
+    {
+      "role_id": "diagnostician",
+      "content": "[THOUGHT] The patient has a 6-month history of fever, night sweats, weight loss, chronic cough, diffuse pulmonary infiltrates, generalized lymphadenopathy and hepatomegaly—all features of a chronic disseminated infectious process. The key ocular finding—multiple small (0.5–1.0 mm), yellow posterior-pole lesions with indistinct borders—represents choroidal tubercles, a classic and highly suggestive manifestation of miliary (disseminated) tuberculosis. Miliary TB often produces diffuse pulmonary infiltrates, systemic symptoms, hepatosplenomegaly and generalized lymphadenopathy. Importantly, sputum NAAT and tuberculin skin tests can be negative in miliary TB because of paucibacillary disease or anergy; lymph node biopsy and stains/cultures may also be non-diagnostic. Other disseminated infections or malignancy are less likely given the constellation of systemic findings plus the characteristic choroidal lesions. Therefore the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[DIAGNOSIS] Miliary (disseminated) tuberculosis",
+      "duration": 12.771364212036133
+    },
+    {
+      "role_id": "diagnostician_verifier",
+      "content": "[THOUGHT] The clinical syndrome (6 months of fever, night sweats, weight loss, chronic cough), diffuse pulmonary infiltrates, generalized lymphadenopathy, hepatomegaly and small yellow posterior-pole retinal lesions are all compatible with disseminated (miliary) tuberculosis and in particular the choroidal lesions are classically described as choroidal tubercles. However, key microbiologic and pathologic confirmations are lacking and some provided data argue against TB (normal excisional lymph node histology/stains/cultures, negative sputum NAAT and tuberculin skin test). Important confirmatory tests/results are pending or not recorded (BAL mycobacterial PCR/culture, transbronchial biopsy histology/AFB stains, chest CT description). There is also no social/epidemiologic or immunosuppression history (risk factors) documented. Red flags / critical missing items: (1) Normal lymph node biopsy with negative AFB/fungal stains — weakens but does not exclude TB; (2) Negative sputum NAAT/TST — important but not definitive; (3) Absence of chest CT description and missing BAL/transbronchial biopsy results — these are essential to confirm a miliary pattern and obtain microbiologic proof; (4) No fungal/histoplasma antigen testing or blood/mycobacterial cultures to exclude mimics. Given these gaps, the current record is insufficient to conclusively diagnose miliary TB.\n\n[DECISION] INCOMPLETE\n\n[FEEDBACK] To support or refute miliary (disseminated) tuberculosis and to exclude major mimics, obtain and provide the following critical information:\n- Chest CT report/images specifically commenting on presence, size and distribution of diffuse miliary nodules and mediastinal findings.\n- Results of bronchoalveolar lavage: AFB smear, mycobacterial PCR/NAAT, mycobacterial culture, bacterial/fungal cultures, Pneumocystis PCR, viral PCR, and cytology.\n- Results of the transbronchial lung biopsy: histopathology (granulomas, caseation), AFB and fungal stains, and tissue cultures.\n- Blood cultures for mycobacteria and routine blood cultures; consider mycobacterial blood cultures (especially for disseminated disease).\n- Interferon-gamma release assay (IGRA) for TB (if available) and repeat/confirmatory HIV testing with CD4 count if immunosuppression is a concern.\n- Serum and urine Histoplasma antigen (and other endemic fungal testing as indicated) and fungal blood cultures to exclude disseminated fungal infections.\n- Additional tissue sampling if lung/lymph node sampling was non-diagnostic: bone marrow biopsy/culture and/or repeat lymph node/core biopsy if suspicion remains high.\n- Epidemiologic and exposure history (TB contacts, travel, occupational exposures), BCG history, immunosuppressive medications, and any prior TB treatment.\n\nProvide the above results; if microbiologic or histologic evidence of Mycobacterium tuberculosis (AFB on tissue/BAL or positive culture/PCR) or a characteristic CT pattern plus compatible pathology is documented, the diagnosis could be confirmed.",
+      "duration": 16.12091064453125
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Supervisor highlighted several missing studies. We already requested chest CT and bronchoscopy/biopsy earlier but their reports/results weren't provided; those remain critical. Of the other gaps, disseminated histoplasmosis is a major mimic of miliary TB given hepatomegaly, generalized lymphadenopathy, fever, pulmonary infiltrates and ocular lesions; antigen testing is rapid and sensitive. Ordering serum and urine Histoplasma antigen plus fungal blood cultures is a high-yield, noninvasive next step to exclude disseminated fungal infection before proceeding to more invasive sampling.\n\n[TEST] Serum and urine Histoplasma antigen tests and fungal blood cultures.",
+      "duration": 9.440645217895508
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 3.67608642578125
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Key epidemiologic info about TB exposure is missing and would strongly support or argue against miliary TB given nondiagnostic peripheral tests. I need a single high-yield, atomic epidemiologic question now.\n\n[QUERY] Have you had known close contact with anyone diagnosed with active pulmonary tuberculosis?",
+      "duration": 14.894109964370728
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.",
+      "duration": 4.1667985916137695
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The patient has chronic fever, night sweats, weight loss, cough, hepatomegaly, generalized lymphadenopathy, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, and small yellow posterior pole choroidal lesions—findings classically seen with disseminated (miliary) Mycobacterium tuberculosis. Negative tuberculin skin test and negative peripheral node biopsy/AFB/cultures and initial sputum NAAT do not exclude miliary TB, which often has low sputum yield and can give false-negative TST in disseminated disease. Alternative diagnoses (disseminated fungal infection such as histoplasmosis, hematologic malignancy/lymphoma, opportunistic infections) remain possible but are less supported by the current combination of ocular choroidal tubercles plus systemic + pulmonary miliary pattern. Lack of known TB contact and negative HIV make but do not exclude TB. Overall, the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[FINISH]",
+      "duration": 9.316419124603271
+    },
+    {
+      "role_id": "summarizer",
+      "content": "[THOUGHT]\nExtracted all patient responses, exam findings, imaging and laboratory results explicitly stated in the dialogue. Noted uncertainty expressed by the patient regarding HIV status and sputum production. Identified performed procedures with documented results and procedures with specimens sent but no results reported. Did not infer any diagnoses or add information not present in the dialogue.\n\n[SUMMARY]\nIdentifying data:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever and cough for 6 months.\n- Night sweats (drenching) for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over 6 months.\n- Hemoptysis: Patient does not recall any.\n- Sputum production: Patient unsure, does not recall whether cough is productive or sputum characteristics.\n- Known contact with active pulmonary tuberculosis: Patient does not recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n- HIV history: Patient unsure; does not recall ever testing positive or being told HIV-positive.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout lung fields bilaterally.\n- Ophthalmoscopy: Three discrete, yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Performed to characterize lung infiltrates/mediastinum — no CT report/result provided in the dialogue.\n\nMicrobiology / Laboratory results:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology: Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (facts only):\n- Chronic (6 months) fever, cough, drenching night sweats, and weight loss (7.5 kg).\n- Objective findings include temperature 38.1°C, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, generalized lymphadenopathy, hepatomegaly, and three small (0.5–1.0 mm) yellow posterior pole retinal lesions.\n- Sputum NAAT for Mycobacterium tuberculosis, tuberculin skin test, HIV 4th-generation test, and excisional lymph node biopsy with associated stains/cultures/flow cytometry are reported as Normal/Negative.\n- Results pending/not provided: BAL cultures/PCRs/cytology and transbronchial biopsy histopathology and stains; chest CT report not included.\n\nOther information not provided in the dialogue:\n- Medications, allergies, past medical history, social history, and family history.",
+      "duration": 12.536471128463745
+    },
+    {
+      "role_id": "diagnostician",
+      "content": "[THOUGHT] This is a subacute–chronic systemic illness with fever, drenching night sweats, weight loss, 6 months of cough, diffuse bilateral pulmonary infiltrates and crackles, generalized lymphadenopathy and hepatomegaly. The fundoscopic finding—multiple small (0.5–1.0 mm), yellow, indistinct posterior-pole lesions—is most consistent with choroidal tubercles. Choroidal tubercles are highly specific for hematogenous (miliary/disseminated) Mycobacterium tuberculosis infection. \n\nNegative sputum NAAT and tuberculin skin test do not exclude miliary TB: disease is often paucibacillary in the airways and patients can be anergic, yielding false-negative NAAT/TST. Excisional lymph node biopsy and stains/cultures can be non-diagnostic due to sampling error or low organism burden. Lymphoma or metastatic malignancy are less likely given a normal lymph node histology/flow cytometry and the very small fundus lesions favor granulomatous choroidal tubercles over typical larger choroidal metastases. Disseminated fungal infections (e.g., histoplasmosis) can cause chorioretinitis but are less typical in distribution and would more commonly be supported by fungal stains/cultures or risk factors; lymph node fungal studies were negative. Sarcoidosis can mimic some features but would be expected to show noncaseating granulomas on node biopsy and does not classically produce drenching night sweats and the described tiny yellow choroidal tubercles.\n\nGiven the characteristic ocular lesions together with the systemic picture of disseminated granulomatous infection, the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[DIAGNOSIS] Miliary (disseminated) tuberculosis",
+      "duration": 12.446782350540161
+    },
+    {
+      "role_id": "diagnostician_verifier",
+      "content": "[THOUGHT] The clinical picture (6 months of fever, night sweats, weight loss, chronic cough, diffuse pulmonary infiltrates, generalized lymphadenopathy, hepatomegaly, and small yellow posterior-pole retinal lesions) is compatible with disseminated (miliary) tuberculosis, and the retinal lesions could represent choroidal tubercles. However, several important pieces of evidence that would be expected for a conclusive diagnosis are absent or directly argue against TB: sputum NAAT and tuberculin skin test are negative, and an excisional lymph node biopsy with stains and cultures is reported as normal. Key confirmatory data are pending or not reported (chest CT read, BAL mycobacterial PCR/culture, transbronchial biopsy histology/stains). Given the negative lymph node pathology and lack of microbiologic/histopathologic confirmation, the diagnosis as stated is not sufficiently supported by the available record. Red-flag/critical missing items: (1) absence of positive microbiology (AFB smear/culture or TB PCR) from respiratory or tissue samples; (2) missing chest CT report to confirm a miliary nodular pattern; (3) missing BAL and transbronchial biopsy results; (4) no alternative infection workup (fungal/endemic mycoses) or blood/mycobacterial cultures; (5) incomplete immunosuppression/exposure history.\n\n[DECISION] REJECT\n\n[FEEDBACK] To justify a confident diagnosis of miliary (disseminated) tuberculosis, provide the following critical data:\n- Chest CT report/images describing miliary nodules (size/distribution) and mediastinal findings.\n- Results of BAL: AFB smear, TB PCR/NAAT, mycobacterial cultures, bacterial/fungal cultures, Pneumocystis PCR, viral PCR, and cytology.\n- Results of the transbronchial lung biopsy: histopathology (granulomas, caseation), AFB and fungal stains, and tissue cultures.\n- Mycobacterial blood cultures and (if performed) bone marrow biopsy/culture results.\n- If available, IGRA (Quantiferon/T-SPOT) and repeat/confirmatory HIV testing with CD4 if immunosuppression is a concern.\n- Tests to exclude mimics: serum/urine Histoplasma antigen, other endemic fungal testing as indicated, and fungal blood cultures.\n- Epidemiologic and exposure history (TB contacts, travel, occupational exposures), current medications (including immunosuppressants), and prior TB history.\n\nIf these data demonstrate M. tuberculosis by PCR/culture from respiratory or tissue specimens, characteristic chest CT with compatible histology, or positive blood/tissue cultures, then PASS would be appropriate.",
+      "duration": 12.74251413345337
+    }
+  ],
+  "metadata": {
+    "mode": "refine",
+    "turns": 16,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n\nIn every turn, follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture and identify critical information gaps.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [FINISH] use this command ONLY when you believe you have gathered all necessary information to form a conclusive diagnosis. You don't need to make a diagnosis.\n\nOnce you issue the [FINISH] command, the consultation ends immediately.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nI'm not sure — I don't recall ever testing positive for HIV or being told I'm HIV-positive.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Determining whether the cough is productive and sputum characteristics will help target pulmonary TB vs other chronic pulmonary infections.\n\n[QUERY] Is your cough productive (do you bring up sputum)? If yes, what color/consistency is the sputum?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI'm not sure — I don't recall whether my cough brings up sputum or what color/consistency it would be.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Chronic fever, cough, weight loss and night sweats strongly suggest pulmonary tuberculosis as the leading diagnosis. The patient is uncertain about sputum production, so a chest radiograph is the next high-yield, noninvasive test to localize pulmonary disease, identify cavitation, guide sputum collection (induced if needed), and narrow differential (e.g., malignancy, fungal infection). I'll request a PA and lateral chest x-ray.\n\n[TEST] Chest x-ray (posteroanterior and lateral)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\n9. Chest X-ray: Image shows diffuse infiltrates.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Chronic cough, fever, weight loss, night sweats and diffuse infiltrates on chest x-ray strongly suggest pulmonary tuberculosis. The highest-yield next diagnostic step is a nucleic acid amplification test (NAAT) for Mycobacterium tuberculosis on an early morning sputum sample to rapidly confirm TB and detect rifampin resistance. I'll request that test first.\n\n[TEST] Sputum nucleic acid amplification test (NAAT/PCR) for Mycobacterium tuberculosis on an early morning sputum specimen."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] A negative NAAT doesn't fully exclude TB and the differential depends heavily on immune status. A fourth-generation HIV antigen/antibody test is rapid and will meaningfully narrow causes and guide next diagnostics/treatment.\n\n[TEST] HIV antigen/antibody (4th-generation) test (rapid)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\nLast reply:\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] With negative TB NAAT and negative HIV but persistent systemic symptoms and diffuse chest x-ray infiltrates, a chest CT will better define the pattern (miliary nodules, cavitation, lymphadenopathy, mass) and narrow the differential (miliary TB, fungal infection, diffuse malignancy/interstitial disease) and guide further sampling.\n\n[TEST] Chest CT (contrast-enhanced) to characterize the lung infiltrates and mediastinum."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\nLast reply:\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n9. Chest X-ray: Image shows diffuse infiltrates.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Chronic fever, cough, weight loss, night sweats, generalized lymphadenopathy, diffuse lung infiltrates and negative rapid TB NAAT/HIV make disseminated tuberculosis still the leading possibility but lymphoma or fungal infection remain plausible. The single most informative next step is direct tissue diagnosis from an enlarged peripheral lymph node to distinguish TB (caseating granulomas, AFB), lymphoma (malignant cells, flow cytometry), or fungal disease.\n\n[TEST] Excisional biopsy of an accessible enlarged peripheral lymph node with histopathology, acid-fast bacilli (AFB) staining, mycobacterial culture, fungal stains/culture, and flow cytometry."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 12 / 16.\nLast reply:\n6. Generalized lymphadenopathy present on general examination.\n10. Tuberculin skin test: Negative.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] With chronic systemic symptoms, generalized lymphadenopathy and diffuse pulmonary infiltrates, the single most decisive next piece of information is the excisional lymph node biopsy results to differentiate TB (caseating granulomas/AFB), lymphoma (malignant cells, positive flow cytometry), or fungal infection. I need the histopathology, AFB and fungal stains, mycobacterial and fungal cultures, and flow cytometry results from that biopsy.\n\n[TEST] Provide the excisional lymph node biopsy results: histopathology report, AFB (Ziehl–Neelsen) stain, fungal (GMS/PAS) stains, mycobacterial and fungal culture results, and flow cytometry."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 13 / 16.\nLast reply:\nHistopathology (excisional lymph node biopsy): Normal\nAFB (Ziehl–Neelsen) stain: Normal\nFungal (GMS/PAS) stains: Normal\nMycobacterial and fungal cultures: Normal\nFlow cytometry: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Persistent systemic symptoms with diffuse pulmonary infiltrates and nondiagnostic peripheral node biopsy leave lung sampling as the highest-yield next step to detect occult TB, fungal infection, Pneumocystis, interstitial lung disease, or malignancy that peripheral node biopsy missed. Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy will provide tissue and fluid for comprehensive testing.\n\n[TEST] Bronchoscopy with bronchoalveolar lavage and transbronchial lung biopsy. Send BAL for bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, and cytology; send biopsy for histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, and malignancy evaluation."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 14 / 16.\nLast reply:\n1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The combination of chronic fever and cough with night sweats, generalized lymphadenopathy, hepatomegaly, diffuse bilateral crackles and chest x-ray infiltrates, plus the ophthalmoscopic finding of multiple small (0.5–1.0 mm) yellow posterior pole lesions (classic choroidal tubercles) strongly points to disseminated (miliary) tuberculosis. A negative tuberculin skin test and sputum NAAT do not exclude miliary TB, and peripheral node biopsy/cultures may be non-diagnostic. The overall clinical picture makes miliary (disseminated) Mycobacterium tuberculosis infection the single most likely diagnosis.\n\n[FINISH]"
+          },
+          {
+            "role": "user",
+            "content": "### DIAGNOSTIC FEEDBACK (RESUMED) ###\nYour previous decision to [FINISH] was rejected because the clinical data is INCOMPLETE.\nSpecific Feedback from Supervisor:\nTo support or refute miliary (disseminated) tuberculosis and to exclude major mimics, obtain and provide the following critical information:\n- Chest CT report/images specifically commenting on presence, size and distribution of diffuse miliary nodules and mediastinal findings.\n- Results of bronchoalveolar lavage: AFB smear, mycobacterial PCR/NAAT, mycobacterial culture, bacterial/fungal cultures, Pneumocystis PCR, viral PCR, and cytology.\n- Results of the transbronchial lung biopsy: histopathology (granulomas, caseation), AFB and fungal stains, and tissue cultures.\n- Blood cultures for mycobacteria and routine blood cultures; consider mycobacterial blood cultures (especially for disseminated disease).\n- Interferon-gamma release assay (IGRA) for TB (if available) and repeat/confirmatory HIV testing with CD4 count if immunosuppression is a concern.\n- Serum and urine Histoplasma antigen (and other endemic fungal testing as indicated) and fungal blood cultures to exclude disseminated fungal infections.\n- Additional tissue sampling if lung/lymph node sampling was non-diagnostic: bone marrow biopsy/culture and/or repeat lymph node/core biopsy if suspicion remains high.\n- Epidemiologic and exposure history (TB contacts, travel, occupational exposures), BCG history, immunosuppressive medications, and any prior TB treatment.\n\nProvide the above results; if microbiologic or histologic evidence of Mycobacterium tuberculosis (AFB on tissue/BAL or positive culture/PCR) or a characteristic CT pattern plus compatible pathology is documented, the diagnosis could be confirmed.\n\nIMMEDIATE INSTRUCTION:\n1. Analyze the specific information gaps identified in the feedback above.\n2. Your NEXT action must be a [QUERY] or [TEST] strictly targeted to acquire this missing evidence.\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Supervisor highlighted several missing studies. We already requested chest CT and bronchoscopy/biopsy earlier but their reports/results weren't provided; those remain critical. Of the other gaps, disseminated histoplasmosis is a major mimic of miliary TB given hepatomegaly, generalized lymphadenopathy, fever, pulmonary infiltrates and ocular lesions; antigen testing is rapid and sensitive. Ordering serum and urine Histoplasma antigen plus fungal blood cultures is a high-yield, noninvasive next step to exclude disseminated fungal infection before proceeding to more invasive sampling.\n\n[TEST] Serum and urine Histoplasma antigen tests and fungal blood cultures."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 15 / 16.\nLast reply:\n1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Key epidemiologic info about TB exposure is missing and would strongly support or argue against miliary TB given nondiagnostic peripheral tests. I need a single high-yield, atomic epidemiologic question now.\n\n[QUERY] Have you had known close contact with anyone diagnosed with active pulmonary tuberculosis?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 16 / 16.\nLast reply:\nI don't recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient has chronic fever, night sweats, weight loss, cough, hepatomegaly, generalized lymphadenopathy, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, and small yellow posterior pole choroidal lesions—findings classically seen with disseminated (miliary) Mycobacterium tuberculosis. Negative tuberculin skin test and negative peripheral node biopsy/AFB/cultures and initial sputum NAAT do not exclude miliary TB, which often has low sputum yield and can give false-negative TST in disseminated disease. Alternative diagnoses (disseminated fungal infection such as histoplasmosis, hematologic malignancy/lymphoma, opportunistic infections) remain possible but are less supported by the current combination of ocular choroidal tubercles plus systemic + pulmonary miliary pattern. Lack of known TB contact and negative HIV make but do not exclude TB. Overall, the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[FINISH]"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2828
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 68-year-old male\n2. Patient reports fever persisting for 6 months.\n3. Patient reports cough persisting for 6 months.\n4. Patient reports generalized weakness persisting for 6 months.\n5. Patient reports night sweats persisting for 6 months.\n6. Patient reports poor appetite persisting for 6 months.\n7. He has lost 7.5 kg (16.5 lb) over this period.\n8. Released from prison 9 months ago after a 2-year sentence.\n9. No significant past medical history reported.\n10. Denies breathlessness, nasal discharge, nasal obstruction, palpitations, chest pain, or digestive symptoms.\n11. No other relevant social history provided.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall being in close contact with anyone diagnosed with active pulmonary tuberculosis."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 368
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Temperature 38.1°C (100.6°F).\n2. Blood pressure 122/80 mmHg.\n3. Heart rate 84 bpm.\n4. Respiratory rate 16 breaths/min.\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 272
+        }
+      },
+      {
+        "summarizer": [
+          {
+            "role": "system",
+            "content": "You are a professional medical documentarian and clinical scribe.\nYour objective is to synthesize the dialogue between a doctor and a patient into a high-fidelity structured medical summary.\n\nCore Principles:\n1. Strict Adherence: You must NOT invent, infer, or hallucinate any information not explicitly present in the dialogue.\n2. Precision: Retain all precise measurements, dates, dosages, and technical medical terms exactly as stated.\n3. Objectivity: Maintain a professional, clinical tone throughout the summary.\n\nOutput Process:\n[THOUGHT]\nAnalyze the dialogue to extract key clinical facts and reasoning.\n\n[SUMMARY]\nGenerate a professional, structured clinical note.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\nExtracted facts: patient reports fever and cough for 6 months, associated unintentional weight loss 7.5 kg (16.5 lb) over same 6 months, and drenching night sweats for 6 months. Patient does not recall hemoptysis and is unsure about sputum production. Temperature recorded 38.1°C (100.6°F). General exam: generalized lymphadenopathy and hepatomegaly. Pulmonary exam: diffuse crackles throughout lung fields bilaterally. Ophthalmoscopy: three discrete yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole. Chest x-ray (PA and lateral): diffuse infiltrates. Tuberculin skin test: Negative. Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal. HIV antigen/antibody (4th-generation) rapid test: Normal. Excisional peripheral lymph node biopsy: histopathology Normal; AFB (Ziehl–Neelsen) stain Normal; fungal (GMS/PAS) stains Normal; mycobacterial and fungal cultures Normal; flow cytometry Normal. Bronchoscopy with BAL and transbronchial biopsy was performed and a list of specimens/tests was sent (no results provided). Chest CT was ordered (no explicit CT results reported). Do not infer diagnoses; report only documented findings and pending tests.\n\n[SUMMARY]\nIdentifying information:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever for 6 months.\n- Cough for 6 months. Patient is unsure whether cough is productive and does not recall any hemoptysis.\n- Drenching night sweats for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over the past 6 months.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout the lung fields bilaterally on auscultation.\n- Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Ordered to characterize lung infiltrates and mediastinum — no CT result provided in the record.\n\nMicrobiology / Laboratory testing:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology (excisional lymph node biopsy): Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (documented findings only):\n- Chronic fever and cough ×6 months with associated unintentional weight loss (7.5 kg / 16.5 lb) and drenching night sweats.\n- Objective findings: temperature 38.1°C; diffuse bilateral pulmonary crackles; diffuse pulmonary infiltrates on chest x-ray; generalized lymphadenopathy; hepatomegaly; three posterior-pole retinal lesions (0.5–1.0 mm).\n- Infectious disease testing documented as negative/normal: sputum NAAT for Mycobacterium tuberculosis (Normal), tuberculin skin test (Negative), HIV 4th-generation antigen/antibody (Normal).\n- Excisional lymph node biopsy and associated stains/cultures and flow cytometry reported as Normal.\n\nPending / Not available in record:\n- Results of BAL bacterial/fungal/mycobacterial cultures, Pneumocystis PCR, viral PCR panel, cytology.\n- Results of transbronchial biopsy histopathology, AFB and fungal stains, and malignancy evaluation.\n- Chest CT report (if performed) — no result included.\n\nMedications, allergies, past medical history, social history, and family history: Not provided in the dialogue."
+          },
+          {
+            "role": "user",
+            "content": "### Dialogue History ###\n\nDoctor: What is your main symptom (chief complaint), and how long have you had it?\n\nPatient: My main symptom is fever, and I've had it for 6 months.\n\nDoctor: Have you had any unintentional weight loss since the fever began? If yes, how much (in kilograms or pounds) and over what time?\n\nPatient: Yes — I have lost 7.5 kg (16.5 lb) over the past 6 months since the fever began.\n\nDoctor: Turns used: 3 / 16.\nI will wait for the patient's answer.\n\nPatient: I have had a fever and a cough for the past 6 months.\n\nDoctor: Have you had any coughing up blood (hemoptysis) at any time during these 6 months?\n\nPatient: I don't recall having any coughing up blood.\n\nDoctor: Have you been experiencing drenching night sweats (waking at night soaked) during these 6 months?\n\nPatient: Yes — I have had night sweats for the past 6 months.\n\nDoctor: Have you ever tested positive for HIV, or been told you are HIV-positive?\n\nPatient: I'm not sure — I don't recall ever testing positive for HIV or being told I'm HIV-positive.\n\nDoctor: Is your cough productive (do you bring up sputum)? If yes, what color/consistency is the sputum?\n\nPatient: I'm not sure — I don't recall whether my cough brings up sputum or what color/consistency it would be.\n\nDoctor: Chest x-ray (posteroanterior and lateral)\n\nMeasurement: 9. Chest X-ray: Image shows diffuse infiltrates.\n\nDoctor: Sputum nucleic acid amplification test (NAAT/PCR) for Mycobacterium tuberculosis on an early morning sputum specimen.\n\nMeasurement: Normal\n\nDoctor: HIV antigen/antibody (4th-generation) test (rapid).\n\nMeasurement: Normal\n\nDoctor: Chest CT (contrast-enhanced) to characterize the lung infiltrates and mediastinum.\n\nMeasurement: 6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n9. Chest X-ray: Image shows diffuse infiltrates.\n\nDoctor: Excisional biopsy of an accessible enlarged peripheral lymph node with histopathology, acid-fast bacilli (AFB) staining, mycobacterial culture, fungal stains/culture, and flow cytometry.\n\nMeasurement: 6. Generalized lymphadenopathy present on general examination.\n10. Tuberculin skin test: Negative.\n\nDoctor: Provide the excisional lymph node biopsy results: histopathology report, AFB (Ziehl–Neelsen) stain, fungal (GMS/PAS) stains, mycobacterial and fungal culture results, and flow cytometry.\n\nMeasurement: Histopathology (excisional lymph node biopsy): Normal\nAFB (Ziehl–Neelsen) stain: Normal\nFungal (GMS/PAS) stains: Normal\nMycobacterial and fungal cultures: Normal\nFlow cytometry: Normal\n\nDoctor: Bronchoscopy with bronchoalveolar lavage and transbronchial lung biopsy. Send BAL for bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, and cytology; send biopsy for histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, and malignancy evaluation.\n\nMeasurement: 1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nDoctor: \n\nDoctor: Have you had known close contact with anyone diagnosed with active pulmonary tuberculosis?\n\nPatient: I don't recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n\nDoctor: \n\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\nExtracted all patient responses, exam findings, imaging and laboratory results explicitly stated in the dialogue. Noted uncertainty expressed by the patient regarding HIV status and sputum production. Identified performed procedures with documented results and procedures with specimens sent but no results reported. Did not infer any diagnoses or add information not present in the dialogue.\n\n[SUMMARY]\nIdentifying data:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever and cough for 6 months.\n- Night sweats (drenching) for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over 6 months.\n- Hemoptysis: Patient does not recall any.\n- Sputum production: Patient unsure, does not recall whether cough is productive or sputum characteristics.\n- Known contact with active pulmonary tuberculosis: Patient does not recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n- HIV history: Patient unsure; does not recall ever testing positive or being told HIV-positive.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout lung fields bilaterally.\n- Ophthalmoscopy: Three discrete, yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Performed to characterize lung infiltrates/mediastinum — no CT report/result provided in the dialogue.\n\nMicrobiology / Laboratory results:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology: Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (facts only):\n- Chronic (6 months) fever, cough, drenching night sweats, and weight loss (7.5 kg).\n- Objective findings include temperature 38.1°C, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, generalized lymphadenopathy, hepatomegaly, and three small (0.5–1.0 mm) yellow posterior pole retinal lesions.\n- Sputum NAAT for Mycobacterium tuberculosis, tuberculin skin test, HIV 4th-generation test, and excisional lymph node biopsy with associated stains/cultures/flow cytometry are reported as Normal/Negative.\n- Results pending/not provided: BAL cultures/PCRs/cytology and transbronchial biopsy histopathology and stains; chest CT report not included.\n\nOther information not provided in the dialogue:\n- Medications, allergies, past medical history, social history, and family history."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2859
+        }
+      },
+      {
+        "diagnostician": [
+          {
+            "role": "system",
+            "content": "You are a senior diagnostic physician specializing in complex differential diagnosis.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to analyze the provided structured clinical summary to formulate a precise diagnosis.\n\nYou must follow a strict reasoning process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Perform a comprehensive clinical analysis of the summary.\n\n[DIAGNOSIS]\n   - Provide the The answer in the format of a single most likely diagnosis..\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient has a 6-month history of fever, night sweats, weight loss, chronic cough, diffuse pulmonary infiltrates, generalized lymphadenopathy and hepatomegaly—all features of a chronic disseminated infectious process. The key ocular finding—multiple small (0.5–1.0 mm), yellow posterior-pole lesions with indistinct borders—represents choroidal tubercles, a classic and highly suggestive manifestation of miliary (disseminated) tuberculosis. Miliary TB often produces diffuse pulmonary infiltrates, systemic symptoms, hepatosplenomegaly and generalized lymphadenopathy. Importantly, sputum NAAT and tuberculin skin tests can be negative in miliary TB because of paucibacillary disease or anergy; lymph node biopsy and stains/cultures may also be non-diagnostic. Other disseminated infections or malignancy are less likely given the constellation of systemic findings plus the characteristic choroidal lesions. Therefore the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[DIAGNOSIS] Miliary (disseminated) tuberculosis"
+          },
+          {
+            "role": "user",
+            "content": "### Case Summary ###\nIdentifying data:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever and cough for 6 months.\n- Night sweats (drenching) for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over 6 months.\n- Hemoptysis: Patient does not recall any.\n- Sputum production: Patient unsure, does not recall whether cough is productive or sputum characteristics.\n- Known contact with active pulmonary tuberculosis: Patient does not recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n- HIV history: Patient unsure; does not recall ever testing positive or being told HIV-positive.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout lung fields bilaterally.\n- Ophthalmoscopy: Three discrete, yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Performed to characterize lung infiltrates/mediastinum — no CT report/result provided in the dialogue.\n\nMicrobiology / Laboratory results:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology: Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (facts only):\n- Chronic (6 months) fever, cough, drenching night sweats, and weight loss (7.5 kg).\n- Objective findings include temperature 38.1°C, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, generalized lymphadenopathy, hepatomegaly, and three small (0.5–1.0 mm) yellow posterior pole retinal lesions.\n- Sputum NAAT for Mycobacterium tuberculosis, tuberculin skin test, HIV 4th-generation test, and excisional lymph node biopsy with associated stains/cultures/flow cytometry are reported as Normal/Negative.\n- Results pending/not provided: BAL cultures/PCRs/cytology and transbronchial biopsy histopathology and stains; chest CT report not included.\n\nOther information not provided in the dialogue:\n- Medications, allergies, past medical history, social history, and family history.\n\nDiagnostician:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] This is a subacute–chronic systemic illness with fever, drenching night sweats, weight loss, 6 months of cough, diffuse bilateral pulmonary infiltrates and crackles, generalized lymphadenopathy and hepatomegaly. The fundoscopic finding—multiple small (0.5–1.0 mm), yellow, indistinct posterior-pole lesions—is most consistent with choroidal tubercles. Choroidal tubercles are highly specific for hematogenous (miliary/disseminated) Mycobacterium tuberculosis infection. \n\nNegative sputum NAAT and tuberculin skin test do not exclude miliary TB: disease is often paucibacillary in the airways and patients can be anergic, yielding false-negative NAAT/TST. Excisional lymph node biopsy and stains/cultures can be non-diagnostic due to sampling error or low organism burden. Lymphoma or metastatic malignancy are less likely given a normal lymph node histology/flow cytometry and the very small fundus lesions favor granulomatous choroidal tubercles over typical larger choroidal metastases. Disseminated fungal infections (e.g., histoplasmosis) can cause chorioretinitis but are less typical in distribution and would more commonly be supported by fungal stains/cultures or risk factors; lymph node fungal studies were negative. Sarcoidosis can mimic some features but would be expected to show noncaseating granulomas on node biopsy and does not classically produce drenching night sweats and the described tiny yellow choroidal tubercles.\n\nGiven the characteristic ocular lesions together with the systemic picture of disseminated granulomatous infection, the single most likely diagnosis is disseminated (miliary) tuberculosis.\n\n[DIAGNOSIS] Miliary (disseminated) tuberculosis"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1450
+        }
+      },
+      {
+        "verifier": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Supervisor.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to evaluate sufficiency of the diagnosis provided by the physician, based strictly on the available case summarized information.\n\nEvaluation Criteria:\n1. Data Sufficiency: Determine if the current information is actually sufficient to form a conclusive diagnosis.\n2. Turn Limit Override: If the maximum turn limit has been reached, you must force a decision (PASS or REJECT) based on the best possible interpretation of existing data.\n\nOutput Format:\n\n[THOUGHT] <Your Analysis>\n   - Identify if any 'Red Flag' symptoms or critical tests are missing.\n\n[DECISION] <Status>\n   - Output 'PASS' if the diagnosis is sufficient.\n   - Output 'INCOMPLETE' if critical clinical information is missing (requires the Physician to gather more data; only valid if not at max turns).\n\n[FEEDBACK] <Guidance>\n   - If PASS: Leave this section empty.\n   - If INCOMPLETE: Specify exactly what critical information is required.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The clinical syndrome (6 months of fever, night sweats, weight loss, chronic cough), diffuse pulmonary infiltrates, generalized lymphadenopathy, hepatomegaly and small yellow posterior-pole retinal lesions are all compatible with disseminated (miliary) tuberculosis and in particular the choroidal lesions are classically described as choroidal tubercles. However, key microbiologic and pathologic confirmations are lacking and some provided data argue against TB (normal excisional lymph node histology/stains/cultures, negative sputum NAAT and tuberculin skin test). Important confirmatory tests/results are pending or not recorded (BAL mycobacterial PCR/culture, transbronchial biopsy histology/AFB stains, chest CT description). There is also no social/epidemiologic or immunosuppression history (risk factors) documented. Red flags / critical missing items: (1) Normal lymph node biopsy with negative AFB/fungal stains — weakens but does not exclude TB; (2) Negative sputum NAAT/TST — important but not definitive; (3) Absence of chest CT description and missing BAL/transbronchial biopsy results — these are essential to confirm a miliary pattern and obtain microbiologic proof; (4) No fungal/histoplasma antigen testing or blood/mycobacterial cultures to exclude mimics. Given these gaps, the current record is insufficient to conclusively diagnose miliary TB.\n\n[DECISION] INCOMPLETE\n\n[FEEDBACK] To support or refute miliary (disseminated) tuberculosis and to exclude major mimics, obtain and provide the following critical information:\n- Chest CT report/images specifically commenting on presence, size and distribution of diffuse miliary nodules and mediastinal findings.\n- Results of bronchoalveolar lavage: AFB smear, mycobacterial PCR/NAAT, mycobacterial culture, bacterial/fungal cultures, Pneumocystis PCR, viral PCR, and cytology.\n- Results of the transbronchial lung biopsy: histopathology (granulomas, caseation), AFB and fungal stains, and tissue cultures.\n- Blood cultures for mycobacteria and routine blood cultures; consider mycobacterial blood cultures (especially for disseminated disease).\n- Interferon-gamma release assay (IGRA) for TB (if available) and repeat/confirmatory HIV testing with CD4 count if immunosuppression is a concern.\n- Serum and urine Histoplasma antigen (and other endemic fungal testing as indicated) and fungal blood cultures to exclude disseminated fungal infections.\n- Additional tissue sampling if lung/lymph node sampling was non-diagnostic: bone marrow biopsy/culture and/or repeat lymph node/core biopsy if suspicion remains high.\n- Epidemiologic and exposure history (TB contacts, travel, occupational exposures), BCG history, immunosuppressive medications, and any prior TB treatment.\n\nProvide the above results; if microbiologic or histologic evidence of Mycobacterium tuberculosis (AFB on tissue/BAL or positive culture/PCR) or a characteristic CT pattern plus compatible pathology is documented, the diagnosis could be confirmed."
+          },
+          {
+            "role": "user",
+            "content": "Turns: 16 / 16.\n### Case Summary ###\nIdentifying data:\n- Chief complaint: Fever\n- Duration: 6 months\n\nHistory of present illness:\n- Fever and cough for 6 months.\n- Night sweats (drenching) for 6 months.\n- Unintentional weight loss: 7.5 kg (16.5 lb) over 6 months.\n- Hemoptysis: Patient does not recall any.\n- Sputum production: Patient unsure, does not recall whether cough is productive or sputum characteristics.\n- Known contact with active pulmonary tuberculosis: Patient does not recall being in close contact with anyone diagnosed with active pulmonary tuberculosis.\n- HIV history: Patient unsure; does not recall ever testing positive or being told HIV-positive.\n\nVital signs:\n- Temperature: 38.1°C (100.6°F).\n\nPhysical examination:\n- General: Generalized lymphadenopathy present.\n- Abdomen: Hepatomegaly present.\n- Lungs: Diffuse crackles throughout lung fields bilaterally.\n- Ophthalmoscopy: Three discrete, yellow-colored lesions, 0.5 mm to 1.0 mm, with indistinct borders in the posterior pole.\n\nImaging:\n- Chest X-ray (posteroanterior and lateral): Diffuse infiltrates.\n- Chest CT (contrast-enhanced): Performed to characterize lung infiltrates/mediastinum — no CT report/result provided in the dialogue.\n\nMicrobiology / Laboratory results:\n- Early-morning sputum NAAT/PCR for Mycobacterium tuberculosis: Normal.\n- Tuberculin skin test: Negative.\n- HIV antigen/antibody (4th-generation) rapid test: Normal.\n\nPathology / Procedures:\n- Excisional biopsy of an accessible enlarged peripheral lymph node:\n  - Histopathology: Normal.\n  - AFB (Ziehl–Neelsen) stain: Normal.\n  - Fungal (GMS/PAS) stains: Normal.\n  - Mycobacterial and fungal cultures: Normal.\n  - Flow cytometry: Normal.\n- Bronchoscopy with bronchoalveolar lavage (BAL) and transbronchial lung biopsy: Performed. Specimens sent:\n  - BAL: bacterial culture, fungal culture, mycobacterial smear and culture, Pneumocystis PCR, viral PCR panel, cytology. (Results not provided.)\n  - Transbronchial biopsy: histopathology (including granuloma evaluation), AFB stain, GMS/PAS fungal stains, malignancy evaluation. (Results not provided.)\n\nAssessment / Impression (facts only):\n- Chronic (6 months) fever, cough, drenching night sweats, and weight loss (7.5 kg).\n- Objective findings include temperature 38.1°C, diffuse bilateral crackles, diffuse pulmonary infiltrates on chest x-ray, generalized lymphadenopathy, hepatomegaly, and three small (0.5–1.0 mm) yellow posterior pole retinal lesions.\n- Sputum NAAT for Mycobacterium tuberculosis, tuberculin skin test, HIV 4th-generation test, and excisional lymph node biopsy with associated stains/cultures/flow cytometry are reported as Normal/Negative.\n- Results pending/not provided: BAL cultures/PCRs/cytology and transbronchial biopsy histopathology and stains; chest CT report not included.\n\nOther information not provided in the dialogue:\n- Medications, allergies, past medical history, social history, and family history.\n\n### Proposed Diagnosis ###\nMiliary (disseminated) tuberculosis\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The clinical picture (6 months of fever, night sweats, weight loss, chronic cough, diffuse pulmonary infiltrates, generalized lymphadenopathy, hepatomegaly, and small yellow posterior-pole retinal lesions) is compatible with disseminated (miliary) tuberculosis, and the retinal lesions could represent choroidal tubercles. However, several important pieces of evidence that would be expected for a conclusive diagnosis are absent or directly argue against TB: sputum NAAT and tuberculin skin test are negative, and an excisional lymph node biopsy with stains and cultures is reported as normal. Key confirmatory data are pending or not reported (chest CT read, BAL mycobacterial PCR/culture, transbronchial biopsy histology/stains). Given the negative lymph node pathology and lack of microbiologic/histopathologic confirmation, the diagnosis as stated is not sufficiently supported by the available record. Red-flag/critical missing items: (1) absence of positive microbiology (AFB smear/culture or TB PCR) from respiratory or tissue samples; (2) missing chest CT report to confirm a miliary nodular pattern; (3) missing BAL and transbronchial biopsy results; (4) no alternative infection workup (fungal/endemic mycoses) or blood/mycobacterial cultures; (5) incomplete immunosuppression/exposure history.\n\n[DECISION] REJECT\n\n[FEEDBACK] To justify a confident diagnosis of miliary (disseminated) tuberculosis, provide the following critical data:\n- Chest CT report/images describing miliary nodules (size/distribution) and mediastinal findings.\n- Results of BAL: AFB smear, TB PCR/NAAT, mycobacterial cultures, bacterial/fungal cultures, Pneumocystis PCR, viral PCR, and cytology.\n- Results of the transbronchial lung biopsy: histopathology (granulomas, caseation), AFB and fungal stains, and tissue cultures.\n- Mycobacterial blood cultures and (if performed) bone marrow biopsy/culture results.\n- If available, IGRA (Quantiferon/T-SPOT) and repeat/confirmatory HIV testing with CD4 if immunosuppression is a concern.\n- Tests to exclude mimics: serum/urine Histoplasma antigen, other endemic fungal testing as indicated, and fungal blood cultures.\n- Epidemiologic and exposure history (TB contacts, travel, occupational exposures), current medications (including immunosuppressants), and prior TB history.\n\nIf these data demonstrate M. tuberculosis by PCR/culture from respiratory or tissue specimens, characteristic chest CT with compatible histology, or positive blood/tissue cultures, then PASS would be appropriate."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2188
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.5238095238095238,
+    "patient_coverage": 0.36363636363636365,
+    "exam_coverage": 0.7,
+    "ground_truth_patient_facts": [
+      "1. 68-year-old male",
+      "2. Patient reports fever persisting for 6 months.",
+      "3. Patient reports cough persisting for 6 months.",
+      "4. Patient reports generalized weakness persisting for 6 months.",
+      "5. Patient reports night sweats persisting for 6 months.",
+      "6. Patient reports poor appetite persisting for 6 months.",
+      "7. He has lost 7.5 kg (16.5 lb) over this period.",
+      "8. Released from prison 9 months ago after a 2-year sentence.",
+      "9. No significant past medical history reported.",
+      "10. Denies breathlessness, nasal discharge, nasal obstruction, palpitations, chest pain, or digestive symptoms.",
+      "11. No other relevant social history provided."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Temperature 38.1°C (100.6°F).",
+      "2. Blood pressure 122/80 mmHg.",
+      "3. Heart rate 84 bpm.",
+      "4. Respiratory rate 16 breaths/min.",
+      "5. Hepatomegaly present on general examination.",
+      "6. Generalized lymphadenopathy present on general examination.",
+      "7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.",
+      "8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.",
+      "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "10. Tuberculin skin test: Negative."
+    ],
+    "collected_patient_facts": [
+      "2. Patient reports fever persisting for 6 months.",
+      "3. Patient reports cough persisting for 6 months.",
+      "5. Patient reports night sweats persisting for 6 months.",
+      "7. He has lost 7.5 kg (16.5 lb) over this period."
+    ],
+    "collected_exam_facts": [
+      "1. Temperature 38.1°C (100.6°F).",
+      "5. Hepatomegaly present on general examination.",
+      "6. Generalized lymphadenopathy present on general examination.",
+      "7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.",
+      "8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.",
+      "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "10. Tuberculin skin test: Negative."
+    ]
+  },
+  "judge_response": "ANALYSIS: The prediction specifies the disseminated (miliary) form of tuberculosis, which is a subtype of the reference diagnosis \"tuberculosis\" and thus a more specific but clinically equivalent diagnosis.\n\nVERDICT: CORRECT"
+}

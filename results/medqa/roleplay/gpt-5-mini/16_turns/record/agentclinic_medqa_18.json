@@ -1,0 +1,265 @@
+{
+  "case_id": "agentclinic_medqa_18",
+  "prediction": "Uterine rupture (complete)",
+  "ground_truth": "Uterine rupture",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is your main symptom or the reason you came to see me today?",
+      "duration": 3.1285717487335205
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient reports experiencing vaginal bleeding for the past hour.\n[REFERENCE] 5. The patient reports experiencing severe abdominal pain.\n[RESPONSE] I'm here because I've been having vaginal bleeding for the past hour and severe abdominal pain.",
+      "duration": 4.54669451713562
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had a positive pregnancy test or been told you are pregnant?",
+      "duration": 9.498085975646973
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. at 38 weeks' gestation.\n\n[RESPONSE] Yes — I am at 38 weeks' gestation.",
+      "duration": 3.545546770095825
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Provide the immediate fetal heart rate monitoring (CTG) findings.",
+      "duration": 5.594691276550293
+    },
+    {
+      "role_id": "reporter",
+      "content": "13. Fetal_Heart_Rate_Monitoring: Shows recurrent variable decelerations.",
+      "duration": 3.8300552368164062
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Is your abdomen/uterus very tender or firm to the touch?",
+      "duration": 5.325585603713989
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. The patient reports experiencing severe abdominal pain.\n\n[RESPONSE] I am experiencing severe abdominal pain.",
+      "duration": 5.595661163330078
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How heavy is the vaginal bleeding now — has it soaked through one or more sanitary pads per hour?",
+      "duration": 9.729580402374268
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't know if it's soaked through one or more pads per hour.",
+      "duration": 4.9559876918792725
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had any previous cesarean deliveries or other uterine surgery (myomectomy, D&C, etc.)?",
+      "duration": 10.02443790435791
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. Her first childbirth was a cesarean section due to nonreassuring fetal heart rate.\n\n[RESPONSE] Yes — my first childbirth was a cesarean section for a nonreassuring fetal heart rate.",
+      "duration": 3.9948313236236572
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Are you having regular contractions right now, and if so how often (minutes between contractions)?",
+      "duration": 10.700289011001587
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 6. She felt contractions before the onset of the bleeding.\n7. The contractions ceased once the bleeding began.\n\n[RESPONSE] I am not having regular contractions right now — they stopped once the bleeding began, so I can't say how many minutes apart they are.",
+      "duration": 6.533488988876343
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Emergent transabdominal ultrasound: report placental location, presence of retroplacental hematoma, and any intra‑abdominal free fluid.",
+      "duration": 7.1060545444488525
+    },
+    {
+      "role_id": "reporter",
+      "content": "Placental location: Normal\n\nRetroplacental hematoma: Normal\n\nIntra‑abdominal free fluid: 5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum.",
+      "duration": 9.24372935295105
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Uterine rupture (complete)",
+      "duration": 3.74123477935791
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 8,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your main symptom or the reason you came to see me today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI'm here because I've been having vaginal bleeding for the past hour and severe abdominal pain.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had a positive pregnancy test or been told you are pregnant?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nYes — I am at 38 weeks' gestation.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Provide the immediate fetal heart rate monitoring (CTG) findings."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\n13. Fetal_Heart_Rate_Monitoring: Shows recurrent variable decelerations.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is your abdomen/uterus very tender or firm to the touch?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI am experiencing severe abdominal pain.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How heavy is the vaginal bleeding now — has it soaked through one or more sanitary pads per hour?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nI'm not sure — I don't know if it's soaked through one or more pads per hour.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had any previous cesarean deliveries or other uterine surgery (myomectomy, D&C, etc.)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nYes — my first childbirth was a cesarean section for a nonreassuring fetal heart rate.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Are you having regular contractions right now, and if so how often (minutes between contractions)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI am not having regular contractions right now — they stopped once the bleeding began, so I can't say how many minutes apart they are.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Emergent transabdominal ultrasound: report placental location, presence of retroplacental hematoma, and any intra‑abdominal free fluid."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nPlacental location: Normal\n\nRetroplacental hematoma: Normal\n\nIntra‑abdominal free fluid: 5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Uterine rupture (complete)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 964
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 32-year-old woman.\n2. gravida 2, para 1.\n3. at 38 weeks' gestation.\n4. The patient reports experiencing vaginal bleeding for the past hour.\n5. The patient reports experiencing severe abdominal pain.\n6. She felt contractions before the onset of the bleeding.\n7. The contractions ceased once the bleeding began.\n8. Her first childbirth was a cesarean section due to nonreassuring fetal heart rate.\n9. No other significant past medical history.\n10. Non-smoker.\n11. Occasional alcohol consumption.\n12. Works as an elementary school teacher.\n13. Reports feeling the baby move before the onset of symptoms.\n14. Is unsure about movement since the symptoms started.\n15. Denies any recent trauma to the abdomen.\n16. Denies any urinary symptoms.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 6. She felt contractions before the onset of the bleeding.\n7. The contractions ceased once the bleeding began.\n\n[RESPONSE] I am not having regular contractions right now — they stopped once the bleeding began, so I can't say how many minutes apart they are."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 426
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Hemoglobin: 10.2 g/dL (decreased).\n2. Platelets: 200,000 /μL.\n3. PT: 11 seconds.\n4. aPTT: 30 seconds.\n5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum.\n6. Pulse: 110/min.\n7. Blood_Pressure: 90/60 mm Hg.\n8. Respiratory_Rate: 17/min.\n9. Abdominal examination inspection: Mild distension.\n10. Abdominal examination auscultation: Decreased bowel sounds.\n11. Abdominal examination percussion: Tympanic sound predominating.\n12. Abdominal examination palpation: Diffuse abdominal tenderness without rebound or guarding.\n13. Fetal_Heart_Rate_Monitoring: Shows recurrent variable decelerations.\n14. Uterine_Examination: No contractions felt at the time of examination.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "Placental location: Normal\n\nRetroplacental hematoma: Normal\n\nIntra‑abdominal free fluid: 5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 426
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.26666666666666666,
+    "patient_coverage": 0.375,
+    "exam_coverage": 0.14285714285714285,
+    "ground_truth_patient_facts": [
+      "1. 32-year-old woman.",
+      "2. gravida 2, para 1.",
+      "3. at 38 weeks' gestation.",
+      "4. The patient reports experiencing vaginal bleeding for the past hour.",
+      "5. The patient reports experiencing severe abdominal pain.",
+      "6. She felt contractions before the onset of the bleeding.",
+      "7. The contractions ceased once the bleeding began.",
+      "8. Her first childbirth was a cesarean section due to nonreassuring fetal heart rate.",
+      "9. No other significant past medical history.",
+      "10. Non-smoker.",
+      "11. Occasional alcohol consumption.",
+      "12. Works as an elementary school teacher.",
+      "13. Reports feeling the baby move before the onset of symptoms.",
+      "14. Is unsure about movement since the symptoms started.",
+      "15. Denies any recent trauma to the abdomen.",
+      "16. Denies any urinary symptoms."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Hemoglobin: 10.2 g/dL (decreased).",
+      "2. Platelets: 200,000 /μL.",
+      "3. PT: 11 seconds.",
+      "4. aPTT: 30 seconds.",
+      "5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum.",
+      "6. Pulse: 110/min.",
+      "7. Blood_Pressure: 90/60 mm Hg.",
+      "8. Respiratory_Rate: 17/min.",
+      "9. Abdominal examination inspection: Mild distension.",
+      "10. Abdominal examination auscultation: Decreased bowel sounds.",
+      "11. Abdominal examination percussion: Tympanic sound predominating.",
+      "12. Abdominal examination palpation: Diffuse abdominal tenderness without rebound or guarding.",
+      "13. Fetal_Heart_Rate_Monitoring: Shows recurrent variable decelerations.",
+      "14. Uterine_Examination: No contractions felt at the time of examination."
+    ],
+    "collected_patient_facts": [
+      "3. at 38 weeks' gestation.",
+      "4. The patient reports experiencing vaginal bleeding for the past hour.",
+      "5. The patient reports experiencing severe abdominal pain.",
+      "6. She felt contractions before the onset of the bleeding.",
+      "7. The contractions ceased once the bleeding began.",
+      "8. Her first childbirth was a cesarean section due to nonreassuring fetal heart rate."
+    ],
+    "collected_exam_facts": [
+      "5. Ultrasound_Abdomen_and_Pelvis findings: Suggestive of a disruption in the uterine wall continuity adjacent to the scar from the previous cesarean section, with associated hemoperitoneum.",
+      "13. Fetal_Heart_Rate_Monitoring: Shows recurrent variable decelerations."
+    ]
+  },
+  "judge_response": "ANALYSIS: The prediction specifies a subtype (complete uterine rupture) of the reference diagnosis (uterine rupture). A complete rupture is a form of uterine rupture, so this is a more specific but clinically equivalent diagnosis.\n\nVERDICT: CORRECT"
+}

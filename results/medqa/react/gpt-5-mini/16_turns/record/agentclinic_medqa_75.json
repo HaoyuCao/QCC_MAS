@@ -1,0 +1,214 @@
+{
+  "case_id": "agentclinic_medqa_75",
+  "prediction": "Germinal matrix–intraventricular hemorrhage (IVH) causing neonatal seizure.",
+  "ground_truth": "Intraventricular Hemorrhage",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] I need to establish the presenting problem to guide focused questioning and testing. Asking about the chief complaint is the single most important first step.\n\n[QUERY] What is your main problem or symptom right now (in one sentence)?",
+      "duration": 2.7084622383117676
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient has become increasingly lethargic over the past 18 hours.\n5. Tonic seizure lasting for 25 seconds.\n\n[RESPONSE] I have become increasingly lethargic over the past 18 hours and had a tonic seizure lasting 25 seconds.",
+      "duration": 5.391823768615723
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Key immediate information is whether this is a first seizure or a recurrence; that will change differential (provoked vs unprovoked). I need a single focused question about prior seizure history before ordering tests.\n\n[QUERY] Have you ever had seizures before or been diagnosed with epilepsy?",
+      "duration": 5.671362638473511
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. Tonic seizure lasting for 25 seconds.\n\n[RESPONSE] I had a tonic seizure that lasted about 25 seconds.",
+      "duration": 4.412384510040283
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] It's essential to know whether this is a first seizure (changes workup and immediate management). I will ask one direct question about prior seizures or epilepsy diagnosis.\n\n[QUERY] Is this the first time you have had a seizure, or do you have a prior diagnosis of epilepsy?",
+      "duration": 2.0182416439056396
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.\n[REFERENCE] 5. Tonic seizure lasting for 25 seconds.\n\n[RESPONSE] This is the first seizure—the patient, who is three days old, had a tonic seizure lasting 25 seconds and there is no prior diagnosis of epilepsy.",
+      "duration": 6.554161548614502
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] In a 3-day-old with new-onset tonic seizure and lethargy, the most immediately reversible and critical causes are metabolic — especially hypoglycemia. A rapid point-of-care glucose will quickly change management and is high-yield before other tests. I will obtain a bedside capillary blood glucose now.\n\n[TEST] Point-of-care capillary blood glucose.",
+      "duration": 9.59558916091919
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 2.6254689693450928
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Gestational age will direct likelihood of causes (IVH in preterm, HIE in term, metabolic stores, infections) and affect immediate tests/imaging. This is a single specific question.\n\n[QUERY] What was the gestational age at birth (in weeks)?",
+      "duration": 3.7899560928344727
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.\n\n[RESPONSE] The baby was born at 31 weeks' gestation.",
+      "duration": 3.5923614501953125
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] A 31-week preterm infant at 3 days old with new tonic seizure and lethargy has a high pretest probability of intraventricular hemorrhage (most common cause of neonatal seizures in very preterm infants within first 72 hours). A bedside cranial (head) ultrasound is rapid, noninvasive, and the single highest-yield test to detect IVH and guide urgent management. I will order an urgent cranial ultrasound.\n\n[TEST] Urgent cranial (head) ultrasound.",
+      "duration": 6.08867883682251
+    },
+    {
+      "role_id": "reporter",
+      "content": "1. Cranial_Ultrasound: Evidence of bleeding within the ventricles",
+      "duration": 5.38025164604187
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] A 3-day-old infant born at 31 weeks with new-onset tonic seizure and lethargy, normal bedside glucose, and cranial ultrasound showing bleeding within the ventricles fits the typical presentation of germinal matrix–intraventricular hemorrhage (GMH-IVH), a common cause of neonatal seizures in preterm infants. This explains the clinical picture and imaging. No further questions are required to state the single most likely diagnosis.\n\n[DIAGNOSIS] Germinal matrix–intraventricular hemorrhage (IVH) causing neonatal seizure.",
+      "duration": 4.764498710632324
+    }
+  ],
+  "metadata": {
+    "mode": "react",
+    "turns": 6,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n\nIn every turn, you must follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture, identify critical information gaps, and articulate step-by-step reasoning to justify your next action.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need to establish the presenting problem to guide focused questioning and testing. Asking about the chief complaint is the single most important first step.\n\n[QUERY] What is your main problem or symptom right now (in one sentence)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI have become increasingly lethargic over the past 18 hours and had a tonic seizure lasting 25 seconds.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Key immediate information is whether this is a first seizure or a recurrence; that will change differential (provoked vs unprovoked). I need a single focused question about prior seizure history before ordering tests.\n\n[QUERY] Have you ever had seizures before or been diagnosed with epilepsy?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI had a tonic seizure that lasted about 25 seconds.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] It's essential to know whether this is a first seizure (changes workup and immediate management). I will ask one direct question about prior seizures or epilepsy diagnosis.\n\n[QUERY] Is this the first time you have had a seizure, or do you have a prior diagnosis of epilepsy?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nThis is the first seizure—the patient, who is three days old, had a tonic seizure lasting 25 seconds and there is no prior diagnosis of epilepsy.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] In a 3-day-old with new-onset tonic seizure and lethargy, the most immediately reversible and critical causes are metabolic — especially hypoglycemia. A rapid point-of-care glucose will quickly change management and is high-yield before other tests. I will obtain a bedside capillary blood glucose now.\n\n[TEST] Point-of-care capillary blood glucose."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Gestational age will direct likelihood of causes (IVH in preterm, HIE in term, metabolic stores, infections) and affect immediate tests/imaging. This is a single specific question.\n\n[QUERY] What was the gestational age at birth (in weeks)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nThe baby was born at 31 weeks' gestation.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] A 31-week preterm infant at 3 days old with new tonic seizure and lethargy has a high pretest probability of intraventricular hemorrhage (most common cause of neonatal seizures in very preterm infants within first 72 hours). A bedside cranial (head) ultrasound is rapid, noninvasive, and the single highest-yield test to detect IVH and guide urgent management. I will order an urgent cranial ultrasound.\n\n[TEST] Urgent cranial (head) ultrasound."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\n1. Cranial_Ultrasound: Evidence of bleeding within the ventricles\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] A 3-day-old infant born at 31 weeks with new-onset tonic seizure and lethargy, normal bedside glucose, and cranial ultrasound showing bleeding within the ventricles fits the typical presentation of germinal matrix–intraventricular hemorrhage (GMH-IVH), a common cause of neonatal seizures in preterm infants. This explains the clinical picture and imaging. No further questions are required to state the single most likely diagnosis.\n\n[DIAGNOSIS] Germinal matrix–intraventricular hemorrhage (IVH) causing neonatal seizure."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1329
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.\n2. The antenatal period was complicated by chorioamnionitis.\n3. Apgar scores were 3 and 6 at 1 and 5 minutes, respectively.\n4. The patient has become increasingly lethargic over the past 18 hours.\n5. Tonic seizure lasting for 25 seconds.\n6. Appears ill.\n7. Social_History: Not applicable given age\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.\n\n[RESPONSE] The baby was born at 31 weeks' gestation."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 348
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Cranial_Ultrasound: Evidence of bleeding within the ventricles\n2. Complete_Blood_Count WBC: Slightly elevated\n3. Complete_Blood_Count Hemoglobin: Within normal limits\n4. C-Reactive_Protein: Elevated, indicating inflammation or infection\n5. Blood_Pressure: 60/30 mm Hg\n6. Heart_Rate: 123 bpm\n7. Respirations are 50/min and irregular\n8. Tense anterior fontanelle\n9. Pupils equal and react sluggishly to light\n10. Decreased muscle tone in all extremities\n11. Slow, conjugate back and forth movements of the eyes\n12. Lung_Auscultation: Clear to auscultation\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "1. Cranial_Ultrasound: Evidence of bleeding within the ventricles"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 298
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.21052631578947367,
+    "patient_coverage": 0.42857142857142855,
+    "exam_coverage": 0.08333333333333333,
+    "ground_truth_patient_facts": [
+      "1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.",
+      "2. The antenatal period was complicated by chorioamnionitis.",
+      "3. Apgar scores were 3 and 6 at 1 and 5 minutes, respectively.",
+      "4. The patient has become increasingly lethargic over the past 18 hours.",
+      "5. Tonic seizure lasting for 25 seconds.",
+      "6. Appears ill.",
+      "7. Social_History: Not applicable given age"
+    ],
+    "ground_truth_exam_facts": [
+      "1. Cranial_Ultrasound: Evidence of bleeding within the ventricles",
+      "2. Complete_Blood_Count WBC: Slightly elevated",
+      "3. Complete_Blood_Count Hemoglobin: Within normal limits",
+      "4. C-Reactive_Protein: Elevated, indicating inflammation or infection",
+      "5. Blood_Pressure: 60/30 mm Hg",
+      "6. Heart_Rate: 123 bpm",
+      "7. Respirations are 50/min and irregular",
+      "8. Tense anterior fontanelle",
+      "9. Pupils equal and react sluggishly to light",
+      "10. Decreased muscle tone in all extremities",
+      "11. Slow, conjugate back and forth movements of the eyes",
+      "12. Lung_Auscultation: Clear to auscultation"
+    ],
+    "collected_patient_facts": [
+      "1. The patient was born three days ago with a birth weight of 1100 g at 31 weeks' gestation.",
+      "4. The patient has become increasingly lethargic over the past 18 hours.",
+      "5. Tonic seizure lasting for 25 seconds."
+    ],
+    "collected_exam_facts": [
+      "1. Cranial_Ultrasound: Evidence of bleeding within the ventricles"
+    ]
+  },
+  "judge_response": "ANALYSIS: The predicted diagnosis specifies the common neonatal subtype (germinal matrix–IVH) and notes an associated complication (neonatal seizure). This is a more specific but clinically equivalent description of intraventricular hemorrhage.\n\nVERDICT: CORRECT"
+}

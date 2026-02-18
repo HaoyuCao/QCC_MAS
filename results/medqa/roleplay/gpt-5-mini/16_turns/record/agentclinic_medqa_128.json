@@ -1,0 +1,310 @@
+{
+  "case_id": "agentclinic_medqa_128",
+  "prediction": "Acute viral exanthem (generalized viral maculopapular rash), most likely related to a recent viral upper respiratory infection.",
+  "ground_truth": "Chickenpox",
+  "is_correct": false,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What are your main symptoms?",
+      "duration": 4.5185465812683105
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Generalized rash over face, trunk, and extremities.\n[REFERENCE] 4. Severe itching.\n\n[RESPONSE] I have a generalized rash over my face, trunk, and extremities, and it’s very itchy.",
+      "duration": 6.017580032348633
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How long have you had the rash?",
+      "duration": 8.893430233001709
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. Generalized rash for 3 days.\n[RESPONSE] I've had the rash for 3 days.",
+      "duration": 4.0174384117126465
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you have fever or general symptoms like chills, sore throat, cough, or body aches?",
+      "duration": 7.141103982925415
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 6. Fever.\n8. Muscle pain.\n\n[RESPONSE] Yes — I have a fever and muscle pain (body aches).",
+      "duration": 5.534207105636597
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you started any new prescription or over-the-counter medications, including antibiotics, in the past 2 weeks?",
+      "duration": 5.728837251663208
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 9. Onset of a runny nose was noted 5 days ago.\n10. The runny nose receded with over-the-counter medications.\n\n[RESPONSE] I started over-the-counter medications for a runny nose that began 5 days ago, and the runny nose receded with those medications.",
+      "duration": 7.230663537979126
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What over-the-counter medication(s) did you start? (Please give the exact name or active ingredient.)",
+      "duration": 8.024797439575195
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall the exact name or active ingredient of the over‑the‑counter medication I used.",
+      "duration": 13.59987735748291
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Did the rash begin after you took the over‑the‑counter medication, and if so, how soon after the first dose did it start?",
+      "duration": 13.165940523147583
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I’m not sure — I don’t recall whether the rash began after I took the over-the-counter medicine or how soon after the first dose it started.",
+      "duration": 5.943030118942261
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What do the individual skin lesions look like—are they flat red spots (macules), raised bumps (papules), raised itchy wheals/hives, blisters, target-like lesions, or scaly patches?",
+      "duration": 8.674197912216187
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall what the individual lesions look like.",
+      "duration": 7.31685471534729
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you have any swelling of your face, lips, tongue, or any difficulty breathing or swallowing?",
+      "duration": 10.321527242660522
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 14. Denies any respiratory distress.\n\n[RESPONSE] I do not have any difficulty breathing.",
+      "duration": 9.663332462310791
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Did your fever begin before the rash appeared, or did the rash start first (which came first)?",
+      "duration": 11.562241077423096
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether the fever began before the rash or the rash started first.",
+      "duration": 4.800370693206787
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How old are you?",
+      "duration": 11.77679181098938
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 4-year-old boy.\n[RESPONSE] I am 4 years old.",
+      "duration": 4.194303750991821
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do the individual skin lesions come and go or change location within hours (transient wheals), or do they stay in the same spots?",
+      "duration": 9.822936773300171
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether the individual spots come and go or stay in the same places.",
+      "duration": 4.813078880310059
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Acute viral exanthem (generalized viral maculopapular rash), most likely related to a recent viral upper respiratory infection.",
+      "duration": 10.079768180847168
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 11,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What are your main symptoms?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI have a generalized rash over my face, trunk, and extremities, and it’s very itchy.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How long have you had the rash?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI've had the rash for 3 days.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have fever or general symptoms like chills, sore throat, cough, or body aches?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nYes — I have a fever and muscle pain (body aches).\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you started any new prescription or over-the-counter medications, including antibiotics, in the past 2 weeks?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI started over-the-counter medications for a runny nose that began 5 days ago, and the runny nose receded with those medications.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What over-the-counter medication(s) did you start? (Please give the exact name or active ingredient.)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nI don't recall the exact name or active ingredient of the over‑the‑counter medication I used.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Did the rash begin after you took the over‑the‑counter medication, and if so, how soon after the first dose did it start?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nI’m not sure — I don’t recall whether the rash began after I took the over-the-counter medicine or how soon after the first dose it started.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What do the individual skin lesions look like—are they flat red spots (macules), raised bumps (papules), raised itchy wheals/hives, blisters, target-like lesions, or scaly patches?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI'm not sure — I don't recall what the individual lesions look like.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have any swelling of your face, lips, tongue, or any difficulty breathing or swallowing?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nI do not have any difficulty breathing.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Did your fever begin before the rash appeared, or did the rash start first (which came first)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\nI'm not sure — I don't recall whether the fever began before the rash or the rash started first.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old are you?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\nLast reply:\nI am 4 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do the individual skin lesions come and go or change location within hours (transient wheals), or do they stay in the same spots?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\nLast reply:\nI'm not sure — I don't recall whether the individual spots come and go or stay in the same places.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Acute viral exanthem (generalized viral maculopapular rash), most likely related to a recent viral upper respiratory infection."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1974
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 4-year-old boy.\n2. Generalized rash over face, trunk, and extremities.\n3. Generalized rash for 3 days.\n4. Severe itching.\n5. Difficulty sleeping due to discomfort.\n6. Fever.\n7. Headache.\n8. Muscle pain.\n9. Onset of a runny nose was noted 5 days ago.\n10. The runny nose receded with over-the-counter medications.\n11. Recently returned from a camping trip 1 week ago.\n12. Attends a daycare center regularly.\n13. No significant past medical history.\n14. Denies any respiratory distress.\n15. No reported vomiting or diarrhea.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether the individual spots come and go or stay in the same places."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 362
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Temperature: 38.2°C (100.7°F).\n2. Pulse: 97/min.\n3. Blood_Pressure: 96/60 mm Hg.\n4. Observation of several macules, papules, and crusted lesions across the face, trunk, and extremities.\n5. A few fluid-filled vesicles noted over the abdomen and back.\n6. No cervical lymphadenopathy detected.\n7. Complete_Blood_Count WBC: Not significantly elevated.\n8. Complete_Blood_Count Hemoglobin: Normal.\n9. Complete_Blood_Count Platelets: Normal.\n10. Viral culture of vesicle fluid: Positive for Varicella-Zoster virus.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 264
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.36,
+    "patient_coverage": 0.6,
+    "exam_coverage": 0.0,
+    "ground_truth_patient_facts": [
+      "1. 4-year-old boy.",
+      "2. Generalized rash over face, trunk, and extremities.",
+      "3. Generalized rash for 3 days.",
+      "4. Severe itching.",
+      "5. Difficulty sleeping due to discomfort.",
+      "6. Fever.",
+      "7. Headache.",
+      "8. Muscle pain.",
+      "9. Onset of a runny nose was noted 5 days ago.",
+      "10. The runny nose receded with over-the-counter medications.",
+      "11. Recently returned from a camping trip 1 week ago.",
+      "12. Attends a daycare center regularly.",
+      "13. No significant past medical history.",
+      "14. Denies any respiratory distress.",
+      "15. No reported vomiting or diarrhea."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Temperature: 38.2°C (100.7°F).",
+      "2. Pulse: 97/min.",
+      "3. Blood_Pressure: 96/60 mm Hg.",
+      "4. Observation of several macules, papules, and crusted lesions across the face, trunk, and extremities.",
+      "5. A few fluid-filled vesicles noted over the abdomen and back.",
+      "6. No cervical lymphadenopathy detected.",
+      "7. Complete_Blood_Count WBC: Not significantly elevated.",
+      "8. Complete_Blood_Count Hemoglobin: Normal.",
+      "9. Complete_Blood_Count Platelets: Normal.",
+      "10. Viral culture of vesicle fluid: Positive for Varicella-Zoster virus."
+    ],
+    "collected_patient_facts": [
+      "1. 4-year-old boy.",
+      "2. Generalized rash over face, trunk, and extremities.",
+      "3. Generalized rash for 3 days.",
+      "4. Severe itching.",
+      "6. Fever.",
+      "8. Muscle pain.",
+      "9. Onset of a runny nose was noted 5 days ago.",
+      "10. The runny nose receded with over-the-counter medications.",
+      "14. Denies any respiratory distress."
+    ],
+    "collected_exam_facts": []
+  },
+  "judge_response": "ANALYSIS: The prediction is a nonspecific acute viral exanthem (maculopapular rash) likely from a recent URI, which does not specifically identify varicella (chickenpox). Chickenpox has a characteristic vesiculopustular rash in different stages and specific clinical course/management. The predicted broader label is not clinically equivalent to the specific diagnosis of chickenpox.\n\nVERDICT: INCORRECT"
+}

@@ -1,0 +1,324 @@
+{
+  "case_id": "agentclinic_medqa_92",
+  "prediction": "Miliary (disseminated) tuberculosis",
+  "ground_truth": "Tuberculosis",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is your main symptom or reason for seeking medical care today?",
+      "duration": 2.5273916721343994
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Patient reports fever persisting for 6 months.\n3. Patient reports cough persisting for 6 months.\n\n[RESPONSE] My main symptoms are fever and a cough that have persisted for six months.",
+      "duration": 5.87190580368042
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Is your cough productive (do you bring up sputum)?",
+      "duration": 6.161536931991577
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether my cough brings up sputum.",
+      "duration": 19.241302490234375
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you cough up sputum regularly (yes or no)?",
+      "duration": 6.551977634429932
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether I cough up sputum regularly.",
+      "duration": 3.746694564819336
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you coughed up blood (any amount of blood in the sputum)?",
+      "duration": 7.5994346141815186
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall coughing up blood.",
+      "duration": 4.362203121185303
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had night sweats (waking drenched in sweat) during this illness?",
+      "duration": 4.346637010574341
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. Patient reports night sweats persisting for 6 months.\n\n[RESPONSE] Yes — I have had night sweats for the past 6 months.",
+      "duration": 3.3495984077453613
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you experienced unintentional weight loss since the illness started?",
+      "duration": 6.047929525375366
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 7. He has lost 7.5 kg (16.5 lb) over this period.\n\n[RESPONSE] Yes — I have lost 7.5 kg (16.5 lb) since the illness started.",
+      "duration": 6.028132438659668
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you been in close contact with anyone known or suspected to have tuberculosis?",
+      "duration": 6.709630727767944
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall being in close contact with anyone known or suspected to have tuberculosis.",
+      "duration": 3.5011487007141113
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you have known HIV infection or have you ever tested positive for HIV?",
+      "duration": 4.505772590637207
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall.",
+      "duration": 3.4157145023345947
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you ever been treated for tuberculosis in the past?",
+      "duration": 8.645631313323975
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 9. No significant past medical history reported.\n\n[RESPONSE] No — I have no significant past medical history reported.",
+      "duration": 5.2218756675720215
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you had a chest X-ray for this illness?",
+      "duration": 8.097704410552979
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall having a chest X-ray for this illness.",
+      "duration": 4.345836162567139
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Chest X-ray (PA and lateral) report.",
+      "duration": 5.541924238204956
+    },
+    {
+      "role_id": "reporter",
+      "content": "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "duration": 3.3690555095672607
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Sputum nucleic acid amplification test (GeneXpert MTB/RIF) on an expectorated sputum sample.",
+      "duration": 4.697071313858032
+    },
+    {
+      "role_id": "reporter",
+      "content": "1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.",
+      "duration": 9.94966173171997
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Miliary (disseminated) tuberculosis",
+      "duration": 6.590595245361328
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 12,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main symptoms are fever and a cough that have persisted for six months.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is your cough productive (do you bring up sputum)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI'm not sure — I don't recall whether my cough brings up sputum.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you cough up sputum regularly (yes or no)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI'm not sure — I don't recall whether I cough up sputum regularly.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you coughed up blood (any amount of blood in the sputum)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI don't recall coughing up blood.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had night sweats (waking drenched in sweat) during this illness?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nYes — I have had night sweats for the past 6 months.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you experienced unintentional weight loss since the illness started?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nYes — I have lost 7.5 kg (16.5 lb) since the illness started.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you been in close contact with anyone known or suspected to have tuberculosis?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI'm not sure — I don't recall being in close contact with anyone known or suspected to have tuberculosis.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have known HIV infection or have you ever tested positive for HIV?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nI'm not sure — I don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you ever been treated for tuberculosis in the past?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\nNo — I have no significant past medical history reported.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you had a chest X-ray for this illness?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\nLast reply:\nI don't recall having a chest X-ray for this illness.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Chest X-ray (PA and lateral) report."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\nLast reply:\n9. Chest X-ray: Image shows diffuse infiltrates.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Sputum nucleic acid amplification test (GeneXpert MTB/RIF) on an expectorated sputum sample."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 12 / 16.\nLast reply:\n1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Miliary (disseminated) tuberculosis"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1010
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 68-year-old male\n2. Patient reports fever persisting for 6 months.\n3. Patient reports cough persisting for 6 months.\n4. Patient reports generalized weakness persisting for 6 months.\n5. Patient reports night sweats persisting for 6 months.\n6. Patient reports poor appetite persisting for 6 months.\n7. He has lost 7.5 kg (16.5 lb) over this period.\n8. Released from prison 9 months ago after a 2-year sentence.\n9. No significant past medical history reported.\n10. Denies breathlessness, nasal discharge, nasal obstruction, palpitations, chest pain, or digestive symptoms.\n11. No other relevant social history provided.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall having a chest X-ray for this illness."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 365
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Temperature 38.1°C (100.6°F).\n2. Blood pressure 122/80 mmHg.\n3. Heart rate 84 bpm.\n4. Respiratory rate 16 breaths/min.\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "1. Temperature 38.1°C (100.6°F).\n5. Hepatomegaly present on general examination.\n6. Generalized lymphadenopathy present on general examination.\n7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.\n8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.\n9. Chest X-ray: Image shows diffuse infiltrates.\n10. Tuberculin skin test: Negative."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 384
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.5714285714285714,
+    "patient_coverage": 0.45454545454545453,
+    "exam_coverage": 0.7,
+    "ground_truth_patient_facts": [
+      "1. 68-year-old male",
+      "2. Patient reports fever persisting for 6 months.",
+      "3. Patient reports cough persisting for 6 months.",
+      "4. Patient reports generalized weakness persisting for 6 months.",
+      "5. Patient reports night sweats persisting for 6 months.",
+      "6. Patient reports poor appetite persisting for 6 months.",
+      "7. He has lost 7.5 kg (16.5 lb) over this period.",
+      "8. Released from prison 9 months ago after a 2-year sentence.",
+      "9. No significant past medical history reported.",
+      "10. Denies breathlessness, nasal discharge, nasal obstruction, palpitations, chest pain, or digestive symptoms.",
+      "11. No other relevant social history provided."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Temperature 38.1°C (100.6°F).",
+      "2. Blood pressure 122/80 mmHg.",
+      "3. Heart rate 84 bpm.",
+      "4. Respiratory rate 16 breaths/min.",
+      "5. Hepatomegaly present on general examination.",
+      "6. Generalized lymphadenopathy present on general examination.",
+      "7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.",
+      "8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.",
+      "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "10. Tuberculin skin test: Negative."
+    ],
+    "collected_patient_facts": [
+      "2. Patient reports fever persisting for 6 months.",
+      "3. Patient reports cough persisting for 6 months.",
+      "5. Patient reports night sweats persisting for 6 months.",
+      "7. He has lost 7.5 kg (16.5 lb) over this period.",
+      "9. No significant past medical history reported."
+    ],
+    "collected_exam_facts": [
+      "1. Temperature 38.1°C (100.6°F).",
+      "5. Hepatomegaly present on general examination.",
+      "6. Generalized lymphadenopathy present on general examination.",
+      "7. Auscultation: Diffuse crackles throughout the lung fields bilaterally.",
+      "8. Ophthalmoscopy: Three discrete, yellow-colored, 0.5 mm to 1.0 mm lesions with indistinct borders in the posterior pole.",
+      "9. Chest X-ray: Image shows diffuse infiltrates.",
+      "10. Tuberculin skin test: Negative."
+    ]
+  },
+  "judge_response": "ANALYSIS (pair 1): The prediction restates Boerhaave syndrome and adds typical pathophysiology/complications (spontaneous esophageal rupture with pneumomediastinum/mediastinitis), which is a more specific description but the same diagnosis.\n\nVERDICT (pair 1): CORRECT\n\nANALYSIS (pair 2): Miliary (disseminated) tuberculosis is a form/subtype of tuberculosis; the prediction specifies the disseminated presentation but remains clinically equivalent to the reference.\n\nVERDICT (pair 2): CORRECT"
+}

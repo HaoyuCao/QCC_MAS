@@ -1,0 +1,183 @@
+{
+  "case_id": "agentclinic_medqa_84",
+  "prediction": "Nightmare disorder (recurrent nightmares)",
+  "ground_truth": "Nightmare disorder",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What symptoms are you currently experiencing?",
+      "duration": 7.523548603057861
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient has been experiencing difficulty sleeping for the past 2 months.\n3. Episodes of waking up frightened occurring one to two times per week.\n\n[RESPONSE] I've had difficulty sleeping for the past two months, and I wake up frightened about one to two times per week.",
+      "duration": 6.044388294219971
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] When you wake up frightened, do you remember a specific frightening dream/nightmare, or do you wake suddenly with intense fear but no clear dream memory?",
+      "duration": 8.056302785873413
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. Recollection of bad dreams.\n[RESPONSE] I remember specific frightening dreams/nightmares when I wake up frightened.",
+      "duration": 5.993689298629761
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Have you experienced a traumatic event (e.g., assault, serious accident, combat, sexual assault, witnessing death) before the onset of these nightmares?",
+      "duration": 6.9751152992248535
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 16. No history of trauma or significant stress identified.\n\n[RESPONSE] No — there is no history of trauma or significant stress identified before the nightmares.",
+      "duration": 3.465711832046509
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do these nightmares cause significant distress or daytime problems (e.g., fear of sleeping, anxiety during the day, poor concentration, daytime sleepiness)?",
+      "duration": 5.830661296844482
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 6. She can be consoled by her parents.\n7. The following day, she appears more tired than usual.\n\n[RESPONSE] She appears more tired the day after these episodes, and she can be consoled by her parents.",
+      "duration": 7.699652194976807
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Nightmare disorder (recurrent nightmares)",
+      "duration": 7.025028944015503
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 4,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What symptoms are you currently experiencing?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI've had difficulty sleeping for the past two months, and I wake up frightened about one to two times per week.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] When you wake up frightened, do you remember a specific frightening dream/nightmare, or do you wake suddenly with intense fear but no clear dream memory?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI remember specific frightening dreams/nightmares when I wake up frightened.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Have you experienced a traumatic event (e.g., assault, serious accident, combat, sexual assault, witnessing death) before the onset of these nightmares?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nNo — there is no history of trauma or significant stress identified before the nightmares.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do these nightmares cause significant distress or daytime problems (e.g., fear of sleeping, anxiety during the day, poor concentration, daytime sleepiness)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nShe appears more tired the day after these episodes, and she can be consoled by her parents.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Nightmare disorder (recurrent nightmares)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1138
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 8-year-old female.\n2. The patient has been experiencing difficulty sleeping for the past 2 months.\n3. Episodes of waking up frightened occurring one to two times per week.\n4. During these episodes, she yells and cries.\n5. She does not seem confused after waking.\n6. She can be consoled by her parents.\n7. The following day, she appears more tired than usual.\n8. Recollection of bad dreams.\n9. Bedtime procrastination.\n10. Met all developmental milestones.\n11. No significant medical history.\n12. Attends school regularly.\n13. Has usual playing habits and interactions with peers.\n14. Lives with both parents.\n15. No significant findings in other systems.\n16. No history of trauma or significant stress identified.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 6. She can be consoled by her parents.\n7. The following day, she appears more tired than usual.\n\n[RESPONSE] She appears more tired the day after these episodes, and she can be consoled by her parents."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 407
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. The patient's sleep diary reveals a pattern correlating with the described episodes, with noted disturbances occurring 1-2 times a week.\n2. Polysomnography: Not indicated at this stage based on history and normal physical examination.\n3. General appearance: Well-looking child, appropriate for age.\n4. Temperature: 36.8°C (98°F).\n5. Blood Pressure: 100/60 mmHg.\n6. Heart Rate: 82 bpm.\n7. Respiratory Rate: 18 breaths/min.\n8. Neurological examination: Fully alert and oriented to time, place, and person.\n9. Neurological examination: Cranial nerves II-XII intact.\n10. Neurological examination: Normal motor strength and sensory responses throughout.\n11. Neurological examination: Normal coordination and gait observed.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 292
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.2222222222222222,
+    "patient_coverage": 0.375,
+    "exam_coverage": 0.0,
+    "ground_truth_patient_facts": [
+      "1. 8-year-old female.",
+      "2. The patient has been experiencing difficulty sleeping for the past 2 months.",
+      "3. Episodes of waking up frightened occurring one to two times per week.",
+      "4. During these episodes, she yells and cries.",
+      "5. She does not seem confused after waking.",
+      "6. She can be consoled by her parents.",
+      "7. The following day, she appears more tired than usual.",
+      "8. Recollection of bad dreams.",
+      "9. Bedtime procrastination.",
+      "10. Met all developmental milestones.",
+      "11. No significant medical history.",
+      "12. Attends school regularly.",
+      "13. Has usual playing habits and interactions with peers.",
+      "14. Lives with both parents.",
+      "15. No significant findings in other systems.",
+      "16. No history of trauma or significant stress identified."
+    ],
+    "ground_truth_exam_facts": [
+      "1. The patient's sleep diary reveals a pattern correlating with the described episodes, with noted disturbances occurring 1-2 times a week.",
+      "2. Polysomnography: Not indicated at this stage based on history and normal physical examination.",
+      "3. General appearance: Well-looking child, appropriate for age.",
+      "4. Temperature: 36.8°C (98°F).",
+      "5. Blood Pressure: 100/60 mmHg.",
+      "6. Heart Rate: 82 bpm.",
+      "7. Respiratory Rate: 18 breaths/min.",
+      "8. Neurological examination: Fully alert and oriented to time, place, and person.",
+      "9. Neurological examination: Cranial nerves II-XII intact.",
+      "10. Neurological examination: Normal motor strength and sensory responses throughout.",
+      "11. Neurological examination: Normal coordination and gait observed."
+    ],
+    "collected_patient_facts": [
+      "2. The patient has been experiencing difficulty sleeping for the past 2 months.",
+      "3. Episodes of waking up frightened occurring one to two times per week.",
+      "6. She can be consoled by her parents.",
+      "7. The following day, she appears more tired than usual.",
+      "8. Recollection of bad dreams.",
+      "16. No history of trauma or significant stress identified."
+    ],
+    "collected_exam_facts": []
+  },
+  "judge_response": "ANALYSIS: The prediction restates the same diagnosis, adding a synonymous descriptor (\"recurrent nightmares\"); clinically equivalent.\n\nVERDICT: CORRECT"
+}

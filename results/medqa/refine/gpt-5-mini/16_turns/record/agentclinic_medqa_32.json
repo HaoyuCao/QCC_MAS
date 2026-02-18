@@ -1,0 +1,364 @@
+{
+  "case_id": "agentclinic_medqa_32",
+  "prediction": "Acute liver failure (fulminant hepatic failure) with hepatic encephalopathy.",
+  "ground_truth": "Fulminant hepatic failure",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Need the presenting complaint and duration to narrow differential. Ask a single, specific question about symptoms and timeline.\n\n[QUERY] What is your main symptom or problem right now, and how long have you had it?",
+      "duration": 3.6132521629333496
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient was brought to the emergency department due to agitation over the past 24 hours.\n8. Primary symptom: Agitation\n\n[RESPONSE] My main problem is agitation, and it has been going on for about the past 24 hours.",
+      "duration": 3.966165542602539
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Agitation can result from many causes (delirium, intoxication/withdrawal, primary psychiatric illness, endocrine, infection). Immediate vital signs help detect fever, hemodynamic instability, tachycardia or hypoxia that point toward infection, withdrawal, intoxication, or medical causes. Request vital signs now.\n\n[TEST] Please obtain vital signs: temperature, heart rate, blood pressure, respiratory rate, and oxygen saturation.",
+      "duration": 6.192951917648315
+    },
+    {
+      "role_id": "reporter",
+      "content": "16. Temperature: 37.0°C (98.6°F)\n18. Heart_Rate: 94/min\n17. Blood_Pressure: 110/60 mm Hg\n19. Respiratory_Rate: 13/min\nOxygen_Saturation: Normal",
+      "duration": 8.064301490783691
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Recent substance use or withdrawal could explain acute agitation; need timing and substances.\n\n[QUERY] Have you used alcohol, recreational drugs, or taken extra/changed doses of prescription medications in the past 48 hours? If yes, what and when?",
+      "duration": 5.17066764831543
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient has a history of occasional cocaine and ecstasy use.\n5. The patient drinks alcohol socially (about 20 g on weekends).\n\n[RESPONSE] I have a history of occasional cocaine and ecstasy use, and I drink alcohol socially — about 20 g on weekends.",
+      "duration": 7.203838348388672
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Need to know if recent stimulant use could explain acute agitation (intoxication or withdrawal). Ask a single, specific question about timing of use.\n\n[QUERY] Did you use cocaine or ecstasy (MDMA) within the past 48 hours? If yes, when was your last use?",
+      "duration": 4.579962491989136
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient has a history of occasional cocaine and ecstasy use.\n\n[RESPONSE] I have a history of occasional cocaine and ecstasy (MDMA) use. There is no information here about when my last use was.",
+      "duration": 6.569620847702026
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Determining whether this is delirium (impaired orientation/attention) versus primary psychiatric agitation is critical. Ask about orientation to assess for delirium.\n\n[QUERY] Are you oriented to person, place, and time (do you know who you are, where you are, and what the date or time is)?",
+      "duration": 8.599210023880005
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 10. Secondary symptom: Not oriented to time and space\n[RESPONSE] I'm not oriented to time or place.",
+      "duration": 4.60789680480957
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute delirium vs intoxication — urgently need to exclude hypoglycemia as a reversible cause of altered mental status.\n\n[TEST] Please check a point-of-care (fingerstick) blood glucose now.",
+      "duration": 4.246305704116821
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 4.193739175796509
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute disorientation with agitation could be due to stimulant intoxication (cocaine/MDMA) or other toxins; a urine toxicology screen will quickly detect common illicit stimulants and many other drugs and guide management.\n\n[TEST] Please send a urine toxicology screen (immunoassay with confirmatory GC-MS if positive).",
+      "duration": 7.219798803329468
+    },
+    {
+      "role_id": "reporter",
+      "content": "Normal",
+      "duration": 4.25830602645874
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute new disorientation and agitation with normal vitals and negative tox/GLU raises possibility of metabolic (electrolyte, renal, hepatic) causes of delirium. A stat comprehensive metabolic panel will quickly identify electrolyte disturbances, renal failure, and liver abnormalities that could explain the presentation.\n\n[TEST] Please obtain a stat comprehensive metabolic panel (CMP).",
+      "duration": 9.638412475585938
+    },
+    {
+      "role_id": "reporter",
+      "content": "Sodium: Normal\nPotassium: Normal\nChloride: Normal\nBicarbonate (CO2): Normal\nBUN: Normal\nCreatinine: Normal\nGlucose: Normal\nCalcium: Normal\nAlbumin: Normal\nTotal Protein:\n14. TP_Activity: < 40% (reduced)\nTotal bilirubin:\n11. Bilirubin: 25 mg/dL (elevated)\nAlkaline phosphatase: Normal\nAST:\n12. AST: 600 IU/L (elevated)\nALT:\n13. ALT: 650 IU/L (elevated)",
+      "duration": 14.5808687210083
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute hepatocellular injury with high bilirubin and altered mental status suggests hepatic encephalopathy from acute liver failure; determining coagulation (INR) is essential to confirm acute liver failure and guide urgency. Request coagulation studies next.\n\n[TEST] Please obtain prothrombin time and INR (PT/INR).",
+      "duration": 6.210691452026367
+    },
+    {
+      "role_id": "reporter",
+      "content": "14. TP_Activity: < 40% (reduced)\n15. INR: 1.5 (elevated)\nProthrombin time (PT): Normal",
+      "duration": 7.776371240615845
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The patient has acute-onset agitation with disorientation (hepatic encephalopathy), very high transaminases (AST/ALT ~600–650 IU/L), marked hyperbilirubinemia (25 mg/dL), and an elevated INR of 1.5 — meeting criteria for acute liver failure (acute severe hepatocellular injury with hepatic encephalopathy and INR ≥1.5) in a patient without documented chronic liver disease. This is the single most likely diagnosis and requires urgent liver-directed management and ICU transfer; further etiologic testing (acetaminophen level, viral hepatitis serologies, ammonia) and immediate treatment (consider N‑acetylcysteine empirically, airway protection, hepatology consult) are indicated, but diagnostic criteria are already met. \n\n[FINISH]",
+      "duration": 16.035289525985718
+    },
+    {
+      "role_id": "summarizer",
+      "content": "[THOUGHT]\nPatient presented with agitation for ~24 hours. Vital signs were recorded. Patient reports occasional cocaine and ecstasy (MDMA) use and social alcohol use (~20 g on weekends); timing of last stimulant use is not provided. Patient is not oriented to time or place. Point-of-care glucose normal. Urine toxicology screen reported as normal. Stat CMP shows markedly elevated transaminases (AST 600 IU/L, ALT 650 IU/L), marked hyperbilirubinemia (Bilirubin 25 mg/dL), alkaline phosphatase and most electrolytes reported as normal, albumin normal, \"TP_Activity\" reported as < 40% (reduced). PT reported as normal but INR is 1.5 (elevated). No additional exam findings or plans were documented in the dialogue.\n\n[SUMMARY]\nChief complaint:\n- Agitation for approximately 24 hours.\n\nHistory of present illness:\n- Patient reports agitation beginning about 24 hours prior to evaluation.\n- Orientation: patient reports not oriented to time or place (orientation to person not explicitly stated).\n\nSubstance use:\n- History of occasional cocaine and ecstasy (MDMA) use.\n- Social alcohol use: approximately 20 g on weekends.\n- Timing of last cocaine/MDMA use: not provided/unknown.\n\nVital signs:\n- Temperature: 37.0°C (98.6°F)\n- Heart rate: 94/min\n- Blood pressure: 110/60 mm Hg\n- Respiratory rate: 13/min\n- Oxygen saturation: Normal (no numeric value provided)\n\nPoint-of-care testing:\n- Fingerstick blood glucose: Normal\n\nToxicology:\n- Urine toxicology screen (immunoassay with confirmatory GC-MS if positive): Normal\n\nLaboratory results (stat CMP and coagulation testing as provided):\n- Sodium: Normal\n- Potassium: Normal\n- Chloride: Normal\n- Bicarbonate (CO2): Normal\n- BUN: Normal\n- Creatinine: Normal\n- Glucose: Normal\n- Calcium: Normal\n- Albumin: Normal\n- Total Protein: (no value provided)\n- TP_Activity: < 40% (reduced)\n- Total bilirubin / Bilirubin: 25 mg/dL (elevated)\n- Alkaline phosphatase: Normal\n- AST: 600 IU/L (elevated)\n- ALT: 650 IU/L (elevated)\n- Prothrombin time (PT): Normal\n- INR: 1.5 (elevated)\n\nProblem list / pertinent positives:\n1. Agitation x ~24 hours.\n2. Altered orientation: not oriented to time or place.\n3. Marked transaminitis: AST 600 IU/L, ALT 650 IU/L.\n4. Hyperbilirubinemia: bilirubin 25 mg/dL.\n5. Reduced TP_Activity: < 40%.\n6. Coagulation abnormality: INR 1.5 (reported); PT reported as normal.\n7. Urine toxicology negative.\n8. Point-of-care glucose normal.\n9. Vitals within listed ranges (afebrile, HR 94, BP 110/60, RR 13, O2 saturation normal).\n\nPlan / next steps:\n- No additional diagnostic or therapeutic plan documented in the dialogue.",
+      "duration": 13.620162963867188
+    },
+    {
+      "role_id": "diagnostician",
+      "content": "[THOUGHT] The patient has new-onset agitation and disorientation (acute encephalopathy) with marked hepatic injury: AST 600, ALT 650, total bilirubin 25 mg/dL, reduced TP activity <40% and an elevated INR of 1.5. Point-of-care glucose is normal and urine tox is negative, making hypoglycemia or intoxication unlikely explanations for the mental status change. The combination of acute encephalopathy plus coagulopathy (INR ≥1.5) and markedly abnormal liver tests in a patient without documented chronic liver disease meets the clinical criteria for acute (fulminant) liver failure with hepatic encephalopathy. Other causes (ischemic/viral/toxic hepatitis) could underlie the liver injury, but the unifying and most likely diagnosis explaining the altered mental status and labs is acute liver failure with hepatic encephalopathy.\n\n[DIAGNOSIS] Acute liver failure (fulminant hepatic failure) with hepatic encephalopathy.",
+      "duration": 8.056259632110596
+    },
+    {
+      "role_id": "diagnostician_verifier",
+      "content": "[THOUGHT] The patient meets the key, widely used clinical criteria for acute liver failure: evidence of acute hepatocellular injury (marked transaminitis AST 600 / ALT 650), impaired hepatic synthetic function (INR 1.5), and altered mental status consistent with hepatic encephalopathy (not oriented to time/place) occurring in a presumably acute setting. Vital signs and glucose do not suggest an alternative metabolic or infectious cause at presentation, and the urine toxicology is negative for common drugs. Therefore the proposed diagnosis — acute liver failure with hepatic encephalopathy — is the single most likely diagnosis based on the available data.\n\nRed flags / critical tests not documented (could still be important for management and etiology):\n- Acetaminophen (paracetamol) level (time-sensitive and critical as a reversible cause).\n- Serum ammonia (supports hepatic encephalopathy severity).\n- Viral hepatitis serologies (A, B, C) and autoimmune markers to identify etiology.\n- Pregnancy test in women of childbearing potential.\n- Confirmatory coagulation values (actual PT seconds vs reported “normal” vs INR 1.5 discrepancy).\n- Baseline history of chronic liver disease or prior liver function tests to exclude acute-on-chronic liver failure.\n- CBC, lactate, blood cultures, and sepsis evaluation (to exclude alternative causes of encephalopathy).\n- Neuro exam for asterixis and neuroimaging if focal signs or concern for intracranial process.\n- Urine/serum toxicology with timing of last drug use (MDMA/cocaine) and specific testing if indicated.\n- Hepatic imaging (ultrasound) to assess vascular flow/obstruction or chronic changes.\nDespite these missing elements, the core criteria for acute liver failure are present.\n\n[DECISION] PASS\n\n[FEEDBACK]",
+      "duration": 12.360541343688965
+    }
+  ],
+  "metadata": {
+    "mode": "refine",
+    "turns": 9,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n\nIn every turn, follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture and identify critical information gaps.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [FINISH] use this command ONLY when you believe you have gathered all necessary information to form a conclusive diagnosis. You don't need to make a diagnosis.\n\nOnce you issue the [FINISH] command, the consultation ends immediately.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Need the presenting complaint and duration to narrow differential. Ask a single, specific question about symptoms and timeline.\n\n[QUERY] What is your main symptom or problem right now, and how long have you had it?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main problem is agitation, and it has been going on for about the past 24 hours.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Agitation can result from many causes (delirium, intoxication/withdrawal, primary psychiatric illness, endocrine, infection). Immediate vital signs help detect fever, hemodynamic instability, tachycardia or hypoxia that point toward infection, withdrawal, intoxication, or medical causes. Request vital signs now.\n\n[TEST] Please obtain vital signs: temperature, heart rate, blood pressure, respiratory rate, and oxygen saturation."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\n16. Temperature: 37.0°C (98.6°F)\n18. Heart_Rate: 94/min\n17. Blood_Pressure: 110/60 mm Hg\n19. Respiratory_Rate: 13/min\nOxygen_Saturation: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Recent substance use or withdrawal could explain acute agitation; need timing and substances.\n\n[QUERY] Have you used alcohol, recreational drugs, or taken extra/changed doses of prescription medications in the past 48 hours? If yes, what and when?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI have a history of occasional cocaine and ecstasy use, and I drink alcohol socially — about 20 g on weekends.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Need to know if recent stimulant use could explain acute agitation (intoxication or withdrawal). Ask a single, specific question about timing of use.\n\n[QUERY] Did you use cocaine or ecstasy (MDMA) within the past 48 hours? If yes, when was your last use?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI have a history of occasional cocaine and ecstasy (MDMA) use. There is no information here about when my last use was.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Determining whether this is delirium (impaired orientation/attention) versus primary psychiatric agitation is critical. Ask about orientation to assess for delirium.\n\n[QUERY] Are you oriented to person, place, and time (do you know who you are, where you are, and what the date or time is)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nI'm not oriented to time or place.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute delirium vs intoxication — urgently need to exclude hypoglycemia as a reversible cause of altered mental status.\n\n[TEST] Please check a point-of-care (fingerstick) blood glucose now."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute disorientation with agitation could be due to stimulant intoxication (cocaine/MDMA) or other toxins; a urine toxicology screen will quickly detect common illicit stimulants and many other drugs and guide management.\n\n[TEST] Please send a urine toxicology screen (immunoassay with confirmatory GC-MS if positive)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute new disorientation and agitation with normal vitals and negative tox/GLU raises possibility of metabolic (electrolyte, renal, hepatic) causes of delirium. A stat comprehensive metabolic panel will quickly identify electrolyte disturbances, renal failure, and liver abnormalities that could explain the presentation.\n\n[TEST] Please obtain a stat comprehensive metabolic panel (CMP)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nSodium: Normal\nPotassium: Normal\nChloride: Normal\nBicarbonate (CO2): Normal\nBUN: Normal\nCreatinine: Normal\nGlucose: Normal\nCalcium: Normal\nAlbumin: Normal\nTotal Protein:\n14. TP_Activity: < 40% (reduced)\nTotal bilirubin:\n11. Bilirubin: 25 mg/dL (elevated)\nAlkaline phosphatase: Normal\nAST:\n12. AST: 600 IU/L (elevated)\nALT:\n13. ALT: 650 IU/L (elevated)\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute hepatocellular injury with high bilirubin and altered mental status suggests hepatic encephalopathy from acute liver failure; determining coagulation (INR) is essential to confirm acute liver failure and guide urgency. Request coagulation studies next.\n\n[TEST] Please obtain prothrombin time and INR (PT/INR)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\n14. TP_Activity: < 40% (reduced)\n15. INR: 1.5 (elevated)\nProthrombin time (PT): Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient has acute-onset agitation with disorientation (hepatic encephalopathy), very high transaminases (AST/ALT ~600–650 IU/L), marked hyperbilirubinemia (25 mg/dL), and an elevated INR of 1.5 — meeting criteria for acute liver failure (acute severe hepatocellular injury with hepatic encephalopathy and INR ≥1.5) in a patient without documented chronic liver disease. This is the single most likely diagnosis and requires urgent liver-directed management and ICU transfer; further etiologic testing (acetaminophen level, viral hepatitis serologies, ammonia) and immediate treatment (consider N‑acetylcysteine empirically, airway protection, hepatology consult) are indicated, but diagnostic criteria are already met. \n\n[FINISH]"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2784
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 20-year-old male\n2. The patient was brought to the emergency department due to agitation over the past 24 hours.\n3. Family members have noticed a yellowish coloring of his skin and eyes over the past week.\n4. The patient has a history of occasional cocaine and ecstasy use.\n5. The patient drinks alcohol socially (about 20 g on weekends).\n6. The patient admits to high-risk sexual behaviors without using appropriate protection.\n7. No significant past medical history.\n8. Primary symptom: Agitation\n9. Secondary symptom: Psychomotor agitation\n10. Secondary symptom: Not oriented to time and space\n11. Secondary symptom: Epistaxis\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 10. Secondary symptom: Not oriented to time and space\n[RESPONSE] I'm not oriented to time or place."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 361
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Hemoglobin: 16.3 g/dL\n2. Hematocrit: 47%\n3. Leukocyte_Count: 9,750/mm3\n4. Neutrophils: 58%\n5. Bands: 2%\n6. Eosinophils: 1%\n7. Basophils: 0%\n8. Lymphocytes: 24%\n9. Monocytes: 2%\n10. Platelet_Count: 365,000/mm3\n11. Bilirubin: 25 mg/dL (elevated)\n12. AST: 600 IU/L (elevated)\n13. ALT: 650 IU/L (elevated)\n14. TP_Activity: < 40% (reduced)\n15. INR: 1.5 (elevated)\n16. Temperature: 37.0°C (98.6°F)\n17. Blood_Pressure: 110/60 mm Hg\n18. Heart_Rate: 94/min\n19. Respiratory_Rate: 13/min\n20. Motor_Examination: Presence of asterixis indicating possible liver failure\n21. Skin_Examination: Jaundice observed on the skin and mucous membranes\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "14. TP_Activity: < 40% (reduced)\n15. INR: 1.5 (elevated)\nProthrombin time (PT): Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 424
+        }
+      },
+      {
+        "summarizer": [
+          {
+            "role": "system",
+            "content": "You are a professional medical documentarian and clinical scribe.\nYour objective is to synthesize the dialogue between a doctor and a patient into a high-fidelity structured medical summary.\n\nCore Principles:\n1. Strict Adherence: You must NOT invent, infer, or hallucinate any information not explicitly present in the dialogue.\n2. Precision: Retain all precise measurements, dates, dosages, and technical medical terms exactly as stated.\n3. Objectivity: Maintain a professional, clinical tone throughout the summary.\n\nOutput Process:\n[THOUGHT]\nAnalyze the dialogue to extract key clinical facts and reasoning.\n\n[SUMMARY]\nGenerate a professional, structured clinical note.\n"
+          },
+          {
+            "role": "user",
+            "content": "### Dialogue History ###\n\nDoctor: What is your main symptom or problem right now, and how long have you had it?\n\nPatient: My main problem is agitation, and it has been going on for about the past 24 hours.\n\nDoctor: Please obtain vital signs: temperature, heart rate, blood pressure, respiratory rate, and oxygen saturation.\n\nMeasurement: 16. Temperature: 37.0°C (98.6°F)\n18. Heart_Rate: 94/min\n17. Blood_Pressure: 110/60 mm Hg\n19. Respiratory_Rate: 13/min\nOxygen_Saturation: Normal\n\nDoctor: Have you used alcohol, recreational drugs, or taken extra/changed doses of prescription medications in the past 48 hours? If yes, what and when?\n\nPatient: I have a history of occasional cocaine and ecstasy use, and I drink alcohol socially — about 20 g on weekends.\n\nDoctor: Did you use cocaine or ecstasy (MDMA) within the past 48 hours? If yes, when was your last use?\n\nPatient: I have a history of occasional cocaine and ecstasy (MDMA) use. There is no information here about when my last use was.\n\nDoctor: Are you oriented to person, place, and time (do you know who you are, where you are, and what the date or time is)?\n\nPatient: I'm not oriented to time or place.\n\nDoctor: Please check a point-of-care (fingerstick) blood glucose now.\n\nMeasurement: Normal\n\nDoctor: Please send a urine toxicology screen (immunoassay with confirmatory GC-MS if positive).\n\nMeasurement: Normal\n\nDoctor: Please obtain a stat comprehensive metabolic panel (CMP).\n\nMeasurement: Sodium: Normal\nPotassium: Normal\nChloride: Normal\nBicarbonate (CO2): Normal\nBUN: Normal\nCreatinine: Normal\nGlucose: Normal\nCalcium: Normal\nAlbumin: Normal\nTotal Protein:\n14. TP_Activity: < 40% (reduced)\nTotal bilirubin:\n11. Bilirubin: 25 mg/dL (elevated)\nAlkaline phosphatase: Normal\nAST:\n12. AST: 600 IU/L (elevated)\nALT:\n13. ALT: 650 IU/L (elevated)\n\nDoctor: Please obtain prothrombin time and INR (PT/INR).\n\nMeasurement: 14. TP_Activity: < 40% (reduced)\n15. INR: 1.5 (elevated)\nProthrombin time (PT): Normal\n\nDoctor: \n\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\nPatient presented with agitation for ~24 hours. Vital signs were recorded. Patient reports occasional cocaine and ecstasy (MDMA) use and social alcohol use (~20 g on weekends); timing of last stimulant use is not provided. Patient is not oriented to time or place. Point-of-care glucose normal. Urine toxicology screen reported as normal. Stat CMP shows markedly elevated transaminases (AST 600 IU/L, ALT 650 IU/L), marked hyperbilirubinemia (Bilirubin 25 mg/dL), alkaline phosphatase and most electrolytes reported as normal, albumin normal, \"TP_Activity\" reported as < 40% (reduced). PT reported as normal but INR is 1.5 (elevated). No additional exam findings or plans were documented in the dialogue.\n\n[SUMMARY]\nChief complaint:\n- Agitation for approximately 24 hours.\n\nHistory of present illness:\n- Patient reports agitation beginning about 24 hours prior to evaluation.\n- Orientation: patient reports not oriented to time or place (orientation to person not explicitly stated).\n\nSubstance use:\n- History of occasional cocaine and ecstasy (MDMA) use.\n- Social alcohol use: approximately 20 g on weekends.\n- Timing of last cocaine/MDMA use: not provided/unknown.\n\nVital signs:\n- Temperature: 37.0°C (98.6°F)\n- Heart rate: 94/min\n- Blood pressure: 110/60 mm Hg\n- Respiratory rate: 13/min\n- Oxygen saturation: Normal (no numeric value provided)\n\nPoint-of-care testing:\n- Fingerstick blood glucose: Normal\n\nToxicology:\n- Urine toxicology screen (immunoassay with confirmatory GC-MS if positive): Normal\n\nLaboratory results (stat CMP and coagulation testing as provided):\n- Sodium: Normal\n- Potassium: Normal\n- Chloride: Normal\n- Bicarbonate (CO2): Normal\n- BUN: Normal\n- Creatinine: Normal\n- Glucose: Normal\n- Calcium: Normal\n- Albumin: Normal\n- Total Protein: (no value provided)\n- TP_Activity: < 40% (reduced)\n- Total bilirubin / Bilirubin: 25 mg/dL (elevated)\n- Alkaline phosphatase: Normal\n- AST: 600 IU/L (elevated)\n- ALT: 650 IU/L (elevated)\n- Prothrombin time (PT): Normal\n- INR: 1.5 (elevated)\n\nProblem list / pertinent positives:\n1. Agitation x ~24 hours.\n2. Altered orientation: not oriented to time or place.\n3. Marked transaminitis: AST 600 IU/L, ALT 650 IU/L.\n4. Hyperbilirubinemia: bilirubin 25 mg/dL.\n5. Reduced TP_Activity: < 40%.\n6. Coagulation abnormality: INR 1.5 (reported); PT reported as normal.\n7. Urine toxicology negative.\n8. Point-of-care glucose normal.\n9. Vitals within listed ranges (afebrile, HR 94, BP 110/60, RR 13, O2 saturation normal).\n\nPlan / next steps:\n- No additional diagnostic or therapeutic plan documented in the dialogue."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2016
+        }
+      },
+      {
+        "diagnostician": [
+          {
+            "role": "system",
+            "content": "You are a senior diagnostic physician specializing in complex differential diagnosis.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to analyze the provided structured clinical summary to formulate a precise diagnosis.\n\nYou must follow a strict reasoning process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Perform a comprehensive clinical analysis of the summary.\n\n[DIAGNOSIS]\n   - Provide the The answer in the format of a single most likely diagnosis..\n"
+          },
+          {
+            "role": "user",
+            "content": "### Case Summary ###\nChief complaint:\n- Agitation for approximately 24 hours.\n\nHistory of present illness:\n- Patient reports agitation beginning about 24 hours prior to evaluation.\n- Orientation: patient reports not oriented to time or place (orientation to person not explicitly stated).\n\nSubstance use:\n- History of occasional cocaine and ecstasy (MDMA) use.\n- Social alcohol use: approximately 20 g on weekends.\n- Timing of last cocaine/MDMA use: not provided/unknown.\n\nVital signs:\n- Temperature: 37.0°C (98.6°F)\n- Heart rate: 94/min\n- Blood pressure: 110/60 mm Hg\n- Respiratory rate: 13/min\n- Oxygen saturation: Normal (no numeric value provided)\n\nPoint-of-care testing:\n- Fingerstick blood glucose: Normal\n\nToxicology:\n- Urine toxicology screen (immunoassay with confirmatory GC-MS if positive): Normal\n\nLaboratory results (stat CMP and coagulation testing as provided):\n- Sodium: Normal\n- Potassium: Normal\n- Chloride: Normal\n- Bicarbonate (CO2): Normal\n- BUN: Normal\n- Creatinine: Normal\n- Glucose: Normal\n- Calcium: Normal\n- Albumin: Normal\n- Total Protein: (no value provided)\n- TP_Activity: < 40% (reduced)\n- Total bilirubin / Bilirubin: 25 mg/dL (elevated)\n- Alkaline phosphatase: Normal\n- AST: 600 IU/L (elevated)\n- ALT: 650 IU/L (elevated)\n- Prothrombin time (PT): Normal\n- INR: 1.5 (elevated)\n\nProblem list / pertinent positives:\n1. Agitation x ~24 hours.\n2. Altered orientation: not oriented to time or place.\n3. Marked transaminitis: AST 600 IU/L, ALT 650 IU/L.\n4. Hyperbilirubinemia: bilirubin 25 mg/dL.\n5. Reduced TP_Activity: < 40%.\n6. Coagulation abnormality: INR 1.5 (reported); PT reported as normal.\n7. Urine toxicology negative.\n8. Point-of-care glucose normal.\n9. Vitals within listed ranges (afebrile, HR 94, BP 110/60, RR 13, O2 saturation normal).\n\nPlan / next steps:\n- No additional diagnostic or therapeutic plan documented in the dialogue.\n\nDiagnostician:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient has new-onset agitation and disorientation (acute encephalopathy) with marked hepatic injury: AST 600, ALT 650, total bilirubin 25 mg/dL, reduced TP activity <40% and an elevated INR of 1.5. Point-of-care glucose is normal and urine tox is negative, making hypoglycemia or intoxication unlikely explanations for the mental status change. The combination of acute encephalopathy plus coagulopathy (INR ≥1.5) and markedly abnormal liver tests in a patient without documented chronic liver disease meets the clinical criteria for acute (fulminant) liver failure with hepatic encephalopathy. Other causes (ischemic/viral/toxic hepatitis) could underlie the liver injury, but the unifying and most likely diagnosis explaining the altered mental status and labs is acute liver failure with hepatic encephalopathy.\n\n[DIAGNOSIS] Acute liver failure (fulminant hepatic failure) with hepatic encephalopathy."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1291
+        }
+      },
+      {
+        "verifier": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Supervisor.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to evaluate sufficiency of the diagnosis provided by the physician, based strictly on the available case summarized information.\n\nEvaluation Criteria:\n1. Data Sufficiency: Determine if the current information is actually sufficient to form a conclusive diagnosis.\n2. Turn Limit Override: If the maximum turn limit has been reached, you must force a decision (PASS or REJECT) based on the best possible interpretation of existing data.\n\nOutput Format:\n\n[THOUGHT] <Your Analysis>\n   - Identify if any 'Red Flag' symptoms or critical tests are missing.\n\n[DECISION] <Status>\n   - Output 'PASS' if the diagnosis is sufficient.\n   - Output 'INCOMPLETE' if critical clinical information is missing (requires the Physician to gather more data; only valid if not at max turns).\n\n[FEEDBACK] <Guidance>\n   - If PASS: Leave this section empty.\n   - If INCOMPLETE: Specify exactly what critical information is required.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns: 9 / 16.\n### Case Summary ###\nChief complaint:\n- Agitation for approximately 24 hours.\n\nHistory of present illness:\n- Patient reports agitation beginning about 24 hours prior to evaluation.\n- Orientation: patient reports not oriented to time or place (orientation to person not explicitly stated).\n\nSubstance use:\n- History of occasional cocaine and ecstasy (MDMA) use.\n- Social alcohol use: approximately 20 g on weekends.\n- Timing of last cocaine/MDMA use: not provided/unknown.\n\nVital signs:\n- Temperature: 37.0°C (98.6°F)\n- Heart rate: 94/min\n- Blood pressure: 110/60 mm Hg\n- Respiratory rate: 13/min\n- Oxygen saturation: Normal (no numeric value provided)\n\nPoint-of-care testing:\n- Fingerstick blood glucose: Normal\n\nToxicology:\n- Urine toxicology screen (immunoassay with confirmatory GC-MS if positive): Normal\n\nLaboratory results (stat CMP and coagulation testing as provided):\n- Sodium: Normal\n- Potassium: Normal\n- Chloride: Normal\n- Bicarbonate (CO2): Normal\n- BUN: Normal\n- Creatinine: Normal\n- Glucose: Normal\n- Calcium: Normal\n- Albumin: Normal\n- Total Protein: (no value provided)\n- TP_Activity: < 40% (reduced)\n- Total bilirubin / Bilirubin: 25 mg/dL (elevated)\n- Alkaline phosphatase: Normal\n- AST: 600 IU/L (elevated)\n- ALT: 650 IU/L (elevated)\n- Prothrombin time (PT): Normal\n- INR: 1.5 (elevated)\n\nProblem list / pertinent positives:\n1. Agitation x ~24 hours.\n2. Altered orientation: not oriented to time or place.\n3. Marked transaminitis: AST 600 IU/L, ALT 650 IU/L.\n4. Hyperbilirubinemia: bilirubin 25 mg/dL.\n5. Reduced TP_Activity: < 40%.\n6. Coagulation abnormality: INR 1.5 (reported); PT reported as normal.\n7. Urine toxicology negative.\n8. Point-of-care glucose normal.\n9. Vitals within listed ranges (afebrile, HR 94, BP 110/60, RR 13, O2 saturation normal).\n\nPlan / next steps:\n- No additional diagnostic or therapeutic plan documented in the dialogue.\n\n### Proposed Diagnosis ###\nAcute liver failure (fulminant hepatic failure) with hepatic encephalopathy.\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient meets the key, widely used clinical criteria for acute liver failure: evidence of acute hepatocellular injury (marked transaminitis AST 600 / ALT 650), impaired hepatic synthetic function (INR 1.5), and altered mental status consistent with hepatic encephalopathy (not oriented to time/place) occurring in a presumably acute setting. Vital signs and glucose do not suggest an alternative metabolic or infectious cause at presentation, and the urine toxicology is negative for common drugs. Therefore the proposed diagnosis — acute liver failure with hepatic encephalopathy — is the single most likely diagnosis based on the available data.\n\nRed flags / critical tests not documented (could still be important for management and etiology):\n- Acetaminophen (paracetamol) level (time-sensitive and critical as a reversible cause).\n- Serum ammonia (supports hepatic encephalopathy severity).\n- Viral hepatitis serologies (A, B, C) and autoimmune markers to identify etiology.\n- Pregnancy test in women of childbearing potential.\n- Confirmatory coagulation values (actual PT seconds vs reported “normal” vs INR 1.5 discrepancy).\n- Baseline history of chronic liver disease or prior liver function tests to exclude acute-on-chronic liver failure.\n- CBC, lactate, blood cultures, and sepsis evaluation (to exclude alternative causes of encephalopathy).\n- Neuro exam for asterixis and neuroimaging if focal signs or concern for intracranial process.\n- Urine/serum toxicology with timing of last drug use (MDMA/cocaine) and specific testing if indicated.\n- Hepatic imaging (ultrasound) to assess vascular flow/obstruction or chronic changes.\nDespite these missing elements, the core criteria for acute liver failure are present.\n\n[DECISION] PASS\n\n[FEEDBACK]"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1927
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.46875,
+    "patient_coverage": 0.45454545454545453,
+    "exam_coverage": 0.47619047619047616,
+    "ground_truth_patient_facts": [
+      "1. 20-year-old male",
+      "2. The patient was brought to the emergency department due to agitation over the past 24 hours.",
+      "3. Family members have noticed a yellowish coloring of his skin and eyes over the past week.",
+      "4. The patient has a history of occasional cocaine and ecstasy use.",
+      "5. The patient drinks alcohol socially (about 20 g on weekends).",
+      "6. The patient admits to high-risk sexual behaviors without using appropriate protection.",
+      "7. No significant past medical history.",
+      "8. Primary symptom: Agitation",
+      "9. Secondary symptom: Psychomotor agitation",
+      "10. Secondary symptom: Not oriented to time and space",
+      "11. Secondary symptom: Epistaxis"
+    ],
+    "ground_truth_exam_facts": [
+      "1. Hemoglobin: 16.3 g/dL",
+      "2. Hematocrit: 47%",
+      "3. Leukocyte_Count: 9,750/mm3",
+      "4. Neutrophils: 58%",
+      "5. Bands: 2%",
+      "6. Eosinophils: 1%",
+      "7. Basophils: 0%",
+      "8. Lymphocytes: 24%",
+      "9. Monocytes: 2%",
+      "10. Platelet_Count: 365,000/mm3",
+      "11. Bilirubin: 25 mg/dL (elevated)",
+      "12. AST: 600 IU/L (elevated)",
+      "13. ALT: 650 IU/L (elevated)",
+      "14. TP_Activity: < 40% (reduced)",
+      "15. INR: 1.5 (elevated)",
+      "16. Temperature: 37.0°C (98.6°F)",
+      "17. Blood_Pressure: 110/60 mm Hg",
+      "18. Heart_Rate: 94/min",
+      "19. Respiratory_Rate: 13/min",
+      "20. Motor_Examination: Presence of asterixis indicating possible liver failure",
+      "21. Skin_Examination: Jaundice observed on the skin and mucous membranes"
+    ],
+    "collected_patient_facts": [
+      "2. The patient was brought to the emergency department due to agitation over the past 24 hours.",
+      "4. The patient has a history of occasional cocaine and ecstasy use.",
+      "5. The patient drinks alcohol socially (about 20 g on weekends).",
+      "8. Primary symptom: Agitation",
+      "10. Secondary symptom: Not oriented to time and space"
+    ],
+    "collected_exam_facts": [
+      "1. Hemoglobin: 16.3 g/dL",
+      "11. Bilirubin: 25 mg/dL (elevated)",
+      "12. AST: 600 IU/L (elevated)",
+      "13. ALT: 650 IU/L (elevated)",
+      "14. TP_Activity: < 40% (reduced)",
+      "15. INR: 1.5 (elevated)",
+      "16. Temperature: 37.0°C (98.6°F)",
+      "17. Blood_Pressure: 110/60 mm Hg",
+      "18. Heart_Rate: 94/min",
+      "19. Respiratory_Rate: 13/min"
+    ]
+  },
+  "judge_response": "ANALYSIS: The prediction restates the same condition using synonymous terminology (\"acute liver failure\" = \"fulminant hepatic failure\") and adds hepatic encephalopathy, which is part of the diagnostic criteria—thus clinically equivalent and more specific.\n\nVERDICT: CORRECT"
+}

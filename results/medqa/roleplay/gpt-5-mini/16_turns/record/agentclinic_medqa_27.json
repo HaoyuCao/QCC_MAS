@@ -1,0 +1,279 @@
+{
+  "case_id": "agentclinic_medqa_27",
+  "prediction": "Adhesive capsulitis (frozen shoulder).",
+  "ground_truth": "Adhesive capsulitis",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is the main symptom or problem that brought you in today?",
+      "duration": 2.824876070022583
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient reports a 2-month history of insidious onset left shoulder pain.\n\n[RESPONSE] I have a 2-month history of insidious onset left shoulder pain.",
+      "duration": 3.8335459232330322
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Where exactly is the pain located—anterior (front), lateral/outer (deltoid region), or posterior (back) of the shoulder?",
+      "duration": 8.219088554382324
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall which part of the shoulder (front, outer/deltoid, or back) the pain is located.",
+      "duration": 3.39328670501709
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How old are you?",
+      "duration": 4.989558935165405
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 55-year-old woman.\n[RESPONSE] I am 55 years old.",
+      "duration": 3.0799551010131836
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Are you able to reach above your head with your left arm (for example, to put something on a high shelf)?",
+      "duration": 10.092692136764526
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. The left shoulder pain worsens with extreme ranges of motion and activity.\n5. The patient has difficulty with activities of daily living like brushing hair and dressing.\n\n[RESPONSE] I have pain that worsens with extreme ranges of motion and I have difficulty with activities like brushing my hair and dressing, so I do have trouble reaching above my head.",
+      "duration": 9.51227331161499
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] If someone else lifts or moves your left arm for you, do you still have the same difficulty or restriction (i.e., is passive range of motion limited)?",
+      "duration": 9.117318391799927
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether someone else moving my arm causes the same restriction.",
+      "duration": 4.317415952682495
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you notice weakness in your left arm when you try to lift it (for example, is it hard to hold your arm up or does it feel weak compared with the right side)?",
+      "duration": 8.988071918487549
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 6. No history of shoulder trauma, neck pain, arm/hand weakness, numbness, or paresthesias.\n\n[RESPONSE] No — I haven't noticed any weakness in my left arm when I try to lift it.",
+      "duration": 6.320553541183472
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you have diabetes or a thyroid disorder (hypothyroidism or hyperthyroidism)?",
+      "duration": 15.871828556060791
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 7. The patient has type 2 diabetes mellitus.\n8. The type 2 diabetes mellitus is treated with metformin and glipizide.\n\n[RESPONSE] Yes — I have type 2 diabetes mellitus, which I take metformin and glipizide for.",
+      "duration": 3.4296560287475586
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Do you notice stiffness in the left shoulder (especially in the morning), and has this stiffness progressively worsened over the 2 months?",
+      "duration": 7.24543023109436
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall notable morning stiffness, and I can't say whether any stiffness has progressively worsened over the past two months.",
+      "duration": 8.151491641998291
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Perform a left shoulder physical examination: measure active and passive range of motion (forward flexion, abduction, external rotation) and document rotator cuff strength (abduction and external rotation) and presence/absence of impingement signs (Neer and Hawkins).",
+      "duration": 8.327967882156372
+    },
+    {
+      "role_id": "reporter",
+      "content": "10. Forward Flexion: 75° with pain.\n11. Abduction: 75° with pain.\n12. External Rotation: 45° with pain.\n14. Strength Testing: Normal rotator cuff strength.\nNeer: Normal\nHawkins: Normal",
+      "duration": 10.683749198913574
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Adhesive capsulitis (frozen shoulder).",
+      "duration": 6.389373540878296
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 9,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is the main symptom or problem that brought you in today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI have a 2-month history of insidious onset left shoulder pain.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Where exactly is the pain located—anterior (front), lateral/outer (deltoid region), or posterior (back) of the shoulder?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI'm not sure — I don't recall which part of the shoulder (front, outer/deltoid, or back) the pain is located.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old are you?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI am 55 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Are you able to reach above your head with your left arm (for example, to put something on a high shelf)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI have pain that worsens with extreme ranges of motion and I have difficulty with activities like brushing my hair and dressing, so I do have trouble reaching above my head.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] If someone else lifts or moves your left arm for you, do you still have the same difficulty or restriction (i.e., is passive range of motion limited)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nI'm not sure — I don't recall whether someone else moving my arm causes the same restriction.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you notice weakness in your left arm when you try to lift it (for example, is it hard to hold your arm up or does it feel weak compared with the right side)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nNo — I haven't noticed any weakness in my left arm when I try to lift it.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have diabetes or a thyroid disorder (hypothyroidism or hyperthyroidism)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nYes — I have type 2 diabetes mellitus, which I take metformin and glipizide for.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you notice stiffness in the left shoulder (especially in the morning), and has this stiffness progressively worsened over the 2 months?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\nI'm not sure — I don't recall notable morning stiffness, and I can't say whether any stiffness has progressively worsened over the past two months.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Perform a left shoulder physical examination: measure active and passive range of motion (forward flexion, abduction, external rotation) and document rotator cuff strength (abduction and external rotation) and presence/absence of impingement signs (Neer and Hawkins)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\nLast reply:\n10. Forward Flexion: 75° with pain.\n11. Abduction: 75° with pain.\n12. External Rotation: 45° with pain.\n14. Strength Testing: Normal rotator cuff strength.\nNeer: Normal\nHawkins: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Adhesive capsulitis (frozen shoulder)."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1507
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 55-year-old woman.\n2. The patient reports a 2-month history of insidious onset left shoulder pain.\n3. The left shoulder pain worsens with extreme ranges of motion and activity.\n4. The pain disrupts sleep.\n5. The patient has difficulty with activities of daily living like brushing hair and dressing.\n6. No history of shoulder trauma, neck pain, arm/hand weakness, numbness, or paresthesias.\n7. The patient has type 2 diabetes mellitus.\n8. The type 2 diabetes mellitus is treated with metformin and glipizide.\n9. No relevant social history provided.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall notable morning stiffness, and I can't say whether any stiffness has progressively worsened over the past two months."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 367
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. AP: Normal.\n2. Scapular_Y: Normal.\n3. Axillary: Normal.\n4. Temperature: 36.8°C (98°F).\n5. Blood Pressure: 130/85 mmHg.\n6. Heart Rate: 82 bpm.\n7. Respiratory Rate: 14 breaths/min.\n8. Inspection: No visible swelling or deformity.\n9. Palpation: Tenderness around the shoulder joint, no warmth or crepitus.\n10. Forward Flexion: 75° with pain.\n11. Abduction: 75° with pain.\n12. External Rotation: 45° with pain.\n13. Internal Rotation: 15° with significant pain.\n14. Strength Testing: Normal rotator cuff strength.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "10. Forward Flexion: 75° with pain.\n11. Abduction: 75° with pain.\n12. External Rotation: 45° with pain.\n14. Strength Testing: Normal rotator cuff strength.\nNeer: Normal\nHawkins: Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 340
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.4782608695652174,
+    "patient_coverage": 0.7777777777777778,
+    "exam_coverage": 0.2857142857142857,
+    "ground_truth_patient_facts": [
+      "1. 55-year-old woman.",
+      "2. The patient reports a 2-month history of insidious onset left shoulder pain.",
+      "3. The left shoulder pain worsens with extreme ranges of motion and activity.",
+      "4. The pain disrupts sleep.",
+      "5. The patient has difficulty with activities of daily living like brushing hair and dressing.",
+      "6. No history of shoulder trauma, neck pain, arm/hand weakness, numbness, or paresthesias.",
+      "7. The patient has type 2 diabetes mellitus.",
+      "8. The type 2 diabetes mellitus is treated with metformin and glipizide.",
+      "9. No relevant social history provided."
+    ],
+    "ground_truth_exam_facts": [
+      "1. AP: Normal.",
+      "2. Scapular_Y: Normal.",
+      "3. Axillary: Normal.",
+      "4. Temperature: 36.8°C (98°F).",
+      "5. Blood Pressure: 130/85 mmHg.",
+      "6. Heart Rate: 82 bpm.",
+      "7. Respiratory Rate: 14 breaths/min.",
+      "8. Inspection: No visible swelling or deformity.",
+      "9. Palpation: Tenderness around the shoulder joint, no warmth or crepitus.",
+      "10. Forward Flexion: 75° with pain.",
+      "11. Abduction: 75° with pain.",
+      "12. External Rotation: 45° with pain.",
+      "13. Internal Rotation: 15° with significant pain.",
+      "14. Strength Testing: Normal rotator cuff strength."
+    ],
+    "collected_patient_facts": [
+      "1. 55-year-old woman.",
+      "2. The patient reports a 2-month history of insidious onset left shoulder pain.",
+      "3. The left shoulder pain worsens with extreme ranges of motion and activity.",
+      "5. The patient has difficulty with activities of daily living like brushing hair and dressing.",
+      "6. No history of shoulder trauma, neck pain, arm/hand weakness, numbness, or paresthesias.",
+      "7. The patient has type 2 diabetes mellitus.",
+      "8. The type 2 diabetes mellitus is treated with metformin and glipizide."
+    ],
+    "collected_exam_facts": [
+      "10. Forward Flexion: 75° with pain.",
+      "11. Abduction: 75° with pain.",
+      "12. External Rotation: 45° with pain.",
+      "14. Strength Testing: Normal rotator cuff strength."
+    ]
+  },
+  "judge_response": "ANALYSIS: The predicted diagnosis is the same condition expressed with a common synonym (\"frozen shoulder\"), so it is clinically equivalent to the reference.\n\nVERDICT: CORRECT"
+}

@@ -1,0 +1,218 @@
+{
+  "case_id": "agentclinic_medqa_33",
+  "prediction": "Congenital coarctation of the aorta (post‑ductal narrowing distal to the left subclavian)",
+  "ground_truth": "Coarctation of the aorta",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] I have no clinical information yet. To form a working differential I need the presenting complaint and timing. Asking about the main symptom and its duration is a single, specific question that will direct further targeted history and tests.\n\n[QUERY] What is your main symptom (chief complaint) and how long have you had it?",
+      "duration": 2.9221200942993164
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient is presented by his mother for a well-child visit.\n7. The mother reports that he has been generally doing well with no concerns.\n\n[RESPONSE] I'm here for a well-child visit and I haven't had any symptoms or concerns.",
+      "duration": 8.01506233215332
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] I need the patient's age to guide appropriate anticipatory guidance, screening, immunization needs, growth and developmental expectations. This single piece of information will determine which exams or tests are necessary next.\n\n[QUERY] How old is the child (age in years and months)?",
+      "duration": 3.5873608589172363
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 5-year-old boy.\n[RESPONSE] He is 5 years old.",
+      "duration": 4.812580823898315
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] For a well-child visit the most important immediate historical fact is immunization status because it guides necessary interventions and screens. This is a single, specific question that I haven't asked yet and will influence whether the child is considered up-to-date/healthy.\n\n[QUERY] Are his immunizations up to date for his age? (Yes or No; if No, which vaccines are missing?)",
+      "duration": 5.832385778427124
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. The boy is currently up to date on all vaccines.\n\n[RESPONSE] Yes — his immunizations are up to date for his age.",
+      "duration": 3.2123939990997314
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Chronic conditions, allergies, or daily medications would change the assessment for a well-child and could point to a diagnosis other than “healthy.” I need that single specific safety/medical background item before ordering any exams.\n\n[QUERY] Does he have any chronic medical conditions, known allergies, or daily medications? (Answer each: chronic conditions — Yes/No and details; allergies — Yes/No and details; daily medications — Yes/No and details)",
+      "duration": 5.7151055335998535
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 10. No significant past medical history.\n9. The boy does not take any medications.\n\n[RESPONSE] Chronic conditions — No. The patient has no significant past medical history. \nAllergies — I am not sure / no information provided about allergies. \nDaily medications — No. The boy does not take any medications.",
+      "duration": 21.781619548797607
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] To conclude whether this is a routine healthy well-child or if there is an undiagnosed problem, I need objective findings: growth parameters, vitals, general physical exam, and basic screenings for vision and hearing and developmental/neurologic exam. A single, specific test request that yields these data will let me make the most likely diagnosis.\n\n[TEST] Perform a full well-child physical examination including height, weight, BMI percentile, blood pressure and heart rate, temperature, head/neck/ears/throat, heart and lung exam, abdominal exam, musculoskeletal/neurologic exam, developmental/speech assessment appropriate for age, and formal vision and hearing screening.",
+      "duration": 5.5776872634887695
+    },
+    {
+      "role_id": "reporter",
+      "content": "1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.\n2. Echocardiogram shows left ventricular function is normal.\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n5. Chest X-ray shows normal heart size.\n6. Chest X-ray shows rib notching not observed (may not be present in young children).\n7. Vital sign heart rate is normal for age.\n8. Vital sign respiratory rate is normal for age.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\n10. Cardiovascular auscultation shows normal S1 and S2.\n11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.\n12. Point of maximal impact is normal location.\n\nHeight: Normal\nWeight: Normal\nBMI percentile: Normal\nTemperature: Normal\nHead/neck/ears/throat: Normal\nLung exam: Normal\nAbdominal exam: Normal\nMusculoskeletal/Neurologic exam: Normal\nDevelopmental/speech assessment appropriate for age: Normal\nFormal vision screening: Normal\nFormal hearing screening: Normal",
+      "duration": 13.623414278030396
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The echocardiogram directly demonstrates a narrowed aortic segment distal to the left subclavian with a pressure gradient. Clinically there is marked upper-extremity hypertension (right arm 150/80), lower extremity hypotension relative to the arms, diminished femoral pulses, and a systolic murmur best heard at the left sternal border/back — all classic for congenital coarctation of the aorta. Left ventricular function is preserved, chest x-ray without cardiomegaly and absent rib notching in a young child are consistent. No other systems or conditions explain the localized aortic narrowing and the characteristic BP/pulse differential.\n\n[DIAGNOSIS] Congenital coarctation of the aorta (post‑ductal narrowing distal to the left subclavian)",
+      "duration": 7.583928823471069
+    }
+  ],
+  "metadata": {
+    "mode": "react",
+    "turns": 5,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n\nIn every turn, you must follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture, identify critical information gaps, and articulate step-by-step reasoning to justify your next action.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I have no clinical information yet. To form a working differential I need the presenting complaint and timing. Asking about the main symptom and its duration is a single, specific question that will direct further targeted history and tests.\n\n[QUERY] What is your main symptom (chief complaint) and how long have you had it?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI'm here for a well-child visit and I haven't had any symptoms or concerns.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need the patient's age to guide appropriate anticipatory guidance, screening, immunization needs, growth and developmental expectations. This single piece of information will determine which exams or tests are necessary next.\n\n[QUERY] How old is the child (age in years and months)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nHe is 5 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] For a well-child visit the most important immediate historical fact is immunization status because it guides necessary interventions and screens. This is a single, specific question that I haven't asked yet and will influence whether the child is considered up-to-date/healthy.\n\n[QUERY] Are his immunizations up to date for his age? (Yes or No; if No, which vaccines are missing?)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nYes — his immunizations are up to date for his age.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Chronic conditions, allergies, or daily medications would change the assessment for a well-child and could point to a diagnosis other than “healthy.” I need that single specific safety/medical background item before ordering any exams.\n\n[QUERY] Does he have any chronic medical conditions, known allergies, or daily medications? (Answer each: chronic conditions — Yes/No and details; allergies — Yes/No and details; daily medications — Yes/No and details)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nChronic conditions — No. The patient has no significant past medical history. \nAllergies — I am not sure / no information provided about allergies. \nDaily medications — No. The boy does not take any medications.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] To conclude whether this is a routine healthy well-child or if there is an undiagnosed problem, I need objective findings: growth parameters, vitals, general physical exam, and basic screenings for vision and hearing and developmental/neurologic exam. A single, specific test request that yields these data will let me make the most likely diagnosis.\n\n[TEST] Perform a full well-child physical examination including height, weight, BMI percentile, blood pressure and heart rate, temperature, head/neck/ears/throat, heart and lung exam, abdominal exam, musculoskeletal/neurologic exam, developmental/speech assessment appropriate for age, and formal vision and hearing screening."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\n1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.\n2. Echocardiogram shows left ventricular function is normal.\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n5. Chest X-ray shows normal heart size.\n6. Chest X-ray shows rib notching not observed (may not be present in young children).\n7. Vital sign heart rate is normal for age.\n8. Vital sign respiratory rate is normal for age.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\n10. Cardiovascular auscultation shows normal S1 and S2.\n11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.\n12. Point of maximal impact is normal location.\n\nHeight: Normal\nWeight: Normal\nBMI percentile: Normal\nTemperature: Normal\nHead/neck/ears/throat: Normal\nLung exam: Normal\nAbdominal exam: Normal\nMusculoskeletal/Neurologic exam: Normal\nDevelopmental/speech assessment appropriate for age: Normal\nFormal vision screening: Normal\nFormal hearing screening: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The echocardiogram directly demonstrates a narrowed aortic segment distal to the left subclavian with a pressure gradient. Clinically there is marked upper-extremity hypertension (right arm 150/80), lower extremity hypotension relative to the arms, diminished femoral pulses, and a systolic murmur best heard at the left sternal border/back — all classic for congenital coarctation of the aorta. Left ventricular function is preserved, chest x-ray without cardiomegaly and absent rib notching in a young child are consistent. No other systems or conditions explain the localized aortic narrowing and the characteristic BP/pulse differential.\n\n[DIAGNOSIS] Congenital coarctation of the aorta (post‑ductal narrowing distal to the left subclavian)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1771
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 5-year-old boy.\n2. The patient is presented by his mother for a well-child visit.\n3. The boy was born at 39 weeks gestation via spontaneous vaginal delivery.\n4. The neonatal period was uneventful.\n5. The boy is currently up to date on all vaccines.\n6. The boy is meeting all developmental milestones.\n7. The mother reports that he has been generally doing well with no concerns.\n8. No family history of cardiovascular disease.\n9. The boy does not take any medications.\n10. No significant past medical history.\n11. Patient attends kindergarten.\n12. Lives with parents and one younger sibling.\n13. No exposure to tobacco smoke.\n14. All systems review is essentially negative as reported by the mother.\n15. High blood pressure on the right upper extremity.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 10. No significant past medical history.\n9. The boy does not take any medications.\n\n[RESPONSE] Chronic conditions — No. The patient has no significant past medical history. \nAllergies — I am not sure / no information provided about allergies. \nDaily medications — No. The boy does not take any medications."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 430
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.\n2. Echocardiogram shows left ventricular function is normal.\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n5. Chest X-ray shows normal heart size.\n6. Chest X-ray shows rib notching not observed (may not be present in young children).\n7. Vital sign heart rate is normal for age.\n8. Vital sign respiratory rate is normal for age.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\n10. Cardiovascular auscultation shows normal S1 and S2.\n11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.\n12. Point of maximal impact is normal location.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.\n2. Echocardiogram shows left ventricular function is normal.\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n5. Chest X-ray shows normal heart size.\n6. Chest X-ray shows rib notching not observed (may not be present in young children).\n7. Vital sign heart rate is normal for age.\n8. Vital sign respiratory rate is normal for age.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\n10. Cardiovascular auscultation shows normal S1 and S2.\n11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.\n12. Point of maximal impact is normal location.\n\nHeight: Normal\nWeight: Normal\nBMI percentile: Normal\nTemperature: Normal\nHead/neck/ears/throat: Normal\nLung exam: Normal\nAbdominal exam: Normal\nMusculoskeletal/Neurologic exam: Normal\nDevelopmental/speech assessment appropriate for age: Normal\nFormal vision screening: Normal\nFormal hearing screening: Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 624
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.6666666666666666,
+    "patient_coverage": 0.4,
+    "exam_coverage": 1.0,
+    "ground_truth_patient_facts": [
+      "1. 5-year-old boy.",
+      "2. The patient is presented by his mother for a well-child visit.",
+      "3. The boy was born at 39 weeks gestation via spontaneous vaginal delivery.",
+      "4. The neonatal period was uneventful.",
+      "5. The boy is currently up to date on all vaccines.",
+      "6. The boy is meeting all developmental milestones.",
+      "7. The mother reports that he has been generally doing well with no concerns.",
+      "8. No family history of cardiovascular disease.",
+      "9. The boy does not take any medications.",
+      "10. No significant past medical history.",
+      "11. Patient attends kindergarten.",
+      "12. Lives with parents and one younger sibling.",
+      "13. No exposure to tobacco smoke.",
+      "14. All systems review is essentially negative as reported by the mother.",
+      "15. High blood pressure on the right upper extremity."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.",
+      "2. Echocardiogram shows left ventricular function is normal.",
+      "3. Blood pressure in the right upper extremity is 150/80 mm Hg.",
+      "4. Lower extremity blood pressure values are lower than the upper extremity values.",
+      "5. Chest X-ray shows normal heart size.",
+      "6. Chest X-ray shows rib notching not observed (may not be present in young children).",
+      "7. Vital sign heart rate is normal for age.",
+      "8. Vital sign respiratory rate is normal for age.",
+      "9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.",
+      "10. Cardiovascular auscultation shows normal S1 and S2.",
+      "11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.",
+      "12. Point of maximal impact is normal location."
+    ],
+    "collected_patient_facts": [
+      "1. 5-year-old boy.",
+      "2. The patient is presented by his mother for a well-child visit.",
+      "5. The boy is currently up to date on all vaccines.",
+      "7. The mother reports that he has been generally doing well with no concerns.",
+      "9. The boy does not take any medications.",
+      "10. No significant past medical history."
+    ],
+    "collected_exam_facts": [
+      "1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.",
+      "2. Echocardiogram shows left ventricular function is normal.",
+      "3. Blood pressure in the right upper extremity is 150/80 mm Hg.",
+      "4. Lower extremity blood pressure values are lower than the upper extremity values.",
+      "5. Chest X-ray shows normal heart size.",
+      "6. Chest X-ray shows rib notching not observed (may not be present in young children).",
+      "7. Vital sign heart rate is normal for age.",
+      "8. Vital sign respiratory rate is normal for age.",
+      "9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.",
+      "10. Cardiovascular auscultation shows normal S1 and S2.",
+      "11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.",
+      "12. Point of maximal impact is normal location."
+    ]
+  },
+  "judge_response": "ANALYSIS: The predicted diagnosis is the same condition with additional typical anatomic detail (congenital, post‑ductal distal to the left subclavian). This is a more specific but clinically equivalent description of coarctation of the aorta.\n\nVERDICT: CORRECT"
+}

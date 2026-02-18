@@ -1,0 +1,188 @@
+{
+  "case_id": "agentclinic_medqa_33",
+  "prediction": "Coarctation of the aorta (post-ductal coarctation).",
+  "ground_truth": "Coarctation of the aorta",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is the main problem or symptom that brought you in today?",
+      "duration": 1.9077730178833008
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient is presented by his mother for a well-child visit.\n15. High blood pressure on the right upper extremity.\n\n[RESPONSE] We're here for a routine well-child visit, and there is also a noted high blood pressure on his right upper arm.",
+      "duration": 5.309827089309692
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How old is the child?",
+      "duration": 8.97874641418457
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 5-year-old boy.\n\n[RESPONSE] He is 5 years old.",
+      "duration": 3.6193766593933105
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Is the blood pressure also high in the left arm?",
+      "duration": 2.942009210586548
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether the blood pressure was high in the left arm.",
+      "duration": 4.111443281173706
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Measure blood pressure in all four limbs (right and left arms, right and left legs) and document femoral pulse quality/timing compared with brachial pulses.",
+      "duration": 6.992925405502319
+    },
+    {
+      "role_id": "reporter",
+      "content": "3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\nNormal",
+      "duration": 10.142112731933594
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Coarctation of the aorta (post-ductal coarctation).",
+      "duration": 5.63208532333374
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 4,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is the main problem or symptom that brought you in today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nWe're here for a routine well-child visit, and there is also a noted high blood pressure on his right upper arm.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old is the child?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nHe is 5 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is the blood pressure also high in the left arm?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI'm not sure — I don't recall whether the blood pressure was high in the left arm.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Measure blood pressure in all four limbs (right and left arms, right and left legs) and document femoral pulse quality/timing compared with brachial pulses."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\nNormal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Coarctation of the aorta (post-ductal coarctation)."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 953
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 5-year-old boy.\n2. The patient is presented by his mother for a well-child visit.\n3. The boy was born at 39 weeks gestation via spontaneous vaginal delivery.\n4. The neonatal period was uneventful.\n5. The boy is currently up to date on all vaccines.\n6. The boy is meeting all developmental milestones.\n7. The mother reports that he has been generally doing well with no concerns.\n8. No family history of cardiovascular disease.\n9. The boy does not take any medications.\n10. No significant past medical history.\n11. Patient attends kindergarten.\n12. Lives with parents and one younger sibling.\n13. No exposure to tobacco smoke.\n14. All systems review is essentially negative as reported by the mother.\n15. High blood pressure on the right upper extremity.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether the blood pressure was high in the left arm."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 390
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.\n2. Echocardiogram shows left ventricular function is normal.\n3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n5. Chest X-ray shows normal heart size.\n6. Chest X-ray shows rib notching not observed (may not be present in young children).\n7. Vital sign heart rate is normal for age.\n8. Vital sign respiratory rate is normal for age.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\n10. Cardiovascular auscultation shows normal S1 and S2.\n11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.\n12. Point of maximal impact is normal location.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "3. Blood pressure in the right upper extremity is 150/80 mm Hg.\n4. Lower extremity blood pressure values are lower than the upper extremity values.\n9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.\nNormal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 392
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.2222222222222222,
+    "patient_coverage": 0.2,
+    "exam_coverage": 0.25,
+    "ground_truth_patient_facts": [
+      "1. 5-year-old boy.",
+      "2. The patient is presented by his mother for a well-child visit.",
+      "3. The boy was born at 39 weeks gestation via spontaneous vaginal delivery.",
+      "4. The neonatal period was uneventful.",
+      "5. The boy is currently up to date on all vaccines.",
+      "6. The boy is meeting all developmental milestones.",
+      "7. The mother reports that he has been generally doing well with no concerns.",
+      "8. No family history of cardiovascular disease.",
+      "9. The boy does not take any medications.",
+      "10. No significant past medical history.",
+      "11. Patient attends kindergarten.",
+      "12. Lives with parents and one younger sibling.",
+      "13. No exposure to tobacco smoke.",
+      "14. All systems review is essentially negative as reported by the mother.",
+      "15. High blood pressure on the right upper extremity."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Echocardiogram shows narrowing of the aorta distal to the left subclavian artery with a gradient, consistent with coarctation.",
+      "2. Echocardiogram shows left ventricular function is normal.",
+      "3. Blood pressure in the right upper extremity is 150/80 mm Hg.",
+      "4. Lower extremity blood pressure values are lower than the upper extremity values.",
+      "5. Chest X-ray shows normal heart size.",
+      "6. Chest X-ray shows rib notching not observed (may not be present in young children).",
+      "7. Vital sign heart rate is normal for age.",
+      "8. Vital sign respiratory rate is normal for age.",
+      "9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses.",
+      "10. Cardiovascular auscultation shows normal S1 and S2.",
+      "11. Cardiovascular auscultation shows a 2/6 long systolic murmur with systolic ejection click over the left sternal border and back.",
+      "12. Point of maximal impact is normal location."
+    ],
+    "collected_patient_facts": [
+      "1. 5-year-old boy.",
+      "2. The patient is presented by his mother for a well-child visit.",
+      "15. High blood pressure on the right upper extremity."
+    ],
+    "collected_exam_facts": [
+      "3. Blood pressure in the right upper extremity is 150/80 mm Hg.",
+      "4. Lower extremity blood pressure values are lower than the upper extremity values.",
+      "9. Cardiovascular exam shows 2+ radial pulses and trace femoral pulses."
+    ]
+  },
+  "judge_response": "ANALYSIS: The prediction names the same condition and specifies the anatomical subtype (post-ductal), which is a more specific but clinically equivalent formulation of coarctation of the aorta.\n\nVERDICT: CORRECT"
+}

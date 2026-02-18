@@ -1,0 +1,170 @@
+{
+  "case_id": "agentclinic_medqa_11",
+  "prediction": "Temporal lobe epilepsy (focal seizures with impaired awareness, likely of mesial temporal origin)",
+  "ground_truth": "Complex partial seizure",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is your main symptom or complaint right now?",
+      "duration": 3.506148338317871
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient has been experiencing recurrent episodes lasting 3–4 minutes each of facial grimacing and staring over the past month.\n3. During these episodes, he is nonresponsive.\n\n[RESPONSE] My main problem is that for the past month I've been having recurrent 3–4 minute episodes where I stare and grimace, and I'm unresponsive during them.",
+      "duration": 4.724915981292725
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Are the episodes always the same in how they start and what happens during them (i.e., stereotyped each time)?",
+      "duration": 11.3358154296875
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient has been experiencing recurrent episodes lasting 3–4 minutes each of facial grimacing and staring over the past month.\n5. He reports a muddy taste in his mouth before the onset of these episodes.\n\n[RESPONSE] Yes. Over the past month the episodes have been recurrent and each starts with a muddy taste and involves facial grimacing and staring lasting about 3–4 minutes.",
+      "duration": 10.448097467422485
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What is your age?",
+      "duration": 11.442523956298828
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 7-year-old boy.\n[RESPONSE] I'm 7 years old.",
+      "duration": 3.859755039215088
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Temporal lobe epilepsy (focal seizures with impaired awareness, likely of mesial temporal origin)",
+      "duration": 10.179049730300903
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 3,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your main symptom or complaint right now?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main problem is that for the past month I've been having recurrent 3–4 minute episodes where I stare and grimace, and I'm unresponsive during them.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Are the episodes always the same in how they start and what happens during them (i.e., stereotyped each time)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nYes. Over the past month the episodes have been recurrent and each starts with a muddy taste and involves facial grimacing and staring lasting about 3–4 minutes.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your age?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI'm 7 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Temporal lobe epilepsy (focal seizures with impaired awareness, likely of mesial temporal origin)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1512
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 7-year-old boy.\n2. The patient has been experiencing recurrent episodes lasting 3–4 minutes each of facial grimacing and staring over the past month.\n3. During these episodes, he is nonresponsive.\n4. He does not recall the episodes afterward.\n5. He reports a muddy taste in his mouth before the onset of these episodes.\n6. His brother witnessed him waking up, staring, and making hand gestures during one episode.\n7. The patient felt lethargic and confused afterwards.\n8. No significant previous medical history.\n9. No prior seizures or neurological evaluations.\n10. Enrolled in second grade.\n11. Lives with parents and one sibling.\n12. No reported use of medications or exposure to toxins.\n13. Denies fever, headache, visual or auditory disturbances, weakness, or other systemic symptoms.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 1. 7-year-old boy.\n[RESPONSE] I'm 7 years old."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 386
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Temperature: 36.8°C (98°F).\n2. Blood Pressure: 95/60 mmHg.\n3. Heart Rate: 82 bpm.\n4. Respiratory Rate: 18 breaths/min.\n5. Alert and oriented for age.\n6. No acute distress noted.\n7. All cranial nerves intact.\n8. Motor: Normal tone, strength, and bulk in all four extremities.\n9. Sensory: Intact to light touch, pinprick, vibration, and proprioception.\n10. Coordination: No dysmetria on finger-nose-finger or heel-knee-shin tests.\n11. Reflexes: 2+ throughout.\n12. No Babinski sign.\n13. Electroencephalogram: Interictal spikes and sharp waves localized to the temporal lobes, more prominent on the right side.\n14. MRI_Brain: No evidence of mass lesions, infarctions, or structural abnormalities.\n15. WBC: 6,200 /μL.\n16. Hemoglobin: 13.2 g/dL.\n17. Platelets: 274,000 /μL.\n18. Sodium: 140 mmol/L.\n19. Potassium: 4.2 mmol/L.\n20. Calcium: 9.4 mg/dL.\n21. Magnesium: 2.0 mg/dL.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 407
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.11764705882352941,
+    "patient_coverage": 0.3076923076923077,
+    "exam_coverage": 0.0,
+    "ground_truth_patient_facts": [
+      "1. 7-year-old boy.",
+      "2. The patient has been experiencing recurrent episodes lasting 3–4 minutes each of facial grimacing and staring over the past month.",
+      "3. During these episodes, he is nonresponsive.",
+      "4. He does not recall the episodes afterward.",
+      "5. He reports a muddy taste in his mouth before the onset of these episodes.",
+      "6. His brother witnessed him waking up, staring, and making hand gestures during one episode.",
+      "7. The patient felt lethargic and confused afterwards.",
+      "8. No significant previous medical history.",
+      "9. No prior seizures or neurological evaluations.",
+      "10. Enrolled in second grade.",
+      "11. Lives with parents and one sibling.",
+      "12. No reported use of medications or exposure to toxins.",
+      "13. Denies fever, headache, visual or auditory disturbances, weakness, or other systemic symptoms."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Temperature: 36.8°C (98°F).",
+      "2. Blood Pressure: 95/60 mmHg.",
+      "3. Heart Rate: 82 bpm.",
+      "4. Respiratory Rate: 18 breaths/min.",
+      "5. Alert and oriented for age.",
+      "6. No acute distress noted.",
+      "7. All cranial nerves intact.",
+      "8. Motor: Normal tone, strength, and bulk in all four extremities.",
+      "9. Sensory: Intact to light touch, pinprick, vibration, and proprioception.",
+      "10. Coordination: No dysmetria on finger-nose-finger or heel-knee-shin tests.",
+      "11. Reflexes: 2+ throughout.",
+      "12. No Babinski sign.",
+      "13. Electroencephalogram: Interictal spikes and sharp waves localized to the temporal lobes, more prominent on the right side.",
+      "14. MRI_Brain: No evidence of mass lesions, infarctions, or structural abnormalities.",
+      "15. WBC: 6,200 /μL.",
+      "16. Hemoglobin: 13.2 g/dL.",
+      "17. Platelets: 274,000 /μL.",
+      "18. Sodium: 140 mmol/L.",
+      "19. Potassium: 4.2 mmol/L.",
+      "20. Calcium: 9.4 mg/dL.",
+      "21. Magnesium: 2.0 mg/dL."
+    ],
+    "collected_patient_facts": [
+      "1. 7-year-old boy.",
+      "2. The patient has been experiencing recurrent episodes lasting 3–4 minutes each of facial grimacing and staring over the past month.",
+      "3. During these episodes, he is nonresponsive.",
+      "5. He reports a muddy taste in his mouth before the onset of these episodes."
+    ],
+    "collected_exam_facts": []
+  },
+  "judge_response": "ANALYSIS: Complex partial seizure is an older term for focal seizure with impaired awareness. The prediction specifies temporal lobe epilepsy (focal seizures with impaired awareness, mesial temporal origin), which is a plausible, more specific localization/cause of complex partial seizures and is clinically equivalent.\n\nVERDICT: CORRECT"
+}

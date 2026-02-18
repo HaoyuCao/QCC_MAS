@@ -1,0 +1,224 @@
+{
+  "case_id": "agentclinic_medqa_7",
+  "prediction": "Congenital rubella syndrome (congenital rubella infection).",
+  "ground_truth": "Congenital Rubella Infection",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What symptoms are you experiencing right now?",
+      "duration": 2.133793354034424
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. No additional symptoms noted by the mother.\n\n[RESPONSE] My mother reports that I have no additional symptoms.",
+      "duration": 3.7870709896087646
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What brought you to medical attention or why are you being evaluated today?",
+      "duration": 3.5472471714019775
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 5. The mother reports having had no prenatal care.\n[RESPONSE] We are being evaluated because the mother reports having had no prenatal care.",
+      "duration": 4.046426773071289
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] What was the gestational age at delivery (how many weeks pregnant was the mother when you were born)?",
+      "duration": 5.194243431091309
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. Delivered at term.\n\n[RESPONSE] I was delivered at term.",
+      "duration": 6.13328218460083
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] How old is the baby now (hours or days since birth)?",
+      "duration": 3.569214344024658
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure; I don't recall how many hours or days it's been since the baby was born.",
+      "duration": 3.4842183589935303
+    },
+    {
+      "role_id": "doctor",
+      "content": "[QUERY] Is the baby breathing normally and crying?",
+      "duration": 4.976986408233643
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. No additional symptoms noted by the mother.\n\n[RESPONSE] The mother reports no additional symptoms, so she has not noted any problems with the baby's breathing or crying.",
+      "duration": 6.1862523555755615
+    },
+    {
+      "role_id": "doctor",
+      "content": "[TEST] Newborn physical examination report (vitals, weight and head circumference, skin findings including rash/jaundice, HEENT including nasal/oral discharge, heart and lung exam, abdominal exam including hepatosplenomegaly, extremities and tone).",
+      "duration": 8.628952026367188
+    },
+    {
+      "role_id": "reporter",
+      "content": "Vitals:\n- 6. Temperature: 37.0°C (98.6°F).\n- 7. Heart rate: 140 bpm.\n- 8. Respiratory rate: 40 breaths/min.\n\nWeight and head circumference:\n- Normal\n\nSkin findings (rash/jaundice):\n- 10. Several bluish macules that do not blanch upon application of pressure.\n\nHEENT (including nasal/oral discharge):\n- 11. Cloudy lenses in both eyes.\n- 4. Ophthalmologic consult: Congenital cataracts.\n- 12. Failed auditory screening tests.\n- 5. Hearing Test: Bilateral sensorineural hearing loss.\n- Nasal/oral discharge: Normal\n\nHeart and lung exam:\n- 9. Continuous 'machinery' murmur present.\n- 3. Echocardiogram: Patent ductus arteriosus.\n- Lung exam: Normal\n\nAbdominal exam including hepatosplenomegaly:\n- Normal\n\nExtremities and tone:\n- Normal",
+      "duration": 12.01704454421997
+    },
+    {
+      "role_id": "doctor",
+      "content": "[DIAGNOSIS] Congenital rubella syndrome (congenital rubella infection).",
+      "duration": 5.466048240661621
+    }
+  ],
+  "metadata": {
+    "mode": "roleplay",
+    "turns": 6,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What symptoms are you experiencing right now?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy mother reports that I have no additional symptoms.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What brought you to medical attention or why are you being evaluated today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nWe are being evaluated because the mother reports having had no prenatal care.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What was the gestational age at delivery (how many weeks pregnant was the mother when you were born)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI was delivered at term.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old is the baby now (hours or days since birth)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI'm not sure; I don't recall how many hours or days it's been since the baby was born.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is the baby breathing normally and crying?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nThe mother reports no additional symptoms, so she has not noted any problems with the baby's breathing or crying.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[TEST] Newborn physical examination report (vitals, weight and head circumference, skin findings including rash/jaundice, HEENT including nasal/oral discharge, heart and lung exam, abdominal exam including hepatosplenomegaly, extremities and tone)."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nVitals:\n- 6. Temperature: 37.0°C (98.6°F).\n- 7. Heart rate: 140 bpm.\n- 8. Respiratory rate: 40 breaths/min.\n\nWeight and head circumference:\n- Normal\n\nSkin findings (rash/jaundice):\n- 10. Several bluish macules that do not blanch upon application of pressure.\n\nHEENT (including nasal/oral discharge):\n- 11. Cloudy lenses in both eyes.\n- 4. Ophthalmologic consult: Congenital cataracts.\n- 12. Failed auditory screening tests.\n- 5. Hearing Test: Bilateral sensorineural hearing loss.\n- Nasal/oral discharge: Normal\n\nHeart and lung exam:\n- 9. Continuous 'machinery' murmur present.\n- 3. Echocardiogram: Patent ductus arteriosus.\n- Lung exam: Normal\n\nAbdominal exam including hepatosplenomegaly:\n- Normal\n\nExtremities and tone:\n- Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Congenital rubella syndrome (congenital rubella infection)."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1102
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. Newborn, female.\n2. 3000-g (6.6-lb).\n3. Delivered at term.\n4. 23-year-old primigravida mother.\n5. The mother reports having had no prenatal care.\n6. Immunization records for the newborn are not available.\n7. Newborn, no past medical history available.\n8. No additional symptoms noted by the mother.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 8. No additional symptoms noted by the mother.\n\n[RESPONSE] The mother reports no additional symptoms, so she has not noted any problems with the baby's breathing or crying."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 316
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Rubella IgM: Positive.\n2. Others: Negative.\n3. Echocardiogram: Patent ductus arteriosus.\n4. Ophthalmologic consult: Congenital cataracts.\n5. Hearing Test: Bilateral sensorineural hearing loss.\n6. Temperature: 37.0°C (98.6°F).\n7. Heart rate: 140 bpm.\n8. Respiratory rate: 40 breaths/min.\n9. Continuous 'machinery' murmur present.\n10. Several bluish macules that do not blanch upon application of pressure.\n11. Cloudy lenses in both eyes.\n12. Failed auditory screening tests.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "Vitals:\n- 6. Temperature: 37.0°C (98.6°F).\n- 7. Heart rate: 140 bpm.\n- 8. Respiratory rate: 40 breaths/min.\n\nWeight and head circumference:\n- Normal\n\nSkin findings (rash/jaundice):\n- 10. Several bluish macules that do not blanch upon application of pressure.\n\nHEENT (including nasal/oral discharge):\n- 11. Cloudy lenses in both eyes.\n- 4. Ophthalmologic consult: Congenital cataracts.\n- 12. Failed auditory screening tests.\n- 5. Hearing Test: Bilateral sensorineural hearing loss.\n- Nasal/oral discharge: Normal\n\nHeart and lung exam:\n- 9. Continuous 'machinery' murmur present.\n- 3. Echocardiogram: Patent ductus arteriosus.\n- Lung exam: Normal\n\nAbdominal exam including hepatosplenomegaly:\n- Normal\n\nExtremities and tone:\n- Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 479
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.65,
+    "patient_coverage": 0.375,
+    "exam_coverage": 0.8333333333333334,
+    "ground_truth_patient_facts": [
+      "1. Newborn, female.",
+      "2. 3000-g (6.6-lb).",
+      "3. Delivered at term.",
+      "4. 23-year-old primigravida mother.",
+      "5. The mother reports having had no prenatal care.",
+      "6. Immunization records for the newborn are not available.",
+      "7. Newborn, no past medical history available.",
+      "8. No additional symptoms noted by the mother."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Rubella IgM: Positive.",
+      "2. Others: Negative.",
+      "3. Echocardiogram: Patent ductus arteriosus.",
+      "4. Ophthalmologic consult: Congenital cataracts.",
+      "5. Hearing Test: Bilateral sensorineural hearing loss.",
+      "6. Temperature: 37.0°C (98.6°F).",
+      "7. Heart rate: 140 bpm.",
+      "8. Respiratory rate: 40 breaths/min.",
+      "9. Continuous 'machinery' murmur present.",
+      "10. Several bluish macules that do not blanch upon application of pressure.",
+      "11. Cloudy lenses in both eyes.",
+      "12. Failed auditory screening tests."
+    ],
+    "collected_patient_facts": [
+      "3. Delivered at term.",
+      "5. The mother reports having had no prenatal care.",
+      "8. No additional symptoms noted by the mother."
+    ],
+    "collected_exam_facts": [
+      "3. Echocardiogram: Patent ductus arteriosus.",
+      "4. Ophthalmologic consult: Congenital cataracts.",
+      "5. Hearing Test: Bilateral sensorineural hearing loss.",
+      "6. Temperature: 37.0°C (98.6°F).",
+      "7. Heart rate: 140 bpm.",
+      "8. Respiratory rate: 40 breaths/min.",
+      "9. Continuous 'machinery' murmur present.",
+      "10. Several bluish macules that do not blanch upon application of pressure.",
+      "11. Cloudy lenses in both eyes.",
+      "12. Failed auditory screening tests."
+    ]
+  },
+  "judge_response": "ANALYSIS: The predicted diagnosis names the same condition using synonymous terminology (\"congenital rubella syndrome\" = congenital rubella infection), so it is clinically equivalent.\n\nVERDICT: CORRECT"
+}

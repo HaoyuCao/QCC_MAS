@@ -1,0 +1,271 @@
+{
+  "case_id": "agentclinic_medqa_58",
+  "prediction": "Acute amphetamine (stimulant) intoxication causing agitation and aggressive behavior.",
+  "ground_truth": "Lisdexamfetamine intoxication",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] I need the patient's presenting problem first to direct further focused questions and tests. Asking only the chief complaint keeps this atomic and efficient; subsequent turns will target onset, severity, and associated features based on the answer.\n\n[QUERY] What is the main symptom or problem that brought you here today?",
+      "duration": 4.336202621459961
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 9. Primary symptom: Aggressive behavior and irritability.\n[RESPONSE] The main problem is aggressive behavior and irritability.",
+      "duration": 3.948289632797241
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Age strongly influences differential (pediatric behavioral disorder, adolescent substance use, adult mood/psychotic disorder, dementia in older adults). I need a single specific data point first.\n\n[QUERY] How old is the patient?",
+      "duration": 2.681657314300537
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 24-year-old male.\n[RESPONSE] I'm 24 years old.",
+      "duration": 4.287725448608398
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Onset and time course are essential to narrow acute causes (intoxication, withdrawal, delirium, acute psychosis) versus chronic psychiatric conditions. I will ask one focused question about timing and pattern.\n\n[QUERY] When did the aggressive behavior and irritability begin, and has it been continuous since onset or does it come and go?",
+      "duration": 4.962738513946533
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. Roommates report that he has been displaying increasingly aggressive and unusual behavior.\n5. Roommates report that earlier this evening he exhibited extreme irritability.\n\n[RESPONSE] The roommates say the aggression developed gradually—it's been increasingly aggressive and unusual—and there was a clear episode of extreme irritability earlier this evening.",
+      "duration": 6.4043073654174805
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Substance intoxication or withdrawal is a common reversible cause of new-onset aggression in a young adult and could present subacutely with a recent spike in irritability. I need a clear, recent timeline of use to assess this possibility before ordering toxicology tests.\n\n[QUERY] Have you used alcohol, prescription medications, or recreational drugs recently—specifically within the past 48–72 hours—and if so, what and when was the last use?",
+      "duration": 3.7076640129089355
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall.",
+      "duration": 3.311042070388794
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute head injury or seizure could explain new aggression, memory gaps, and fluctuating behavior — ruling this in or out is high yield and still atomic.\n\n[QUERY] Have you had any recent head injury, fall, loss of consciousness, or seizure-like episode?",
+      "duration": 3.8896024227142334
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall any recent head injury, fall, loss of consciousness, or seizure-like episode.",
+      "duration": 4.879654169082642
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Determining whether psychotic symptoms (hallucinations/delusions) are present will distinguish primary psychosis or substance-induced states from mood or personality causes and guide urgent safety and testing needs.\n\n[QUERY] Are you hearing voices, seeing things, or holding beliefs that other people say are not true (hallucinations or fixed false beliefs)?",
+      "duration": 3.4736852645874023
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall hearing voices, seeing things, or holding beliefs others say are untrue.",
+      "duration": 4.160163640975952
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] Acute change in attention, orientation, or memory would point toward delirium (medical/infectious, intoxication) rather than a primary psychiatric disorder. This single question targets those core cognitive features.\n\n[QUERY] Right now, do you feel confused or disoriented, or are you having trouble concentrating or remembering recent events?",
+      "duration": 4.244588375091553
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall.",
+      "duration": 4.465835094451904
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The patient is a young adult with new, gradually worsening aggression and an acute peak of irritability plus amnestic/unreliable history—this pattern often reflects substance intoxication or withdrawal. A urine toxicology screen is a rapid, high-yield test that can identify common intoxicants (amphetamines, cocaine, cannabis, opioids, benzodiazepines, etc.) and directly influence acute management.\n\n[TEST] Urine toxicology screen (qualitative immunoassay for common recreational drugs)",
+      "duration": 8.231124877929688
+    },
+    {
+      "role_id": "reporter",
+      "content": "12. Toxicology screen: Amphetamines Positive.\n13. Toxicology screen: Cocaine Negative.\n14. Toxicology screen: Opiates Negative.\n15. Toxicology screen: Benzodiazepines Negative.\n16. Toxicology screen: Cannabinoids Negative.",
+      "duration": 4.25534200668335
+    },
+    {
+      "role_id": "doctor",
+      "content": "[THOUGHT] The patient is a young adult with new-onset, gradually worsening aggression and an acute episode of extreme irritability. He is amnestic/unreliable about details, has no reported head injury or other acute medical event, and toxicology is positive for amphetamines with other common substances negative. This pattern best fits acute stimulant (amphetamine) intoxication causing agitation/aggression rather than primary psychosis or another medical cause.\n\n[DIAGNOSIS] Acute amphetamine (stimulant) intoxication causing agitation and aggressive behavior.",
+      "duration": 5.088340520858765
+    }
+  ],
+  "metadata": {
+    "mode": "react",
+    "turns": 8,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n\nIn every turn, you must follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture, identify critical information gaps, and articulate step-by-step reasoning to justify your next action.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need the patient's presenting problem first to direct further focused questions and tests. Asking only the chief complaint keeps this atomic and efficient; subsequent turns will target onset, severity, and associated features based on the answer.\n\n[QUERY] What is the main symptom or problem that brought you here today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nThe main problem is aggressive behavior and irritability.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Age strongly influences differential (pediatric behavioral disorder, adolescent substance use, adult mood/psychotic disorder, dementia in older adults). I need a single specific data point first.\n\n[QUERY] How old is the patient?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI'm 24 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Onset and time course are essential to narrow acute causes (intoxication, withdrawal, delirium, acute psychosis) versus chronic psychiatric conditions. I will ask one focused question about timing and pattern.\n\n[QUERY] When did the aggressive behavior and irritability begin, and has it been continuous since onset or does it come and go?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nThe roommates say the aggression developed gradually—it's been increasingly aggressive and unusual—and there was a clear episode of extreme irritability earlier this evening.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Substance intoxication or withdrawal is a common reversible cause of new-onset aggression in a young adult and could present subacutely with a recent spike in irritability. I need a clear, recent timeline of use to assess this possibility before ordering toxicology tests.\n\n[QUERY] Have you used alcohol, prescription medications, or recreational drugs recently—specifically within the past 48–72 hours—and if so, what and when was the last use?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI'm not sure — I don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute head injury or seizure could explain new aggression, memory gaps, and fluctuating behavior — ruling this in or out is high yield and still atomic.\n\n[QUERY] Have you had any recent head injury, fall, loss of consciousness, or seizure-like episode?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\nLast reply:\nI don't recall any recent head injury, fall, loss of consciousness, or seizure-like episode.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Determining whether psychotic symptoms (hallucinations/delusions) are present will distinguish primary psychosis or substance-induced states from mood or personality causes and guide urgent safety and testing needs.\n\n[QUERY] Are you hearing voices, seeing things, or holding beliefs that other people say are not true (hallucinations or fixed false beliefs)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\nLast reply:\nI'm not sure — I don't recall hearing voices, seeing things, or holding beliefs others say are untrue.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Acute change in attention, orientation, or memory would point toward delirium (medical/infectious, intoxication) rather than a primary psychiatric disorder. This single question targets those core cognitive features.\n\n[QUERY] Right now, do you feel confused or disoriented, or are you having trouble concentrating or remembering recent events?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\nLast reply:\nI'm not sure — I don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient is a young adult with new, gradually worsening aggression and an acute peak of irritability plus amnestic/unreliable history—this pattern often reflects substance intoxication or withdrawal. A urine toxicology screen is a rapid, high-yield test that can identify common intoxicants (amphetamines, cocaine, cannabis, opioids, benzodiazepines, etc.) and directly influence acute management.\n\n[TEST] Urine toxicology screen (qualitative immunoassay for common recreational drugs)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\nLast reply:\n12. Toxicology screen: Amphetamines Positive.\n13. Toxicology screen: Cocaine Negative.\n14. Toxicology screen: Opiates Negative.\n15. Toxicology screen: Benzodiazepines Negative.\n16. Toxicology screen: Cannabinoids Negative.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient is a young adult with new-onset, gradually worsening aggression and an acute episode of extreme irritability. He is amnestic/unreliable about details, has no reported head injury or other acute medical event, and toxicology is positive for amphetamines with other common substances negative. This pattern best fits acute stimulant (amphetamine) intoxication causing agitation/aggression rather than primary psychosis or another medical cause.\n\n[DIAGNOSIS] Acute amphetamine (stimulant) intoxication causing agitation and aggressive behavior."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1603
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 24-year-old male.\n2. Roommates report that he has been displaying increasingly aggressive and unusual behavior.\n3. Roommates report that he has been under significant stress due to final exams.\n4. Roommates report that he has become more reclusive.\n5. Roommates report that earlier this evening he exhibited extreme irritability.\n6. Roommates report that earlier this evening he yelled at his computer.\n7. Roommates report that earlier this evening he broke his computer.\n8. Roommates report that earlier this evening he spent several hours at the gym.\n9. Primary symptom: Aggressive behavior and irritability.\n10. No significant past medical history reported by the roommates.\n11. Roommates did not report any fever, vomiting, diarrhea, dysuria, or flank pain prior to the event.\n12. No other social history provided.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 386
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Temperature 101°F (38.3°C).\n2. Blood pressure 137/98 mmHg.\n3. Heart rate 120/min.\n4. Respiratory rate 23/min.\n5. Oxygen saturation 99% on room air.\n6. Appearance: Irritable young man.\n7. Skin: Notable diaphoresis.\n8. Lungs: Bilateral clear breath sounds.\n9. Pupils: Notably dilated.\n10. Mental status: Rapid speech.\n11. Mental status: Aggressive.\n12. Toxicology screen: Amphetamines Positive.\n13. Toxicology screen: Cocaine Negative.\n14. Toxicology screen: Opiates Negative.\n15. Toxicology screen: Benzodiazepines Negative.\n16. Toxicology screen: Cannabinoids Negative.\n17. CBC: WBC Normal.\n18. CBC: Hemoglobin Normal.\n19. CBC: Platelets Normal.\n20. Chemistry panel: Sodium Normal.\n21. Chemistry panel: Potassium Normal.\n22. Chemistry panel: Creatinine Normal.\n23. Chemistry panel: Blood Glucose Normal.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "12. Toxicology screen: Amphetamines Positive.\n13. Toxicology screen: Cocaine Negative.\n14. Toxicology screen: Opiates Negative.\n15. Toxicology screen: Benzodiazepines Negative.\n16. Toxicology screen: Cannabinoids Negative."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 409
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.2571428571428571,
+    "patient_coverage": 0.3333333333333333,
+    "exam_coverage": 0.21739130434782608,
+    "ground_truth_patient_facts": [
+      "1. 24-year-old male.",
+      "2. Roommates report that he has been displaying increasingly aggressive and unusual behavior.",
+      "3. Roommates report that he has been under significant stress due to final exams.",
+      "4. Roommates report that he has become more reclusive.",
+      "5. Roommates report that earlier this evening he exhibited extreme irritability.",
+      "6. Roommates report that earlier this evening he yelled at his computer.",
+      "7. Roommates report that earlier this evening he broke his computer.",
+      "8. Roommates report that earlier this evening he spent several hours at the gym.",
+      "9. Primary symptom: Aggressive behavior and irritability.",
+      "10. No significant past medical history reported by the roommates.",
+      "11. Roommates did not report any fever, vomiting, diarrhea, dysuria, or flank pain prior to the event.",
+      "12. No other social history provided."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Temperature 101°F (38.3°C).",
+      "2. Blood pressure 137/98 mmHg.",
+      "3. Heart rate 120/min.",
+      "4. Respiratory rate 23/min.",
+      "5. Oxygen saturation 99% on room air.",
+      "6. Appearance: Irritable young man.",
+      "7. Skin: Notable diaphoresis.",
+      "8. Lungs: Bilateral clear breath sounds.",
+      "9. Pupils: Notably dilated.",
+      "10. Mental status: Rapid speech.",
+      "11. Mental status: Aggressive.",
+      "12. Toxicology screen: Amphetamines Positive.",
+      "13. Toxicology screen: Cocaine Negative.",
+      "14. Toxicology screen: Opiates Negative.",
+      "15. Toxicology screen: Benzodiazepines Negative.",
+      "16. Toxicology screen: Cannabinoids Negative.",
+      "17. CBC: WBC Normal.",
+      "18. CBC: Hemoglobin Normal.",
+      "19. CBC: Platelets Normal.",
+      "20. Chemistry panel: Sodium Normal.",
+      "21. Chemistry panel: Potassium Normal.",
+      "22. Chemistry panel: Creatinine Normal.",
+      "23. Chemistry panel: Blood Glucose Normal."
+    ],
+    "collected_patient_facts": [
+      "1. 24-year-old male.",
+      "2. Roommates report that he has been displaying increasingly aggressive and unusual behavior.",
+      "5. Roommates report that earlier this evening he exhibited extreme irritability.",
+      "9. Primary symptom: Aggressive behavior and irritability."
+    ],
+    "collected_exam_facts": [
+      "12. Toxicology screen: Amphetamines Positive.",
+      "13. Toxicology screen: Cocaine Negative.",
+      "14. Toxicology screen: Opiates Negative.",
+      "15. Toxicology screen: Benzodiazepines Negative.",
+      "16. Toxicology screen: Cannabinoids Negative."
+    ]
+  },
+  "judge_response": "ANALYSIS: Lisdexamfetamine is a prodrug of dextroamphetamine; intoxication from it is an amphetamine (stimulant) intoxication. The predicted diagnosis describes acute amphetamine/stimulant intoxication with agitation/aggression, which is clinically equivalent to lisdexamfetamine intoxication (the prediction is a broader but matching categorization).\n\nVERDICT: CORRECT"
+}
