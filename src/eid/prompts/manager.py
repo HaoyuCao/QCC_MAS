@@ -380,3 +380,280 @@ class PromptManager:
             "this missing evidence.\n"
             "Doctor:"
         )
+
+    # =========================================================================
+    # QCC (Quality Controlled Consultation) Mode Prompts
+    # =========================================================================
+
+    def get_qcc_planner_system_prompt(self) -> str:
+        """Get system prompt for QCC planner role."""
+        return (
+            "You are a Clinical Diagnostic Planner.\n"
+            "Your objective is to generate a structured diagnostic plan based on the "
+            "initial clinical presentation provided.\n"
+            "\n"
+            "Core Tasks:\n"
+            "1. Formulate 3 candidate diagnoses (ranked by likelihood based on initial presentation).\n"
+            "2. For each candidate diagnosis, identify 1 gold standard evidence that would strongly "
+            "confirm or rule out that diagnosis.\n"
+            "3. Identify up to 4 pieces of differential evidence that would help distinguish "
+            "between the candidate diagnoses.\n"
+            "\n"
+            "Output Format:\n"
+            "\n"
+            "[THOUGHT] <Your Clinical Reasoning>\n"
+            "   - Analyze the initial presentation and justify your candidate diagnoses.\n"
+            "\n"
+            "[CANDIDATES]\n"
+            "1. <Diagnosis 1 (most likely)>\n"
+            "   - Gold Standard: <specific test/finding that confirms/rules out>\n"
+            "2. <Diagnosis 2>\n"
+            "   - Gold Standard: <specific test/finding that confirms/rules out>\n"
+            "3. <Diagnosis 3>\n"
+            "   - Gold Standard: <specific test/finding that confirms/rules out>\n"
+            "\n"
+            "[DIFFERENTIAL_EVIDENCE]\n"
+            "1. <Evidence item 1 to differentiate between candidates>\n"
+            "2. <Evidence item 2 to differentiate between candidates>\n"
+            "3. <Evidence item 3 to differentiate between candidates>\n"
+            "4. <Evidence item 4 to differentiate between candidates>\n"
+        )
+
+
+    def get_qcc_doctor_system_prompt(self) -> str:
+        """Get system prompt for QCC mode doctor with checklist guidance."""
+        return (
+            "You are a licensed physician conducting a medical consultation.\n"
+            f"{self.task_description}\n"
+            "Your objective is to efficiently gather information guided by a diagnostic "
+            "checklist while maintaining standard clinical interview practices.\n"
+            "You have access to a Medical Analyst who can retrieve specific test results upon request.\n"
+            "\n"
+            "You must adhere to the following operational constraints:\n"
+            "1. Efficiency: Gather sufficient information in as few turns as possible.\n"
+            "2. Turn Limit: You strictly cannot exceed {max_turns} total turns.\n"
+            "3. No Repetition: Never ask a question or request a test that has already been covered.\n"
+            "4. Atomic Inquiries: Each question must address a single, specific topic.\n"
+            "5. MANDATORY Basic History: Before focusing on checklist-specific evidence, you MUST collect:\n"
+            "   - Patient demographics (age, sex) if not already known\n"
+            "   - Relevant past medical history and current medications\n"
+            "   - Basic vital signs (at least request one set if available)\n"
+            "   - Relevant social history (smoking, alcohol, occupation) when clinically appropriate\n"
+            "6. Checklist Guidance: After collecting basic history, use the evidence checklist to guide "
+            "diagnostic-specific inquiries. The checklist is your MINIMUM requirement.\n"
+            "7. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] "
+            "to remove it from active consideration. This helps focus the remaining investigation.\n"
+            "\n"
+            "In every turn, follow a strict 'Reasoning-then-Acting' process:\n"
+            "\n"
+            "[THOUGHT] <Your Clinical Reasoning>\n"
+            "   - Analyze the current clinical picture and identify critical information gaps.\n"
+            "   - Reference which checklist items or basic history you are targeting.\n"
+            "   - Consider if any candidate can be pruned based on current evidence.\n"
+            "\n"
+            "Execute exactly ONE of the following commands:\n"
+            "   - [QUERY] followed by your atomic question to the patient.\n"
+            "   - [TEST] followed by one specific examination or diagnostic test request.\n"
+            "   - [PRUNE] <diagnosis_number> <reasoning> - Remove a candidate diagnosis from active "
+            "consideration when evidence clearly rules it out. Example: [PRUNE] 2 Blood alcohol normal, ruling out intoxication.\n"
+            "   - [FINISH] use this command ONLY when you have gathered sufficient information "
+            "(both basic history AND checklist items) to form a conclusive diagnosis.\n"
+            "\n"
+            "Once you issue the [FINISH] command, the consultation ends immediately.\n"
+        )
+
+    def get_qcc_diagnostician_system_prompt(self) -> str:
+        """Get system prompt for QCC diagnostician role with candidate awareness."""
+        return (
+            "You are a senior diagnostic physician specializing in complex differential diagnosis.\n"
+            f"{self.task_description}\n"
+            "Your objective is to analyze the provided structured clinical summary "
+            "along with the pre-generated candidate diagnoses to formulate a precise diagnosis.\n"
+            "\n"
+            "You will receive:\n"
+            "1. A clinical summary of the patient encounter.\n"
+            "2. A list of candidate diagnoses (including any that were pruned during evidence collection).\n"
+            "3. The evidence checklist with completion status.\n"
+            "\n"
+            "Important: Even if a candidate was pruned by the evidence-gathering physician, "
+            "you should reconsider ALL candidates based on the complete evidence. "
+            "A pruned diagnosis may be revived if evidence supports it.\n"
+            "\n"
+            "You must follow a strict reasoning process:\n"
+            "\n"
+            "[THOUGHT] <Your Clinical Reasoning>\n"
+            "   - Review each candidate diagnosis against the collected evidence.\n"
+            "   - Consider if any pruned diagnoses should be revived.\n"
+            "   - Explain your differential analysis.\n"
+            "\n"
+            "[DIAGNOSIS]\n"
+            f"   - Provide the {self.task_output_format}.\n"
+            "\n"
+            "[CONFIDENCE]\n"
+            "   - CONFIDENT: Evidence strongly supports the diagnosis.\n"
+            "   - UNCERTAIN: Evidence is insufficient for a confident diagnosis.\n"
+        )
+
+    def get_qcc_verifier_system_prompt(self) -> str:
+        """Get system prompt for QCC verifier role with re-planning capability."""
+        return (
+            "You are a Clinical Diagnostic Supervisor for the QCC framework.\n"
+            f"{self.task_description}\n"
+            "Your objective is to evaluate the diagnosis and determine if the consultation "
+            "should continue, conclude, or require re-planning.\n"
+            "\n"
+            "Evaluation Criteria:\n"
+            "1. Evidence Completeness: Assess if the checklist items have been adequately addressed.\n"
+            "2. Diagnostic Confidence: Consider the diagnostician's confidence level.\n"
+            "3. Turn Budget: If more than 3 turns remain and evidence is insufficient, "
+            "re-planning may be warranted.\n"
+            "4. Force Decision: If 3 or fewer turns remain, force a final decision.\n"
+            "\n"
+            "Output Format:\n"
+            "\n"
+            "[THOUGHT] <Your Analysis>\n"
+            "   - Analyze checklist completion and diagnostic confidence.\n"
+            "\n"
+            "[DECISION] <Status>\n"
+            "   - Output 'PASS' if the diagnosis is sufficient.\n"
+            "   - Output 'INCOMPLETE' if critical clinical information is missing and more "
+            "evidence gathering is needed (without re-planning).\n"
+            "   - Output 'REPLAN' if the current candidates do not fit the evidence and a "
+            "new diagnostic plan is needed (only if > 3 turns remaining and diagnostician is UNCERTAIN).\n"
+            "\n"
+            "[FEEDBACK] <Guidance>\n"
+            "   - If PASS: Leave this section empty.\n"
+            "   - If INCOMPLETE: Specify exactly what critical information is required.\n"
+            "   - If REPLAN: Suggest a new direction for the diagnostic plan.\n"
+        )
+
+    # =========================================================================
+    # QCC Instruction Templates
+    # =========================================================================
+
+    def get_planner_instruction(self, initial_presentation: str) -> str:
+        """Get instruction for planner.
+
+        Args:
+            initial_presentation: Initial clinical presentation from dialogue
+
+        Returns:
+            Formatted instruction string
+        """
+        return (
+            "### Initial Clinical Presentation ###\n"
+            f"{initial_presentation}\n\n"
+            "Generate a diagnostic plan with 3 candidate diagnoses, their gold standard "
+            "evidence, and differential evidence items.\n\n"
+            "Planner:"
+        )
+
+    def get_qcc_doctor_turn_instruction(
+        self,
+        current_turns: int,
+        max_turns: int,
+        last_reply: str,
+        checklist: str,
+        active_candidates: str,
+    ) -> str:
+        """Get instruction for QCC doctor's turn.
+
+        Args:
+            current_turns: Current turn number
+            max_turns: Maximum allowed turns
+            last_reply: Last response from patient/measurement
+            checklist: Current evidence checklist with status
+            active_candidates: List of active candidate diagnoses
+
+        Returns:
+            Formatted instruction string
+        """
+        return (
+            f"Turns used: {current_turns} / {max_turns}.\n"
+            f"### Active Candidates ###\n{active_candidates}\n\n"
+            f"### Evidence Checklist ###\n{checklist}\n\n"
+            f"Last reply:\n{last_reply}\n\n"
+            "Doctor:"
+        )
+
+    def get_qcc_diagnostician_instruction(
+        self,
+        summary: str,
+        all_candidates: str,
+        checklist: str,
+    ) -> str:
+        """Get instruction for QCC diagnostician.
+
+        Args:
+            summary: Case summary from summarizer
+            all_candidates: All candidate diagnoses with pruned status
+            checklist: Evidence checklist with completion status
+
+        Returns:
+            Formatted instruction string
+        """
+        return (
+            f"### Case Summary ###\n{summary}\n\n"
+            f"### Candidate Diagnoses ###\n{all_candidates}\n\n"
+            f"### Evidence Checklist ###\n{checklist}\n\n"
+            "Diagnostician:"
+        )
+
+    def get_qcc_verifier_instruction(
+        self,
+        current_turns: int,
+        max_turns: int,
+        summary: str,
+        diagnosis: str,
+        confidence: str,
+        checklist: str,
+    ) -> str:
+        """Get instruction for QCC verifier.
+
+        Args:
+            current_turns: Current turn number
+            max_turns: Maximum allowed turns
+            summary: Case summary
+            diagnosis: Proposed diagnosis
+            confidence: Diagnostician confidence level
+            checklist: Evidence checklist with completion status
+
+        Returns:
+            Formatted instruction string
+        """
+        turns_remaining = max_turns - current_turns
+        return (
+            f"Turns: {current_turns} / {max_turns} (Remaining: {turns_remaining}).\n"
+            f"### Case Summary ###\n{summary}\n\n"
+            f"### Proposed Diagnosis ###\n{diagnosis}\n\n"
+            f"### Diagnostician Confidence ###\n{confidence}\n\n"
+            f"### Evidence Checklist ###\n{checklist}\n\n"
+        )
+
+    def get_replan_instruction(
+        self,
+        original_candidates: str,
+        collected_evidence: str,
+        feedback: str,
+    ) -> str:
+        """Get instruction for re-planning.
+
+        Args:
+            original_candidates: Original candidate diagnoses
+            collected_evidence: Evidence collected so far
+            feedback: Feedback from verifier
+
+        Returns:
+            Formatted instruction string
+        """
+        return (
+            "### RE-PLANNING REQUIRED ###\n"
+            "The current diagnostic candidates do not adequately fit the collected evidence.\n\n"
+            f"### Original Candidates ###\n{original_candidates}\n\n"
+            f"### Collected Evidence ###\n{collected_evidence}\n\n"
+            f"### Supervisor Feedback ###\n{feedback}\n\n"
+            "Generate a revised diagnostic plan. You MUST include at least one NEW candidate "
+            "diagnosis not in the original list. You may retain candidates that still fit "
+            "the evidence.\n\n"
+            "Planner:"
+        )

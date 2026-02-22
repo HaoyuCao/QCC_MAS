@@ -31,6 +31,7 @@ class Benchmark:
         metric: Metric,
         output_dir: Path | str = "results",
         save_traces: bool = True,
+        record_suffix: str = "",
     ) -> None:
         """Initialize benchmark.
 
@@ -39,11 +40,13 @@ class Benchmark:
             metric: Metric for evaluation
             output_dir: Directory for output files
             save_traces: Whether to save individual case traces
+            record_suffix: Suffix for record directory (e.g., '_0222_143025')
         """
         self.dataset = dataset
         self.metric = metric
         self.output_dir = Path(output_dir)
         self.save_traces = save_traces
+        self.record_suffix = record_suffix
 
     def evaluate(
         self,
@@ -70,7 +73,8 @@ class Benchmark:
         evaluation_results: list[dict[str, Any]] = []
 
         # Create trace output directory
-        trace_dir = self.output_dir / "record"
+        record_name = f"record{self.record_suffix}" if self.record_suffix else "record"
+        trace_dir = self.output_dir / record_name
         if self.save_traces:
             trace_dir.mkdir(parents=True, exist_ok=True)
 
@@ -220,6 +224,7 @@ def run_evaluation(
     max_workers: int = 10,
     output_dir: str = "results",
     dataset_path: str | None = None,
+    run_id: str = "",
 ) -> dict[str, Any]:
     """Convenience function to run a complete evaluation.
 
@@ -292,11 +297,13 @@ def run_evaluation(
         output_path = output_path / f"{max_turns}_turns"
 
     # Run benchmark
+    record_suffix = f"_{run_id}" if run_id else ""
     benchmark = Benchmark(
         dataset=dataset,
         metric=metric,
         output_dir=output_path,
         save_traces=True,
+        record_suffix=record_suffix,
     )
 
     summary = benchmark.evaluate(

@@ -9,11 +9,13 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
 
+from datetime import datetime
+
 from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
-AVAILABLE_MODES = ["cot", "roleplay", "react", "sc", "refine"]
+AVAILABLE_MODES = ["cot", "roleplay", "react", "sc", "refine", "qcc"]
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -165,6 +167,12 @@ Examples:
         action="store_true",
         help="Skip if result.json already exists",
     )
+    parser.add_argument(
+        "--run-id",
+        type=str,
+        default=None,
+        help="Unique run identifier. If not provided, uses timestamp (e.g., '0222_143025')",
+    )
 
     return parser
 
@@ -172,6 +180,10 @@ Examples:
 def run_evaluations(args: argparse.Namespace) -> None:
     """Run evaluations based on parsed arguments."""
     from eid.benchmark import run_evaluation
+
+    # Generate run_id (timestamp if not provided)
+    run_id = args.run_id if args.run_id else datetime.now().strftime("%m%d_%H%M%S")
+    logger.info("Run ID: %s", run_id)
 
     # Build task list
     tasks: list[dict[str, Any]] = []
@@ -236,6 +248,7 @@ def run_evaluations(args: argparse.Namespace) -> None:
                 max_workers=args.max_workers,
                 output_dir=args.output_dir,
                 dataset_path=args.dataset_path,
+                run_id=run_id,
             )
             logger.info(
                 "Completed: %s / %s / %s - Accuracy: %.2f%%",

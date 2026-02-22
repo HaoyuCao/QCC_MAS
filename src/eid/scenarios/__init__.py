@@ -10,6 +10,7 @@ from eid.scenarios.roleplay import RoleplayScenario
 from eid.scenarios.react import ReactScenario
 from eid.scenarios.sc import SCScenario
 from eid.scenarios.refine import RefineScenario
+from eid.scenarios.qcc import QCCScenario
 
 __all__ = [
     "BaseScenario",
@@ -19,6 +20,7 @@ __all__ = [
     "ReactScenario",
     "SCScenario",
     "RefineScenario",
+    "QCCScenario",
     "get_scenario",
 ]
 
@@ -59,6 +61,7 @@ def get_scenario(
         "react": ReactScenario,
         "sc": SCScenario,
         "refine": RefineScenario,
+        "qcc": QCCScenario,
     }
 
     if mode not in scenarios:
@@ -87,6 +90,17 @@ def get_scenario(
             diagnostician_config=diagnostician_config,
         )
     elif mode == "refine":
+        return scenario_class(
+            dataset_name=dataset_name,
+            doctor_config=doctor_config,
+            patient_config=patient_config,
+            reporter_config=reporter_config,
+            max_turns=max_turns,
+            summarizer_config=summarizer_config,
+            diagnostician_config=diagnostician_config,
+            verifier_config=verifier_config,
+        )
+    elif mode == "qcc":
         return scenario_class(
             dataset_name=dataset_name,
             doctor_config=doctor_config,

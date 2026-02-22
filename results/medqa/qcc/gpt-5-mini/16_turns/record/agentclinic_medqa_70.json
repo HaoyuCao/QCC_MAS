@@ -1,0 +1,202 @@
+{
+  "case_id": "agentclinic_medqa_70",
+  "prediction": "Infantile seborrheic dermatitis (cradle cap)",
+  "ground_truth": "Seborrheic dermatitis",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] What is your main symptom or concern right now?",
+      "duration": 2.7410197257995605
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The parents report that the rash has been present for several weeks.\n8. The primary symptom is a rash on the scalp and forehead.\n\n[RESPONSE] My main concern is a rash on my scalp and forehead that has been present for several weeks.",
+      "duration": 4.405139923095703
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Is the rash itchy?",
+      "duration": 2.5583643913269043
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 10. The patient appears comfortable, with no signs of distress or discomfort noted by the parents.\n\n[RESPONSE] The parents report he appears comfortable and has shown no signs of distress or discomfort, so the rash does not seem to be itchy.",
+      "duration": 3.3821604251861572
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] How old is the patient?",
+      "duration": 4.103794574737549
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. The patient is a 3-month-old boy.\n\n[RESPONSE] The patient is a 3-month-old boy.",
+      "duration": 3.8732028007507324
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[DIAGNOSIS] Infantile seborrheic dermatitis (cradle cap)",
+      "duration": 5.642145872116089
+    }
+  ],
+  "metadata": {
+    "mode": "qcc",
+    "turns": 3,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor_initial": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your main symptom or concern right now?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main concern is a rash on my scalp and forehead that has been present for several weeks.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Is the rash itchy?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nThe parents report he appears comfortable and has shown no signs of distress or discomfort, so the rash does not seem to be itchy.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old is the patient?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nThe patient is a 3-month-old boy.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[DIAGNOSIS] Infantile seborrheic dermatitis (cradle cap)"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1022
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. The patient is a 3-month-old boy.\n2. The parents report that the rash has been present for several weeks.\n3. The parents report that the rash sometimes appears red and scaly.\n4. The parents report that the rash is worse in cold weather.\n5. The patient was born at 36 weeks' gestation.\n6. The patient has been generally healthy since birth.\n7. The patient's father has a history of psoriasis.\n8. The primary symptom is a rash on the scalp and forehead.\n9. The patient is 3 months old, so the social history is not applicable.\n10. The patient appears comfortable, with no signs of distress or discomfort noted by the parents.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 1. The patient is a 3-month-old boy.\n\n[RESPONSE] The patient is a 3-month-old boy."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 368
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. WBC is normal for age.\n2. Hemoglobin is normal for age.\n3. Platelets are normal for age.\n4. Skin scraping microscopy shows no signs of fungal infection.\n5. Skin scraping culture is negative for bacterial growth.\n6. Temperature is 36.6°C (97.9°F).\n7. Blood pressure is not applicable for age.\n8. Heart rate is 120 bpm.\n9. Respiratory rate is 30 breaths/min.\n10. Erythematous patches observed on the scalp, forehead, and along the hairline.\n11. Some patches covered by greasy yellow scales.\n12. No significant tenderness noted on palpation.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 262
+        }
+      },
+      {
+        "planner": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Planner.\nYour objective is to generate a structured diagnostic plan based on the initial clinical presentation provided.\n\nCore Tasks:\n1. Formulate 3 candidate diagnoses (ranked by likelihood based on initial presentation).\n2. For each candidate diagnosis, identify 1 gold standard evidence that would strongly confirm or rule out that diagnosis.\n3. Identify up to 4 pieces of differential evidence that would help distinguish between the candidate diagnoses.\n\nOutput Format:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the initial presentation and justify your candidate diagnoses.\n\n[CANDIDATES]\n1. <Diagnosis 1 (most likely)>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n2. <Diagnosis 2>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n3. <Diagnosis 3>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n\n[DIFFERENTIAL_EVIDENCE]\n1. <Evidence item 1 to differentiate between candidates>\n2. <Evidence item 2 to differentiate between candidates>\n3. <Evidence item 3 to differentiate between candidates>\n4. <Evidence item 4 to differentiate between candidates>\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 255
+        }
+      },
+      {
+        "summarizer": [
+          {
+            "role": "system",
+            "content": "You are a professional medical documentarian and clinical scribe.\nYour objective is to synthesize the dialogue between a doctor and a patient into a high-fidelity structured medical summary.\n\nCore Principles:\n1. Strict Adherence: You must NOT invent, infer, or hallucinate any information not explicitly present in the dialogue.\n2. Precision: Retain all precise measurements, dates, dosages, and technical medical terms exactly as stated.\n3. Objectivity: Maintain a professional, clinical tone throughout the summary.\n\nOutput Process:\n[THOUGHT]\nAnalyze the dialogue to extract key clinical facts and reasoning.\n\n[SUMMARY]\nGenerate a professional, structured clinical note.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 140
+        }
+      },
+      {
+        "diagnostician": [
+          {
+            "role": "system",
+            "content": "You are a senior diagnostic physician specializing in complex differential diagnosis.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to analyze the provided structured clinical summary along with the pre-generated candidate diagnoses to formulate a precise diagnosis.\n\nYou will receive:\n1. A clinical summary of the patient encounter.\n2. A list of candidate diagnoses (including any that were pruned during evidence collection).\n3. The evidence checklist with completion status.\n\nImportant: Even if a candidate was pruned by the evidence-gathering physician, you should reconsider ALL candidates based on the complete evidence. A pruned diagnosis may be revived if evidence supports it.\n\nYou must follow a strict reasoning process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Review each candidate diagnosis against the collected evidence.\n   - Consider if any pruned diagnoses should be revived.\n   - Explain your differential analysis.\n\n[DIAGNOSIS]\n   - Provide the The answer in the format of a single most likely diagnosis..\n\n[CONFIDENCE]\n   - CONFIDENT: Evidence strongly supports the diagnosis.\n   - UNCERTAIN: Evidence is insufficient for a confident diagnosis.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 241
+        }
+      },
+      {
+        "verifier": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Supervisor for the QCC framework.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to evaluate the diagnosis and determine if the consultation should continue, conclude, or require re-planning.\n\nEvaluation Criteria:\n1. Evidence Completeness: Assess if the checklist items have been adequately addressed.\n2. Diagnostic Confidence: Consider the diagnostician's confidence level.\n3. Turn Budget: If more than 3 turns remain and evidence is insufficient, re-planning may be warranted.\n4. Force Decision: If 3 or fewer turns remain, force a final decision.\n\nOutput Format:\n\n[THOUGHT] <Your Analysis>\n   - Analyze checklist completion and diagnostic confidence.\n\n[DECISION] <Status>\n   - Output 'PASS' if the diagnosis is sufficient.\n   - Output 'INCOMPLETE' if critical clinical information is missing and more evidence gathering is needed (without re-planning).\n   - Output 'REPLAN' if the current candidates do not fit the evidence and a new diagnostic plan is needed (only if > 3 turns remaining and diagnostician is UNCERTAIN).\n\n[FEEDBACK] <Guidance>\n   - If PASS: Leave this section empty.\n   - If INCOMPLETE: Specify exactly what critical information is required.\n   - If REPLAN: Suggest a new direction for the diagnostic plan.\n"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 287
+        }
+      }
+    ]
+  },
+  "coverage": {
+    "information_coverage_rate": 0.18181818181818182,
+    "patient_coverage": 0.4,
+    "exam_coverage": 0.0,
+    "ground_truth_patient_facts": [
+      "1. The patient is a 3-month-old boy.",
+      "2. The parents report that the rash has been present for several weeks.",
+      "3. The parents report that the rash sometimes appears red and scaly.",
+      "4. The parents report that the rash is worse in cold weather.",
+      "5. The patient was born at 36 weeks' gestation.",
+      "6. The patient has been generally healthy since birth.",
+      "7. The patient's father has a history of psoriasis.",
+      "8. The primary symptom is a rash on the scalp and forehead.",
+      "9. The patient is 3 months old, so the social history is not applicable.",
+      "10. The patient appears comfortable, with no signs of distress or discomfort noted by the parents."
+    ],
+    "ground_truth_exam_facts": [
+      "1. WBC is normal for age.",
+      "2. Hemoglobin is normal for age.",
+      "3. Platelets are normal for age.",
+      "4. Skin scraping microscopy shows no signs of fungal infection.",
+      "5. Skin scraping culture is negative for bacterial growth.",
+      "6. Temperature is 36.6°C (97.9°F).",
+      "7. Blood pressure is not applicable for age.",
+      "8. Heart rate is 120 bpm.",
+      "9. Respiratory rate is 30 breaths/min.",
+      "10. Erythematous patches observed on the scalp, forehead, and along the hairline.",
+      "11. Some patches covered by greasy yellow scales.",
+      "12. No significant tenderness noted on palpation."
+    ],
+    "collected_patient_facts": [
+      "1. The patient is a 3-month-old boy.",
+      "2. The parents report that the rash has been present for several weeks.",
+      "8. The primary symptom is a rash on the scalp and forehead.",
+      "10. The patient appears comfortable, with no signs of distress or discomfort noted by the parents."
+    ],
+    "collected_exam_facts": []
+  },
+  "judge_response": "ANALYSIS: The prediction specifies the infantile form (\"cradle cap\") of seborrheic dermatitis, which is a direct, clinically equivalent and appropriately more specific formulation of the reference diagnosis.\n\nVERDICT: CORRECT"
+}

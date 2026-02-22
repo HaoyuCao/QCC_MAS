@@ -1,0 +1,543 @@
+{
+  "case_id": "agentclinic_medqa_50",
+  "prediction": "Aromatase deficiency (CYP19A1 deficiency) in a 46,XX individual.\n\n[CONFIDENCE]\nCONFIDENT",
+  "ground_truth": "Aromatase deficiency",
+  "is_correct": true,
+  "trace": [
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] What is your main symptom or problem right now?",
+      "duration": 2.9771668910980225
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient has not experienced menarche.\n\n[RESPONSE] My main problem right now is that I have not had my first period.",
+      "duration": 6.464108467102051
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] How old are you?",
+      "duration": 7.90081524848938
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 16-year-old female.\n\n[RESPONSE] I am 16 years old.",
+      "duration": 3.0804107189178467
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Do you have breast development (breast growth or nipple changes)?",
+      "duration": 2.2928638458251953
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall any breast development or changes.",
+      "duration": 2.717113971710205
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Do you have pubic or underarm (axillary) hair development?",
+      "duration": 3.5918874740600586
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall.",
+      "duration": 3.6868607997894287
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Do you have monthly cyclic pelvic or lower abdominal pain (cramping) that comes and goes?",
+      "duration": 5.230358600616455
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I don't recall.",
+      "duration": 3.88434100151062
+    },
+    {
+      "role_id": "planner",
+      "content": "[THOUGHT]\n   - A 16‑year‑old with primary amenorrhea and no recalled breast or pubic/axillary hair development points to absent/incomplete puberty rather than isolated uterine anomaly. Primary amenorrhea with absent secondary sexual characteristics localizes to disorders of sex steroid production or central gonadotropin drive. Top considerations include gonadal dysgenesis (Turner-spectrum) causing hypergonadotropic hypogonadism, congenital hypogonadotropic hypogonadism (including Kallmann) causing low gonadotropins, and disorders of sexual development such as complete androgen insensitivity where phenotype is female but pubic hair may be sparse. Immediate next steps should focus on targeted history/exam (height, growth history, dysmorphic features, sense of smell), pregnancy test, baseline labs (pregnancy hCG, LH, FSH, estradiol, testosterone), karyotype, and pelvic imaging to determine presence of uterus and gonads.\n\n[CANDIDATES]\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n[DIFFERENTIAL_EVIDENCE]\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone)\n   - High FSH/LH + low estradiol → primary gonadal failure (supports Turner or ovarian insufficiency).\n   - Low/normal FSH/LH + low estradiol → hypogonadotropic hypogonadism (supports CHH/Kallmann).\n   - Male-range testosterone with female phenotype → think 46,XY DSD/CAIS (check LH/FSH pattern).\n2. Karyotype (chromosomal analysis)\n   - 45,X or X abnormalities → confirms Turner spectrum.\n   - 46,XY → supports AIS or other 46,XY DSD.\n   - 46,XX → argues against Turner/46,XY DSD.\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI)\n   - Uterus present with streak/absent ovaries → favors gonadal dysgenesis (Turner).\n   - Uterus absent with blind‑ending vaginal pouch and intra‑abdominal/inguinal gonads → favors CAIS or Müllerian agenesis (distinguish by karyotype and gonadal hormone levels).\n   - Small/normal uterus with prepubertal ovaries → consistent with central hypogonadism (CHH) if combined with low gonadotropins.\n4. Focused physical exam and targeted history\n   - Short stature, webbed neck, widely spaced nipples, lymphedema, coarctation features → supports Turner.\n   - History of anosmia/hyposmia or family history of delayed puberty/cryptorchidism → supports Kallmann/CHH.\n   - Normal female external genitalia with scant/absent pubic hair but Tanner II–III breasts (or reported breast development) → raises CAIS (confirm with karyotype and androgen levels).",
+      "duration": 16.59064555168152
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I need basic demographics first. Age is essential to interpret delayed puberty/amenorrhea and narrow the differential (Turner usually identified in adolescence). No candidate can be pruned yet. I'll ask one atomic question: the patient's age.\n\n[QUERY] How old are you?",
+      "duration": 4.509958505630493
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 16-year-old female.\n\n[RESPONSE] I am 16 years old.",
+      "duration": 3.07916259765625
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I need the patient's sex assigned at birth to interpret pubertal development and narrow the differential between Turner, CHH, and CAIS. This fulfills part of the mandatory basic history. No diagnoses can be pruned yet.\n\n[QUERY] What sex were you assigned at birth (male or female)?",
+      "duration": 4.343710899353027
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 16-year-old female.\n3. The patient was noted to have partial labial fusion and clitoromegaly at birth.\n\n[RESPONSE] I was assigned female at birth.",
+      "duration": 3.890639305114746
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still need mandatory basic history before focused diagnostic testing: past medical history, current medications, vitals, and social history. The next highest-yield missing item is past medical history (growth problems, congenital issues, prior surgeries), which can point toward Turner (short stature, coarctation, cardiac issues) or other causes. I will ask one specific question about past medical history.\n\n[QUERY] Do you have any past medical history—congenital problems, chronic illnesses, surgeries, or significant childhood health issues (including growth delay or heart problems)?",
+      "duration": 4.428234338760376
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. The patient was noted to have partial labial fusion and clitoromegaly at birth.\n6. The patient has sustained fractures following minor trauma.\n\n[RESPONSE] I was noted to have partial labial fusion and clitoromegaly at birth, and I have sustained fractures following minor trauma.",
+      "duration": 6.219594717025757
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still need the remaining mandatory basic history items before focusing on the diagnostic checklist: current medications, vitals, and social history. Next atomic item: current medications (including hormones, supplements, or prior estrogen/androgen therapy) could affect fractures and sexual development. I will ask one specific question about medications.\n\n[QUERY] Are you currently taking any medications, hormones, or supplements (including past or current estrogen, testosterone, or steroid treatments)?",
+      "duration": 12.085707902908325
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 7. She is currently on oral isotretinoin.\n8. She is currently on an oral contraceptive.\n\n[RESPONSE] Yes. I am currently taking oral isotretinoin and an oral contraceptive.",
+      "duration": 3.9983556270599365
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still must collect mandatory basic vitals before moving to diagnostic testing. Vitals (height, weight, BP) are important for Turner syndrome (short stature, hypertension). No diagnoses pruned yet.\n\n[QUERY] Can you tell me your current height, weight, and if you've had a recent blood pressure reading?",
+      "duration": 7.165424108505249
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE]\n13. The patient denies any weight change.\nN/A\n\n[RESPONSE]\nI have not had any weight change. I am unsure / do not recall my current height or any recent blood pressure reading.",
+      "duration": 11.877451658248901
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Critical gaps: menstrual history and secondary sexual development are essential to distinguish Turner (primary amenorrhea with poor breast development, high FSH), CAIS (primary amenorrhea with normal breasts, sparse pubic hair), and CHH (absent puberty/amenorrhea with low gonadotropins). Also still need social history but menstrual history is higher yield. I'll ask a single focused question about menses.\n\n[QUERY] Have you ever had a menstrual period (menarche)?",
+      "duration": 6.765092372894287
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient has not experienced menarche.\n[RESPONSE] No — I have not had a menstrual period.",
+      "duration": 4.595803737640381
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still must obtain mandatory basic vitals (height, weight, BP) before ordering focused diagnostic tests; these help evaluate Turner (short stature, hypertension). No candidate can be pruned yet.\n\n[TEST] Please obtain a set of vital signs: height, weight, blood pressure, and pulse.",
+      "duration": 9.01627254486084
+    },
+    {
+      "role_id": "reporter",
+      "content": "1. Height is at the 97th percentile.\n2. Weight is at the 50th percentile.\nBlood pressure: Normal\nPulse: Normal",
+      "duration": 4.872130393981934
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] The patient's tall stature (97th percentile) and history of ambiguous genitalia with clitoromegaly at birth argue strongly against Turner syndrome, which is characterized by short stature and typically no prenatal virilization. No other checklist items support Turner. I will remove Turner from active consideration.\n\n[PRUNE] 1 Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration.",
+      "duration": 18.57816505432129
+    },
+    {
+      "role_id": "system",
+      "content": "Candidate 1 pruned: Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration.",
+      "duration": 0
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. The patient was noted to have partial labial fusion and clitoromegaly at birth.\n4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.\n\n[RESPONSE] Yes — I had partial labial fusion and clitoromegaly at birth, and my mother had abnormal hair growth on her chin during pregnancy.",
+      "duration": 6.757957696914673
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Key distinction: CAIS usually has normal breast development (estrogen from aromatization) and sparse pubic hair, while CHH (and aromatase deficiency) have absent/poor breast development. Maternal virilization and clitoromegaly at birth already argue against CAIS, but I need objective current pubertal development info before ordering tests. I'll ask one focused question about breast development.\n\n[QUERY] Have your breasts developed? If so, at what age did breast growth begin (or what breast size/Tanner stage roughly)?",
+      "duration": 10.91612720489502
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't remember when my breasts began developing.",
+      "duration": 9.694514274597168
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] The history of maternal virilization during pregnancy, neonatal clitoromegaly/partial labial fusion, tall adult stature (97th %ile), and fractures with minor trauma strongly point to aromatase (CYP19A1) deficiency in a 46,XX individual — a condition characterized by in utero androgen excess (maternal virilization, virilized female newborn), lifelong estrogen deficiency (tall stature from delayed epiphyseal closure, osteoporosis/fragility fractures), primary amenorrhea, and hyperandrogenism. These features are inconsistent with complete androgen insensitivity syndrome.\n\n[PRUNE] 3 Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization.",
+      "duration": 21.478811979293823
+    },
+    {
+      "role_id": "system",
+      "content": "Candidate 3 pruned: Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization.",
+      "duration": 0
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.\n3. The patient was noted to have partial labial fusion and clitoromegaly at birth.\n\n[RESPONSE] My mother had abnormal chin hair growth during pregnancy, and I was born with partial labial fusion and clitoromegaly.",
+      "duration": 11.467174530029297
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] The combination of maternal virilization during pregnancy, neonatal clitoromegaly/partial labial fusion, tall adult stature (97th %ile) with fragility fractures, primary amenorrhea, and lifelong features of estrogen deficiency point strongly to aromatase (CYP19A1) deficiency in a 46,XX individual. These findings are inconsistent with Turner syndrome (short stature, no maternal virilization) and with CAIS (typically no maternal virilization and female external genitalia). Congenital hypogonadotropic hypogonadism does not explain maternal gestational virilization or neonatal virilization. Therefore the single most likely diagnosis is aromatase (CYP19A1) deficiency (estrogen synthesis defect) in a 46,XX person. Recommended confirmatory steps (for completeness) would be karyotype (expect 46,XX), serum sex steroids showing low estradiol with elevated androgens (testosterone/androstenedione), and molecular testing of CYP19A1. \n\n[FINISH]",
+      "duration": 15.26661205291748
+    },
+    {
+      "role_id": "summarizer",
+      "content": "[THOUGHT]\n- Patient: 16-year-old, assigned female at birth.\n- Chief complaint: primary amenorrhea — \"I have not had my first period.\"\n- Developmental/physical history:\n  - Born with partial labial fusion and clitoromegaly.\n  - Sustained fractures following minor trauma.\n  - Mother had abnormal chin hair growth (maternal virilization) during pregnancy.\n  - Patient is unsure / does not recall breast development, pubic/axillary hair development, or cyclic pelvic pain.\n- Medications: oral isotretinoin and an oral contraceptive (current).\n- Vitals / anthropometrics provided:\n  - Height: at the 97th percentile.\n  - Weight: at the 50th percentile.\n  - Blood pressure: Normal.\n  - Pulse: Normal.\n  - Patient reports no weight change.\n- Clinician reasoning explicitly documented in the dialogue:\n  - Turner syndrome was considered and then removed from active consideration because short stature and lack of prenatal virilization are characteristic of Turner syndrome, which are inconsistent with this patient's tall stature and prenatal virilization.\n  - The clinician noted that maternal gestational virilization, neonatal clitoromegaly/partial labial fusion, tall stature (97th percentile), and fractures with minor trauma strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n  - The clinician stated these features are inconsistent with complete androgen insensitivity syndrome (CAIS) and removed CAIS from active consideration.\n\nNo laboratory results, imaging, karyotype, or explicit diagnostic confirmation were provided in the dialogue. No additional family, social, allergy, or menstrual cycle details were provided beyond what is stated above.\n\n[SUMMARY]\nIdentifying information\n- Age: 16 years\n- Sex assigned at birth: Female\n\nChief complaint\n- Primary amenorrhea: \"I have not had my first period.\"\n\nHistory of present illness\n- No prior menarche.\n- Patient does not recall or is unsure about timing or presence of breast development, pubic hair, axillary hair, or cyclic pelvic/lower abdominal pain.\n\nPast medical history\n- Noted at birth to have partial labial fusion and clitoromegaly.\n- History of fractures following minor trauma.\n\nMedications\n- Oral isotretinoin (current)\n- Oral contraceptive (current)\n\nFamily history\n- Maternal virilization during pregnancy: mother had abnormal chin hair growth.\n\nVitals / Anthropometrics\n- Height: 97th percentile\n- Weight: 50th percentile\n- Blood pressure: Normal\n- Pulse: Normal\n- Patient reports no weight change\n\nClinician assessment / differential considerations documented\n- Turner syndrome: removed from active consideration by clinician because patient has tall stature (97th percentile) and prenatal virilization, which are inconsistent with Turner syndrome.\n- Complete androgen insensitivity syndrome (CAIS): removed from active consideration by clinician because maternal gestational virilization and neonatal clitoromegaly/partial labial fusion are inconsistent with CAIS.\n- Aromatase (CYP19A1) deficiency: clinician explicitly stated that the combination of maternal virilization during pregnancy, neonatal virilization (clitoromegaly/partial labial fusion), tall stature, history of fractures with minor trauma, and primary amenorrhea strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n\nPlan / Next steps\n- No specific diagnostic tests, treatments, or follow-up plans were documented in the dialogue.",
+      "duration": 11.257646322250366
+    },
+    {
+      "role_id": "diagnostician",
+      "content": "[THOUGHT]\nKey features to reconcile: a 16‑year‑old phenotypic female with primary amenorrhea, neonatal virilization (clitoromegaly/partial labial fusion), maternal virilization during pregnancy, tall stature (97th percentile), and fractures after minor trauma (suggesting low bone density/estrogen deficiency). Current use of combined oral contraceptive could mask current hormone testing.\n\nWhy aromatase (CYP19A1) deficiency fits best:\n- Maternal virilization during pregnancy is classic for placental aromatase deficiency: the placenta cannot convert fetal androgens to estrogens, so excess androgens from the female (46,XX) fetus cross to mother and virilize her.\n- Affected 46,XX infants are virilized at birth (clitoromegaly, labial fusion) because of high prenatal androgens.\n- Postnatally, inability to synthesize estrogens leads to estrogen deficiency: tall stature from delayed epiphyseal closure and decreased bone mineralization causing fractures are expected.\n- Primary amenorrhea is expected because estrogen is required for normal pubertal maturation of the hypothalamic–pituitary–ovarian axis and menses.\n- Other listed differentials are less consistent:\n  - CAIS (46,XY AR mutation) would not cause maternal virilization in pregnancy and typically presents with female external phenotype without clitoromegaly; also Tall stature can occur but the prenatal maternal virilization and neonatal virilization exclude CAIS.\n  - Congenital hypogonadotropic hypogonadism (including Kallmann) can cause primary amenorrhea and low estrogen but would not cause fetal/neonatal virilization nor maternal virilization.\n  - Turner syndrome is inconsistent with tall stature and prenatal virilization.\n\nPotential confounders: current oral contraceptive use may normalize or alter serum gonadotropins/sex steroid measurements, so biochemical testing should be obtained after appropriate washout. Diagnostic confirmation requires karyotype (expected 46,XX), elevated androgens with low/absent estrogens when off exogenous hormones, and genetic testing demonstrating CYP19A1 mutation.\n\n[DIAGNOSIS]\nAromatase deficiency (CYP19A1 deficiency) in a 46,XX individual.\n\n[CONFIDENCE]\nCONFIDENT",
+      "duration": 32.37179732322693
+    },
+    {
+      "role_id": "verifier",
+      "content": "[THOUGHT] The clinical picture—maternal virilization during pregnancy, neonatal virilization of a genetically female infant (clitoromegaly/partial labial fusion), tall adult height (failure of epiphyseal closure), history of fractures with minimal trauma (consistent with estrogen deficiency/osteopenia), and primary amenorrhea—forms a classic and specific constellation for aromatase (CYP19A1) deficiency in a 46,XX individual. The diagnostician is confident and the clinician already prioritized this diagnosis while reasonably excluding Turner syndrome and CAIS based on stature and the maternal/neonatal virilization history.\n\nChecklist completion: several gold‑standard and confirmatory tests remain undone (karyotype, serum gonadotropins/sex steroids including estradiol and testosterone, pelvic imaging, and genetic testing for CYP19A1), so the workup is incomplete from a strictly confirmatory standpoint. However, the phenotype is highly specific and pathognomonic for aromatase deficiency; given the remaining single turn constraint a final decision is required.\n\nDiagnostic confidence: high — clinical evidence strongly supports aromatase deficiency as the single most likely diagnosis despite lack of confirmatory laboratory/genetic testing.\n\n[DECISION] PASS\n\n[FEEDBACK]",
+      "duration": 35.520002603530884
+    }
+  ],
+  "metadata": {
+    "mode": "qcc",
+    "turns": 15,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor_initial": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your main symptom or problem right now?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nMy main problem right now is that I have not had my first period.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How old are you?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI am 16 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have breast development (breast growth or nipple changes)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nI'm not sure — I don't recall any breast development or changes.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have pubic or underarm (axillary) hair development?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI'm not sure — I don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have monthly cyclic pelvic or lower abdominal pain (cramping) that comes and goes?"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 998
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 16-year-old female.\n2. The patient has not experienced menarche.\n3. She was noted to have partial labial fusion and clitoromegaly at birth.\n4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.\n5. The patient has a history of severe acne.\n6. The patient has sustained fractures following minor trauma.\n7. She is currently on oral isotretinoin.\n8. She is currently on an oral contraceptive.\n9. The patient is a high school student.\n10. The patient has no significant tobacco, alcohol, or drug use.\n11. The patient denies any recent illnesses.\n12. The patient denies any appetite change.\n13. The patient denies any weight change.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] 4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.\n3. The patient was noted to have partial labial fusion and clitoromegaly at birth.\n\n[RESPONSE] My mother had abnormal chin hair growth during pregnancy, and I was born with partial labial fusion and clitoromegaly."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 421
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. Height is at the 97th percentile.\n2. Weight is at the 50th percentile.\n3. Skin examination findings: Numerous inflamed pustules on the face and upper back.\n4. Breast development is at Tanner stage I.\n5. Patient refuses pelvic examination.\n6. Pelvic ultrasound: Ovaries with multiple cysts and a normal uterus.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "1. Height is at the 97th percentile.\n2. Weight is at the 50th percentile.\nBlood pressure: Normal\nPulse: Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 234
+        }
+      },
+      {
+        "planner": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Planner.\nYour objective is to generate a structured diagnostic plan based on the initial clinical presentation provided.\n\nCore Tasks:\n1. Formulate 3 candidate diagnoses (ranked by likelihood based on initial presentation).\n2. For each candidate diagnosis, identify 1 gold standard evidence that would strongly confirm or rule out that diagnosis.\n3. Identify up to 4 pieces of differential evidence that would help distinguish between the candidate diagnoses.\n\nOutput Format:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the initial presentation and justify your candidate diagnoses.\n\n[CANDIDATES]\n1. <Diagnosis 1 (most likely)>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n2. <Diagnosis 2>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n3. <Diagnosis 3>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n\n[DIFFERENTIAL_EVIDENCE]\n1. <Evidence item 1 to differentiate between candidates>\n2. <Evidence item 2 to differentiate between candidates>\n3. <Evidence item 3 to differentiate between candidates>\n4. <Evidence item 4 to differentiate between candidates>\n"
+          },
+          {
+            "role": "user",
+            "content": "### Initial Clinical Presentation ###\n\nDoctor: What is your main symptom or problem right now?\n\nPatient: My main problem right now is that I have not had my first period.\n\nDoctor: How old are you?\n\nPatient: I am 16 years old.\n\nDoctor: Do you have breast development (breast growth or nipple changes)?\n\nPatient: I'm not sure — I don't recall any breast development or changes.\n\nDoctor: Do you have pubic or underarm (axillary) hair development?\n\nPatient: I'm not sure — I don't recall.\n\nDoctor: Do you have monthly cyclic pelvic or lower abdominal pain (cramping) that comes and goes?\n\nPatient: I don't recall.\n\n\nGenerate a diagnostic plan with 3 candidate diagnoses, their gold standard evidence, and differential evidence items.\n\nPlanner:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\n   - A 16‑year‑old with primary amenorrhea and no recalled breast or pubic/axillary hair development points to absent/incomplete puberty rather than isolated uterine anomaly. Primary amenorrhea with absent secondary sexual characteristics localizes to disorders of sex steroid production or central gonadotropin drive. Top considerations include gonadal dysgenesis (Turner-spectrum) causing hypergonadotropic hypogonadism, congenital hypogonadotropic hypogonadism (including Kallmann) causing low gonadotropins, and disorders of sexual development such as complete androgen insensitivity where phenotype is female but pubic hair may be sparse. Immediate next steps should focus on targeted history/exam (height, growth history, dysmorphic features, sense of smell), pregnancy test, baseline labs (pregnancy hCG, LH, FSH, estradiol, testosterone), karyotype, and pelvic imaging to determine presence of uterus and gonads.\n\n[CANDIDATES]\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n[DIFFERENTIAL_EVIDENCE]\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone)\n   - High FSH/LH + low estradiol → primary gonadal failure (supports Turner or ovarian insufficiency).\n   - Low/normal FSH/LH + low estradiol → hypogonadotropic hypogonadism (supports CHH/Kallmann).\n   - Male-range testosterone with female phenotype → think 46,XY DSD/CAIS (check LH/FSH pattern).\n2. Karyotype (chromosomal analysis)\n   - 45,X or X abnormalities → confirms Turner spectrum.\n   - 46,XY → supports AIS or other 46,XY DSD.\n   - 46,XX → argues against Turner/46,XY DSD.\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI)\n   - Uterus present with streak/absent ovaries → favors gonadal dysgenesis (Turner).\n   - Uterus absent with blind‑ending vaginal pouch and intra‑abdominal/inguinal gonads → favors CAIS or Müllerian agenesis (distinguish by karyotype and gonadal hormone levels).\n   - Small/normal uterus with prepubertal ovaries → consistent with central hypogonadism (CHH) if combined with low gonadotropins.\n4. Focused physical exam and targeted history\n   - Short stature, webbed neck, widely spaced nipples, lymphedema, coarctation features → supports Turner.\n   - History of anosmia/hyposmia or family history of delayed puberty/cryptorchidism → supports Kallmann/CHH.\n   - Normal female external genitalia with scant/absent pubic hair but Tanner II–III breasts (or reported breast development) → raises CAIS (confirm with karyotype and androgen levels)."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2763
+        }
+      },
+      {
+        "summarizer": [
+          {
+            "role": "system",
+            "content": "You are a professional medical documentarian and clinical scribe.\nYour objective is to synthesize the dialogue between a doctor and a patient into a high-fidelity structured medical summary.\n\nCore Principles:\n1. Strict Adherence: You must NOT invent, infer, or hallucinate any information not explicitly present in the dialogue.\n2. Precision: Retain all precise measurements, dates, dosages, and technical medical terms exactly as stated.\n3. Objectivity: Maintain a professional, clinical tone throughout the summary.\n\nOutput Process:\n[THOUGHT]\nAnalyze the dialogue to extract key clinical facts and reasoning.\n\n[SUMMARY]\nGenerate a professional, structured clinical note.\n"
+          },
+          {
+            "role": "user",
+            "content": "### Dialogue History ###\n\nDoctor: What is your main symptom or problem right now?\n\nPatient: My main problem right now is that I have not had my first period.\n\nDoctor: How old are you?\n\nPatient: I am 16 years old.\n\nDoctor: Do you have breast development (breast growth or nipple changes)?\n\nPatient: I'm not sure — I don't recall any breast development or changes.\n\nDoctor: Do you have pubic or underarm (axillary) hair development?\n\nPatient: I'm not sure — I don't recall.\n\nDoctor: Do you have monthly cyclic pelvic or lower abdominal pain (cramping) that comes and goes?\n\nPatient: I don't recall.\n\nDoctor: How old are you?\n\nPatient: I am 16 years old.\n\nDoctor: What sex were you assigned at birth (male or female)?\n\nPatient: I was assigned female at birth.\n\nDoctor: Do you have any past medical history—congenital problems, chronic illnesses, surgeries, or significant childhood health issues (including growth delay or heart problems)?\n\nPatient: I was noted to have partial labial fusion and clitoromegaly at birth, and I have sustained fractures following minor trauma.\n\nDoctor: Are you currently taking any medications, hormones, or supplements (including past or current estrogen, testosterone, or steroid treatments)?\n\nPatient: Yes. I am currently taking oral isotretinoin and an oral contraceptive.\n\nDoctor: Can you tell me your current height, weight, and if you've had a recent blood pressure reading?\n\nPatient: I have not had any weight change. I am unsure / do not recall my current height or any recent blood pressure reading.\n\nDoctor: Have you ever had a menstrual period (menarche)?\n\nPatient: No — I have not had a menstrual period.\n\nDoctor: Please obtain a set of vital signs: height, weight, blood pressure, and pulse.\n\nMeasurement: 1. Height is at the 97th percentile.\n2. Weight is at the 50th percentile.\nBlood pressure: Normal\nPulse: Normal\n\nDoctor: [THOUGHT] The patient's tall stature (97th percentile) and history of ambiguous genitalia with clitoromegaly at birth argue strongly against Turner syndrome, which is characterized by short stature and typically no prenatal virilization. No other checklist items support Turner. I will remove Turner from active consideration.\n\n[PRUNE] 1 Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration.\n\nPatient: Yes — I had partial labial fusion and clitoromegaly at birth, and my mother had abnormal hair growth on her chin during pregnancy.\n\nDoctor: Have your breasts developed? If so, at what age did breast growth begin (or what breast size/Tanner stage roughly)?\n\nPatient: I'm not sure — I don't remember when my breasts began developing.\n\nDoctor: [THOUGHT] The history of maternal virilization during pregnancy, neonatal clitoromegaly/partial labial fusion, tall adult stature (97th %ile), and fractures with minor trauma strongly point to aromatase (CYP19A1) deficiency in a 46,XX individual — a condition characterized by in utero androgen excess (maternal virilization, virilized female newborn), lifelong estrogen deficiency (tall stature from delayed epiphyseal closure, osteoporosis/fragility fractures), primary amenorrhea, and hyperandrogenism. These features are inconsistent with complete androgen insensitivity syndrome.\n\n[PRUNE] 3 Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization.\n\nPatient: My mother had abnormal chin hair growth during pregnancy, and I was born with partial labial fusion and clitoromegaly.\n\nDoctor: \n\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\n- Patient: 16-year-old, assigned female at birth.\n- Chief complaint: primary amenorrhea — \"I have not had my first period.\"\n- Developmental/physical history:\n  - Born with partial labial fusion and clitoromegaly.\n  - Sustained fractures following minor trauma.\n  - Mother had abnormal chin hair growth (maternal virilization) during pregnancy.\n  - Patient is unsure / does not recall breast development, pubic/axillary hair development, or cyclic pelvic pain.\n- Medications: oral isotretinoin and an oral contraceptive (current).\n- Vitals / anthropometrics provided:\n  - Height: at the 97th percentile.\n  - Weight: at the 50th percentile.\n  - Blood pressure: Normal.\n  - Pulse: Normal.\n  - Patient reports no weight change.\n- Clinician reasoning explicitly documented in the dialogue:\n  - Turner syndrome was considered and then removed from active consideration because short stature and lack of prenatal virilization are characteristic of Turner syndrome, which are inconsistent with this patient's tall stature and prenatal virilization.\n  - The clinician noted that maternal gestational virilization, neonatal clitoromegaly/partial labial fusion, tall stature (97th percentile), and fractures with minor trauma strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n  - The clinician stated these features are inconsistent with complete androgen insensitivity syndrome (CAIS) and removed CAIS from active consideration.\n\nNo laboratory results, imaging, karyotype, or explicit diagnostic confirmation were provided in the dialogue. No additional family, social, allergy, or menstrual cycle details were provided beyond what is stated above.\n\n[SUMMARY]\nIdentifying information\n- Age: 16 years\n- Sex assigned at birth: Female\n\nChief complaint\n- Primary amenorrhea: \"I have not had my first period.\"\n\nHistory of present illness\n- No prior menarche.\n- Patient does not recall or is unsure about timing or presence of breast development, pubic hair, axillary hair, or cyclic pelvic/lower abdominal pain.\n\nPast medical history\n- Noted at birth to have partial labial fusion and clitoromegaly.\n- History of fractures following minor trauma.\n\nMedications\n- Oral isotretinoin (current)\n- Oral contraceptive (current)\n\nFamily history\n- Maternal virilization during pregnancy: mother had abnormal chin hair growth.\n\nVitals / Anthropometrics\n- Height: 97th percentile\n- Weight: 50th percentile\n- Blood pressure: Normal\n- Pulse: Normal\n- Patient reports no weight change\n\nClinician assessment / differential considerations documented\n- Turner syndrome: removed from active consideration by clinician because patient has tall stature (97th percentile) and prenatal virilization, which are inconsistent with Turner syndrome.\n- Complete androgen insensitivity syndrome (CAIS): removed from active consideration by clinician because maternal gestational virilization and neonatal clitoromegaly/partial labial fusion are inconsistent with CAIS.\n- Aromatase (CYP19A1) deficiency: clinician explicitly stated that the combination of maternal virilization during pregnancy, neonatal virilization (clitoromegaly/partial labial fusion), tall stature, history of fractures with minor trauma, and primary amenorrhea strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n\nPlan / Next steps\n- No specific diagnostic tests, treatments, or follow-up plans were documented in the dialogue."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2263
+        }
+      },
+      {
+        "diagnostician": [
+          {
+            "role": "system",
+            "content": "You are a senior diagnostic physician specializing in complex differential diagnosis.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to analyze the provided structured clinical summary along with the pre-generated candidate diagnoses to formulate a precise diagnosis.\n\nYou will receive:\n1. A clinical summary of the patient encounter.\n2. A list of candidate diagnoses (including any that were pruned during evidence collection).\n3. The evidence checklist with completion status.\n\nImportant: Even if a candidate was pruned by the evidence-gathering physician, you should reconsider ALL candidates based on the complete evidence. A pruned diagnosis may be revived if evidence supports it.\n\nYou must follow a strict reasoning process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Review each candidate diagnosis against the collected evidence.\n   - Consider if any pruned diagnoses should be revived.\n   - Explain your differential analysis.\n\n[DIAGNOSIS]\n   - Provide the The answer in the format of a single most likely diagnosis..\n\n[CONFIDENCE]\n   - CONFIDENT: Evidence strongly supports the diagnosis.\n   - UNCERTAIN: Evidence is insufficient for a confident diagnosis.\n"
+          },
+          {
+            "role": "user",
+            "content": "### Case Summary ###\nIdentifying information\n- Age: 16 years\n- Sex assigned at birth: Female\n\nChief complaint\n- Primary amenorrhea: \"I have not had my first period.\"\n\nHistory of present illness\n- No prior menarche.\n- Patient does not recall or is unsure about timing or presence of breast development, pubic hair, axillary hair, or cyclic pelvic/lower abdominal pain.\n\nPast medical history\n- Noted at birth to have partial labial fusion and clitoromegaly.\n- History of fractures following minor trauma.\n\nMedications\n- Oral isotretinoin (current)\n- Oral contraceptive (current)\n\nFamily history\n- Maternal virilization during pregnancy: mother had abnormal chin hair growth.\n\nVitals / Anthropometrics\n- Height: 97th percentile\n- Weight: 50th percentile\n- Blood pressure: Normal\n- Pulse: Normal\n- Patient reports no weight change\n\nClinician assessment / differential considerations documented\n- Turner syndrome: removed from active consideration by clinician because patient has tall stature (97th percentile) and prenatal virilization, which are inconsistent with Turner syndrome.\n- Complete androgen insensitivity syndrome (CAIS): removed from active consideration by clinician because maternal gestational virilization and neonatal clitoromegaly/partial labial fusion are inconsistent with CAIS.\n- Aromatase (CYP19A1) deficiency: clinician explicitly stated that the combination of maternal virilization during pregnancy, neonatal virilization (clitoromegaly/partial labial fusion), tall stature, history of fractures with minor trauma, and primary amenorrhea strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n\nPlan / Next steps\n- No specific diagnostic tests, treatments, or follow-up plans were documented in the dialogue.\n\n### Candidate Diagnoses ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely [PRUNED]\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n   - Prune Reason: Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration.\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS) [PRUNED]\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n   - Prune Reason: Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [PRUNED - skipped]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [PRUNED - skipped]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nDiagnostician:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\nKey features to reconcile: a 16‑year‑old phenotypic female with primary amenorrhea, neonatal virilization (clitoromegaly/partial labial fusion), maternal virilization during pregnancy, tall stature (97th percentile), and fractures after minor trauma (suggesting low bone density/estrogen deficiency). Current use of combined oral contraceptive could mask current hormone testing.\n\nWhy aromatase (CYP19A1) deficiency fits best:\n- Maternal virilization during pregnancy is classic for placental aromatase deficiency: the placenta cannot convert fetal androgens to estrogens, so excess androgens from the female (46,XX) fetus cross to mother and virilize her.\n- Affected 46,XX infants are virilized at birth (clitoromegaly, labial fusion) because of high prenatal androgens.\n- Postnatally, inability to synthesize estrogens leads to estrogen deficiency: tall stature from delayed epiphyseal closure and decreased bone mineralization causing fractures are expected.\n- Primary amenorrhea is expected because estrogen is required for normal pubertal maturation of the hypothalamic–pituitary–ovarian axis and menses.\n- Other listed differentials are less consistent:\n  - CAIS (46,XY AR mutation) would not cause maternal virilization in pregnancy and typically presents with female external phenotype without clitoromegaly; also Tall stature can occur but the prenatal maternal virilization and neonatal virilization exclude CAIS.\n  - Congenital hypogonadotropic hypogonadism (including Kallmann) can cause primary amenorrhea and low estrogen but would not cause fetal/neonatal virilization nor maternal virilization.\n  - Turner syndrome is inconsistent with tall stature and prenatal virilization.\n\nPotential confounders: current oral contraceptive use may normalize or alter serum gonadotropins/sex steroid measurements, so biochemical testing should be obtained after appropriate washout. Diagnostic confirmation requires karyotype (expected 46,XX), elevated androgens with low/absent estrogens when off exogenous hormones, and genetic testing demonstrating CYP19A1 mutation.\n\n[DIAGNOSIS]\nAromatase deficiency (CYP19A1 deficiency) in a 46,XX individual.\n\n[CONFIDENCE]\nCONFIDENT"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2493
+        }
+      },
+      {
+        "verifier": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Supervisor for the QCC framework.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to evaluate the diagnosis and determine if the consultation should continue, conclude, or require re-planning.\n\nEvaluation Criteria:\n1. Evidence Completeness: Assess if the checklist items have been adequately addressed.\n2. Diagnostic Confidence: Consider the diagnostician's confidence level.\n3. Turn Budget: If more than 3 turns remain and evidence is insufficient, re-planning may be warranted.\n4. Force Decision: If 3 or fewer turns remain, force a final decision.\n\nOutput Format:\n\n[THOUGHT] <Your Analysis>\n   - Analyze checklist completion and diagnostic confidence.\n\n[DECISION] <Status>\n   - Output 'PASS' if the diagnosis is sufficient.\n   - Output 'INCOMPLETE' if critical clinical information is missing and more evidence gathering is needed (without re-planning).\n   - Output 'REPLAN' if the current candidates do not fit the evidence and a new diagnostic plan is needed (only if > 3 turns remaining and diagnostician is UNCERTAIN).\n\n[FEEDBACK] <Guidance>\n   - If PASS: Leave this section empty.\n   - If INCOMPLETE: Specify exactly what critical information is required.\n   - If REPLAN: Suggest a new direction for the diagnostic plan.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns: 15 / 16 (Remaining: 1).\n### Case Summary ###\nIdentifying information\n- Age: 16 years\n- Sex assigned at birth: Female\n\nChief complaint\n- Primary amenorrhea: \"I have not had my first period.\"\n\nHistory of present illness\n- No prior menarche.\n- Patient does not recall or is unsure about timing or presence of breast development, pubic hair, axillary hair, or cyclic pelvic/lower abdominal pain.\n\nPast medical history\n- Noted at birth to have partial labial fusion and clitoromegaly.\n- History of fractures following minor trauma.\n\nMedications\n- Oral isotretinoin (current)\n- Oral contraceptive (current)\n\nFamily history\n- Maternal virilization during pregnancy: mother had abnormal chin hair growth.\n\nVitals / Anthropometrics\n- Height: 97th percentile\n- Weight: 50th percentile\n- Blood pressure: Normal\n- Pulse: Normal\n- Patient reports no weight change\n\nClinician assessment / differential considerations documented\n- Turner syndrome: removed from active consideration by clinician because patient has tall stature (97th percentile) and prenatal virilization, which are inconsistent with Turner syndrome.\n- Complete androgen insensitivity syndrome (CAIS): removed from active consideration by clinician because maternal gestational virilization and neonatal clitoromegaly/partial labial fusion are inconsistent with CAIS.\n- Aromatase (CYP19A1) deficiency: clinician explicitly stated that the combination of maternal virilization during pregnancy, neonatal virilization (clitoromegaly/partial labial fusion), tall stature, history of fractures with minor trauma, and primary amenorrhea strongly point toward aromatase (CYP19A1) deficiency in a 46,XX individual.\n\nPlan / Next steps\n- No specific diagnostic tests, treatments, or follow-up plans were documented in the dialogue.\n\n### Proposed Diagnosis ###\nAromatase deficiency (CYP19A1 deficiency) in a 46,XX individual.\n\n[CONFIDENCE]\nCONFIDENT\n\n### Diagnostician Confidence ###\nCONFIDENT\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [PRUNED - skipped]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [PRUNED - skipped]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The clinical picture—maternal virilization during pregnancy, neonatal virilization of a genetically female infant (clitoromegaly/partial labial fusion), tall adult height (failure of epiphyseal closure), history of fractures with minimal trauma (consistent with estrogen deficiency/osteopenia), and primary amenorrhea—forms a classic and specific constellation for aromatase (CYP19A1) deficiency in a 46,XX individual. The diagnostician is confident and the clinician already prioritized this diagnosis while reasonably excluding Turner syndrome and CAIS based on stature and the maternal/neonatal virilization history.\n\nChecklist completion: several gold‑standard and confirmatory tests remain undone (karyotype, serum gonadotropins/sex steroids including estradiol and testosterone, pelvic imaging, and genetic testing for CYP19A1), so the workup is incomplete from a strictly confirmatory standpoint. However, the phenotype is highly specific and pathognomonic for aromatase deficiency; given the remaining single turn constraint a final decision is required.\n\nDiagnostic confidence: high — clinical evidence strongly supports aromatase deficiency as the single most likely diagnosis despite lack of confirmatory laboratory/genetic testing.\n\n[DECISION] PASS\n\n[FEEDBACK]"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1925
+        }
+      },
+      {
+        "doctor_qcc": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information guided by a diagnostic checklist while maintaining standard clinical interview practices.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n5. MANDATORY Basic History: Before focusing on checklist-specific evidence, you MUST collect:\n   - Patient demographics (age, sex) if not already known\n   - Relevant past medical history and current medications\n   - Basic vital signs (at least request one set if available)\n   - Relevant social history (smoking, alcohol, occupation) when clinically appropriate\n6. Checklist Guidance: After collecting basic history, use the evidence checklist to guide diagnostic-specific inquiries. The checklist is your MINIMUM requirement.\n7. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] to remove it from active consideration. This helps focus the remaining investigation.\n\nIn every turn, follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture and identify critical information gaps.\n   - Reference which checklist items or basic history you are targeting.\n   - Consider if any candidate can be pruned based on current evidence.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [PRUNE] <diagnosis_number> <reasoning> - Remove a candidate diagnosis from active consideration when evidence clearly rules it out. Example: [PRUNE] 2 Blood alcohol normal, ruling out intoxication.\n   - [FINISH] use this command ONLY when you have gathered sufficient information (both basic history AND checklist items) to form a conclusive diagnosis.\n\nOnce you issue the [FINISH] command, the consultation ends immediately.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need basic demographics first. Age is essential to interpret delayed puberty/amenorrhea and narrow the differential (Turner usually identified in adolescence). No candidate can be pruned yet. I'll ask one atomic question: the patient's age.\n\n[QUERY] How old are you?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI am 16 years old.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need the patient's sex assigned at birth to interpret pubertal development and narrow the differential between Turner, CHH, and CAIS. This fulfills part of the mandatory basic history. No diagnoses can be pruned yet.\n\n[QUERY] What sex were you assigned at birth (male or female)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI was assigned female at birth.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still need mandatory basic history before focused diagnostic testing: past medical history, current medications, vitals, and social history. The next highest-yield missing item is past medical history (growth problems, congenital issues, prior surgeries), which can point toward Turner (short stature, coarctation, cardiac issues) or other causes. I will ask one specific question about past medical history.\n\n[QUERY] Do you have any past medical history—congenital problems, chronic illnesses, surgeries, or significant childhood health issues (including growth delay or heart problems)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI was noted to have partial labial fusion and clitoromegaly at birth, and I have sustained fractures following minor trauma.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still need the remaining mandatory basic history items before focusing on the diagnostic checklist: current medications, vitals, and social history. Next atomic item: current medications (including hormones, supplements, or prior estrogen/androgen therapy) could affect fractures and sexual development. I will ask one specific question about medications.\n\n[QUERY] Are you currently taking any medications, hormones, or supplements (including past or current estrogen, testosterone, or steroid treatments)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nYes. I am currently taking oral isotretinoin and an oral contraceptive.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still must collect mandatory basic vitals before moving to diagnostic testing. Vitals (height, weight, BP) are important for Turner syndrome (short stature, hypertension). No diagnoses pruned yet.\n\n[QUERY] Can you tell me your current height, weight, and if you've had a recent blood pressure reading?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI have not had any weight change. I am unsure / do not recall my current height or any recent blood pressure reading.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Critical gaps: menstrual history and secondary sexual development are essential to distinguish Turner (primary amenorrhea with poor breast development, high FSH), CAIS (primary amenorrhea with normal breasts, sparse pubic hair), and CHH (absent puberty/amenorrhea with low gonadotropins). Also still need social history but menstrual history is higher yield. I'll ask a single focused question about menses.\n\n[QUERY] Have you ever had a menstrual period (menarche)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nNo — I have not had a menstrual period.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still must obtain mandatory basic vitals (height, weight, BP) before ordering focused diagnostic tests; these help evaluate Turner (short stature, hypertension). No candidate can be pruned yet.\n\n[TEST] Please obtain a set of vital signs: height, weight, blood pressure, and pulse."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 12 / 16.\n### Active Candidates ###\n1. Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely\n   - Gold Standard: Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [○ Pending]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\n1. Height is at the 97th percentile.\n2. Weight is at the 50th percentile.\nBlood pressure: Normal\nPulse: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient's tall stature (97th percentile) and history of ambiguous genitalia with clitoromegaly at birth argue strongly against Turner syndrome, which is characterized by short stature and typically no prenatal virilization. No other checklist items support Turner. I will remove Turner from active consideration.\n\n[PRUNE] 1 Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 13 / 16.\n### Active Candidates ###\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [PRUNED - skipped]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nYes — I had partial labial fusion and clitoromegaly at birth, and my mother had abnormal hair growth on her chin during pregnancy.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Key distinction: CAIS usually has normal breast development (estrogen from aromatization) and sparse pubic hair, while CHH (and aromatase deficiency) have absent/poor breast development. Maternal virilization and clitoromegaly at birth already argue against CAIS, but I need objective current pubertal development info before ordering tests. I'll ask one focused question about breast development.\n\n[QUERY] Have your breasts developed? If so, at what age did breast growth begin (or what breast size/Tanner stage roughly)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 14 / 16.\n### Active Candidates ###\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n3. Complete androgen insensitivity syndrome (CAIS)\n   - Gold Standard: 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [PRUNED - skipped]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [○ Pending]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nI'm not sure — I don't remember when my breasts began developing.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The history of maternal virilization during pregnancy, neonatal clitoromegaly/partial labial fusion, tall adult stature (97th %ile), and fractures with minor trauma strongly point to aromatase (CYP19A1) deficiency in a 46,XX individual — a condition characterized by in utero androgen excess (maternal virilization, virilized female newborn), lifelong estrogen deficiency (tall stature from delayed epiphyseal closure, osteoporosis/fragility fractures), primary amenorrhea, and hyperandrogenism. These features are inconsistent with complete androgen insensitivity syndrome.\n\n[PRUNE] 3 Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 15 / 16.\n### Active Candidates ###\n2. Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)\n   - Gold Standard: Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely) Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities). [PRUNED - skipped]\n2. (Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)) Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.). [○ Pending]\n3. (Complete androgen insensitivity syndrome (CAIS)) 46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS. [PRUNED - skipped]\n\n=== Differential Evidence ===\n1. Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone) [○ Pending]\n2. Karyotype (chromosomal analysis) [○ Pending]\n3. Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI) [○ Pending]\n4. Focused physical exam and targeted history [○ Pending]\n\nLast reply:\nMy mother had abnormal chin hair growth during pregnancy, and I was born with partial labial fusion and clitoromegaly.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The combination of maternal virilization during pregnancy, neonatal clitoromegaly/partial labial fusion, tall adult stature (97th %ile) with fragility fractures, primary amenorrhea, and lifelong features of estrogen deficiency point strongly to aromatase (CYP19A1) deficiency in a 46,XX individual. These findings are inconsistent with Turner syndrome (short stature, no maternal virilization) and with CAIS (typically no maternal virilization and female external genitalia). Congenital hypogonadotropic hypogonadism does not explain maternal gestational virilization or neonatal virilization. Therefore the single most likely diagnosis is aromatase (CYP19A1) deficiency (estrogen synthesis defect) in a 46,XX person. Recommended confirmatory steps (for completeness) would be karyotype (expect 46,XX), serum sex steroids showing low estradiol with elevated androgens (testosterone/androstenedione), and molecular testing of CYP19A1. \n\n[FINISH]"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 8620
+        }
+      }
+    ],
+    "diagnostic_plan": {
+      "candidates": [
+        {
+          "diagnosis": "Turner syndrome (45,X or mosaic gonadal dysgenesis) — most likely",
+          "gold_standard": "Chromosomal analysis (karyotype) demonstrating 45,X or Turner mosaicism (or other X chromosomal abnormalities).",
+          "is_pruned": true,
+          "prune_reason": "Tall stature (97th percentile) and prenatal virilization (clitoromegaly/partial labial fusion) are inconsistent with Turner syndrome, so removing it from active consideration."
+        },
+        {
+          "diagnosis": "Congenital hypogonadotropic hypogonadism (including Kallmann syndrome)",
+          "gold_standard": "Biochemical demonstration of hypogonadotropic hypogonadism — persistently low/normal serum LH and FSH with low estradiol, plus blunted/absent gonadotropin response to GnRH stimulation (and anosmia or genetic testing supportive for KAL1/KAL2, etc.).",
+          "is_pruned": false,
+          "prune_reason": ""
+        },
+        {
+          "diagnosis": "Complete androgen insensitivity syndrome (CAIS)",
+          "gold_standard": "46,XY karyotype with molecular confirmation of an androgen receptor (AR) mutation OR demonstration of a 46,XY karyotype with testes (often intra‑abdominal) and androgen receptor dysfunction consistent with CAIS.",
+          "is_pruned": true,
+          "prune_reason": "Complete androgen insensitivity syndrome — maternal gestational virilization and neonatal clitoromegaly/labial fusion are inconsistent with CAIS, which presents with typical female external genitalia and no maternal virilization."
+        }
+      ],
+      "differential_evidence": [
+        {
+          "description": "Serum gonadotropins and sex steroids (LH, FSH, estradiol, testosterone)",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Karyotype (chromosomal analysis)",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Pelvic imaging (transabdominal/transvaginal ultrasound ± pelvic MRI)",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Focused physical exam and targeted history",
+          "collected": false,
+          "result": ""
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "information_coverage_rate": 0.5263157894736842,
+    "patient_coverage": 0.6153846153846154,
+    "exam_coverage": 0.3333333333333333,
+    "ground_truth_patient_facts": [
+      "1. 16-year-old female.",
+      "2. The patient has not experienced menarche.",
+      "3. She was noted to have partial labial fusion and clitoromegaly at birth.",
+      "4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.",
+      "5. The patient has a history of severe acne.",
+      "6. The patient has sustained fractures following minor trauma.",
+      "7. She is currently on oral isotretinoin.",
+      "8. She is currently on an oral contraceptive.",
+      "9. The patient is a high school student.",
+      "10. The patient has no significant tobacco, alcohol, or drug use.",
+      "11. The patient denies any recent illnesses.",
+      "12. The patient denies any appetite change.",
+      "13. The patient denies any weight change."
+    ],
+    "ground_truth_exam_facts": [
+      "1. Height is at the 97th percentile.",
+      "2. Weight is at the 50th percentile.",
+      "3. Skin examination findings: Numerous inflamed pustules on the face and upper back.",
+      "4. Breast development is at Tanner stage I.",
+      "5. Patient refuses pelvic examination.",
+      "6. Pelvic ultrasound: Ovaries with multiple cysts and a normal uterus."
+    ],
+    "collected_patient_facts": [
+      "1. 16-year-old female.",
+      "2. The patient has not experienced menarche.",
+      "3. She was noted to have partial labial fusion and clitoromegaly at birth.",
+      "4. The patient's mother reports that during pregnancy she had abnormal hair growth on her chin.",
+      "6. The patient has sustained fractures following minor trauma.",
+      "7. She is currently on oral isotretinoin.",
+      "8. She is currently on an oral contraceptive.",
+      "13. The patient denies any weight change."
+    ],
+    "collected_exam_facts": [
+      "1. Height is at the 97th percentile.",
+      "2. Weight is at the 50th percentile."
+    ]
+  },
+  "judge_response": "ANALYSIS: The prediction exactly restates the reference diagnosis (aromatase/CYP19A1 deficiency) and adds appropriate genetic and karyotypic detail (46,XX), which is a specific but clinically equivalent formulation.\n\nVERDICT: CORRECT"
+}

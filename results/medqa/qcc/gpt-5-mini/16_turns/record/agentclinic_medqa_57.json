@@ -1,0 +1,549 @@
+{
+  "case_id": "agentclinic_medqa_57",
+  "prediction": "Obstructive sleep apnea (provisionally most likely)\n\n[CONFIDENCE]\nUNCERTAIN",
+  "ground_truth": "Pancreatic adenocarcinoma",
+  "is_correct": false,
+  "trace": [
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] What is your main symptom or reason for coming in today?",
+      "duration": 2.202751874923706
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient complains of persistent fatigue.\n\n[RESPONSE] I'm mainly coming because I've been feeling persistently fatigued.",
+      "duration": 2.969608783721924
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] How long have you been experiencing this persistent fatigue?",
+      "duration": 2.8146812915802
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall how long I've had the fatigue.",
+      "duration": 3.2355363368988037
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Do you have trouble sleeping or any change in your sleep pattern (insomnia or sleeping more than usual)?",
+      "duration": 3.0114188194274902
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 3. The patient reports poor sleep quality.\n\n[RESPONSE] Yes — I have poor sleep quality.",
+      "duration": 3.737765312194824
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] Do you feel excessively sleepy during the day or do you fall asleep unintentionally (e.g., while reading, watching TV, or driving)?",
+      "duration": 13.21000623703003
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall whether I feel excessively sleepy during the day or fall asleep unintentionally.",
+      "duration": 11.747870206832886
+    },
+    {
+      "role_id": "doctor_initial",
+      "content": "[QUERY] What is your age and sex?",
+      "duration": 9.141021013259888
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 1. 65-year-old male.\n[RESPONSE] I am a 65-year-old male.",
+      "duration": 3.5320615768432617
+    },
+    {
+      "role_id": "planner",
+      "content": "[THOUGHT] The patient is a 65-year-old man reporting persistent fatigue and poor sleep quality. In an older male persistent fatigue with disturbed sleep raises high suspicion for sleep-disordered breathing (especially obstructive sleep apnea) because prevalence is higher in older men and OSA commonly causes poor sleep quality and daytime fatigue. Chronic insomnia is also likely given reported poor sleep quality and difficulty recalling duration of symptoms. Mood disorder (major depressive disorder) is a common medical/psychiatric cause of both fatigue and disturbed sleep in older adults and should be considered. Other medical causes (hypothyroidism, anemia, medication side effects) are possible but less directly suggested by the limited history; these should be screened during workup.\n\n[CANDIDATES]\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n[DIFFERENTIAL_EVIDENCE]\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA.\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia.\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA).\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance.",
+      "duration": 10.304190635681152
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Need the patient's past medical history to identify comorbidities that affect sleep (e.g., hypertension, heart disease, COPD, diabetes, prior stroke, psychiatric diagnoses) and to guide differential between OSA, insomnia, and depression. This addresses the mandatory basic history requirement. No candidate can be pruned yet.\n\n[QUERY] What medical conditions have you been diagnosed with in the past (e.g., hypertension, heart disease, lung disease, diabetes, stroke, psychiatric conditions)?",
+      "duration": 4.262298822402954
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 7. No significant past medical history.\n[RESPONSE] I have no significant past medical history.",
+      "duration": 4.1091907024383545
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still need current medications (including OTC/supplements) to identify agents that affect sleep or mood (e.g., sedatives, stimulants, antidepressants, beta-blockers). This satisfies the mandatory basic history requirement. No candidate can be pruned yet.\n\n[QUERY] What prescription medications, over-the-counter drugs, or supplements do you currently take (include dose/frequency if known)?",
+      "duration": 3.4924280643463135
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.",
+      "duration": 3.507861852645874
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I need at least one set of vital signs (mandatory basic history). This will help assess cardiovascular risk and indicators for OSA (e.g., hypertension), and allow calculation of BMI. Gathering vitals is distinct from social history and symptom questions, so I'll request that first.\n\n[TEST] Please provide one recent set of vital signs: blood pressure, heart rate, respiratory rate, temperature, oxygen saturation, and your height and weight if known.",
+      "duration": 7.809307336807251
+    },
+    {
+      "role_id": "reporter",
+      "content": "12. Temperature: 36.8°C (98°F).\n13. Blood Pressure: 130/85 mmHg.\n14. Heart Rate: 80 bpm.\n15. Respiratory Rate: 14 breaths/min.\nOxygen saturation: Normal\nHeight: Normal\nWeight: Normal",
+      "duration": 10.077841997146606
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I need the required social history items (smoking, alcohol, occupation). Per constraints, each must be asked separately and efficiently. No candidates can be pruned yet.\n\n[QUERY] Do you currently smoke tobacco or use vaping products (yes/no)?",
+      "duration": 37.79326558113098
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 8. Smokes 1 pack of cigarettes per day.\n[RESPONSE] Yes — I smoke one pack of cigarettes per day.",
+      "duration": 18.282034873962402
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I have smoking status but still must collect alcohol use and occupation per mandatory basic history before moving to checklist items. Alcohol can affect sleep and daytime sleepiness and is required now. No candidates can be pruned yet.\n\n[QUERY] Do you drink alcohol? If yes, how many standard drinks per week do you usually consume?",
+      "duration": 4.913161754608154
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 9. Consumes 5 alcoholic beverages per day.\n\n[RESPONSE] Yes — I consume five alcoholic beverages per day.",
+      "duration": 6.759185075759888
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] I still must collect occupation as part of mandatory basic history. Knowing his work schedule (shift work) could contribute to sleep disturbance and affect differential between insomnia and OSA. Targeting basic history checklist. No candidate can yet be pruned.\n\n[QUERY] What is your current or most recent occupation, and do you work night or rotating shifts?",
+      "duration": 10.087645292282104
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall my current or most recent occupation, and I don't remember whether I work night or rotating shifts.",
+      "duration": 3.3980376720428467
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Need key symptom favoring OSA: loud snoring. This is a single, specific basic-checklist question. No candidates pruned yet.\n\n[QUERY] Do you snore loudly (loud enough that others complain or can hear you in another room)?",
+      "duration": 7.505595684051514
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall being told that I snore loudly.",
+      "duration": 31.33467984199524
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Key gap: whether he has excessive daytime sleepiness — this strongly favors OSA (or narcolepsy) over primary insomnia and helps prioritize further testing. Gathering this now addresses the differential evidence item #2. No candidates can be pruned yet.\n\n[QUERY] Do you experience excessive daytime sleepiness (for example, do you fall asleep unintentionally during the day or feel very drowsy despite trying to stay awake)? (yes/no)",
+      "duration": 13.639934539794922
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] 2. The patient complains of persistent fatigue.\n3. The patient reports poor sleep quality.\n\n[RESPONSE] Yes. I have persistent fatigue and poor sleep quality.",
+      "duration": 5.818135023117065
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Critical gap: whether others have witnessed apneas/gasping/choking or he has morning headaches — this strongly supports OSA per the checklist differential evidence item #1. I will ask this single specific question next. No candidates pruned yet.\n\n[QUERY] Has anyone ever witnessed you stop breathing, gasp, choke, or wake you because you were gasping during sleep, or do you frequently wake with headaches in the morning? (yes/no)",
+      "duration": 11.205260038375854
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure — I don't recall anyone witnessing me stop breathing or gasping during sleep, and I don't recall frequently waking with headaches.",
+      "duration": 4.568741321563721
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] Need to assess insomnia criteria per the checklist: frequency (≥3 nights/week) and duration (≥3 months) of difficulty initiating/maintaining sleep. This is a single atomic question. No candidates pruned yet.\n\n[QUERY] Do you have trouble falling asleep or staying asleep at least 3 nights per week for 3 months or longer? (yes/no)",
+      "duration": 6.343006134033203
+    },
+    {
+      "role_id": "patient",
+      "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure; I don't recall.",
+      "duration": 5.12522292137146
+    },
+    {
+      "role_id": "doctor_qcc",
+      "content": "[THOUGHT] We collected required basic history (65-year-old male, no significant past medical history, no meds, vitals stable, smokes 1 pack/day, drinks heavily ~5 drinks/day). Key diagnostic data: persistent daytime sleepiness/fatigue reported. He does not recall loud snoring, witnessed apneas, or morning headaches; insomnia frequency/duration and mood symptoms remain unclear. Of the three active candidates, age and male sex plus marked daytime sleepiness make obstructive sleep apnea (OSA) the single most likely diagnosis despite absence of reported snoring/witnessed apneas and a non-obese body habitus (normal height/weight). Chronic insomnia and major depression are possible but less supported by the current evidence. The gold‑standard test (overnight attended polysomnography) is still pending and would confirm OSA.\n\n[FINISH] Most likely diagnosis: Obstructive sleep apnea (OSA). Rationale: older male smoker with persistent excessive daytime sleepiness — clinical pattern most consistent with OSA; absence of reported snoring/witnessed apneas does not exclude OSA, and heavy alcohol use may worsen sleep-disordered breathing. Recommend overnight in-lab polysomnography (PSG) to confirm (AHI criteria) and, if confirmed, initiation of CPAP therapy and counseling on alcohol reduction and smoking cessation.",
+      "duration": 7.585903644561768
+    },
+    {
+      "role_id": "summarizer",
+      "content": "[THOUGHT]\nPatient is a 65-year-old male presenting with persistent fatigue and poor sleep quality. Many historical details are unknown or the patient does not recall (duration of fatigue, medication use, occupation, snoring/witnessed apneas, insomnia duration). Relevant positive findings: persistent fatigue, poor sleep quality, excessive daytime sleepiness, current tobacco use (1 pack/day), and alcohol use (five alcoholic beverages per day). Vitals were provided. No past medical diagnoses reported. No medications recalled. No assessment or treatment plan was documented in the dialogue.\n\n[SUMMARY]\nChief complaint\n- Persistent fatigue.\n\nHistory of present illness\n- 65-year-old male reports persistent fatigue and poor sleep quality.\n- Patient does not recall how long the fatigue has been present.\n- Reports excessive daytime sleepiness (affirmative when asked).\n- Unable to recall whether he falls asleep unintentionally during the day.\n- Unable to recall whether trouble falling asleep or staying asleep has occurred ≥3 nights/week for ≥3 months.\n\nPast medical history\n- Patient states: \"no significant past medical history.\"\n\nMedications\n- Patient: \"I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\"\n\nAllergies\n- Not documented in dialogue.\n\nSocial history\n- Tobacco: smokes one pack of cigarettes per day.\n- Alcohol: consumes five alcoholic beverages per day.\n- Occupation: patient does not recall current or most recent occupation or whether he works night/rotating shifts.\n\nSleep-related history\n- Sleep quality: reports poor sleep quality.\n- Daytime sleepiness: reports excessive daytime sleepiness.\n- Snoring: patient does not recall being told he snores loudly.\n- Witnessed apneas/gasping/choking or morning headaches: patient does not recall any witnessed events or frequent morning headaches.\n- Insomnia duration (falling/staying asleep ≥3 nights/week for ≥3 months): patient does not recall.\n\nReview of systems (pertinent negatives/unknown)\n- Patient uncertain or does not recall responses to several specific sleep/apnea-related questions as noted above.\n- No other systems were queried or documented in the dialogue.\n\nVital signs (as provided)\n- Temperature: 36.8°C (98°F).\n- Blood pressure: 130/85 mmHg.\n- Heart rate: 80 bpm.\n- Respiratory rate: 14 breaths/min.\n- Oxygen saturation: \"Normal\" (as stated).\n- Height: \"Normal\" (as stated).\n- Weight: \"Normal\" (as stated).\n\nAssessment/Plan\n- No assessment, diagnostic impressions, or treatment plan were provided or discussed in the dialogue.",
+      "duration": 11.55816388130188
+    },
+    {
+      "role_id": "diagnostician",
+      "content": "[THOUGHT]\n- Review of candidates vs evidence:\n  - Obstructive sleep apnea (OSA)\n    - Supporting features: older male (65), reports excessive daytime sleepiness, heavy alcohol use (≈5 drinks/day) and active tobacco use (1 ppd) both increase OSA risk. Normal oxygen saturation and vitals do not exclude OSA. Many patients with OSA are unaware of witnessed apneas or snoring reports; the patient’s inability to recall snoring/witnessed events does not rule OSA out.\n    - Missing definitive evidence: no PSG performed, no Epworth Sleepiness Scale, no bedpartner history, BMI not clearly stated (weight described as \"normal\").\n  - Chronic insomnia disorder\n    - Supporting features: patient reports poor sleep quality.\n    - Against / missing: no clear history establishing difficulty initiating/maintaining sleep ≥3 nights/week for ≥3 months, no sleep diary/actigraphy, and patient cannot recall symptom frequency or duration—insufficient to meet DSM/ICSD criteria.\n  - Major depressive disorder (MDD)\n    - Supporting features: fatigue and poor sleep can be symptoms.\n    - Against / missing: no documented core depressive symptoms (depressed mood or anhedonia), no PHQ-9 or structured interview, no other psychiatric symptoms documented.\n- Differential synthesis:\n  - The clinical picture most strongly suggests a sleep-disordered breathing etiology given age, sex, daytime sleepiness, and alcohol/tobacco exposure. Insomnia could still be present but diagnostic criteria are not documented. MDD is less supported by the available history.\n  - None of the candidates have gold‑standard confirmation in the record; objective testing (overnight PSG) is indicated to confirm OSA. Other testing (sleep diary/actigraphy, PHQ‑9) would be needed to confirm insomnia or MDD.\n- Conclusion: The single most likely diagnosis, based on pretest probability from the available history, is obstructive sleep apnea. This is a clinical provisional diagnosis pending PSG confirmation.\n\n[DIAGNOSIS]\nObstructive sleep apnea (provisionally most likely)\n\n[CONFIDENCE]\nUNCERTAIN",
+      "duration": 9.696961879730225
+    },
+    {
+      "role_id": "verifier",
+      "content": "[THOUGHT] The current workup is substantially incomplete. The proposed diagnosis (obstructive sleep apnea, OSA) is reasonable given persistent fatigue, poor sleep quality, excessive daytime sleepiness, heavy alcohol use, and smoking, but almost all decisive items on the evidence checklist are missing (no objective sleep testing, no structured sleep/mood measures, incomplete symptom timing and witness reports, limited medical/medication history, no BMI/airway exam or labs). The diagnostician’s confidence is appropriately UNCERTAIN. With only one turn remaining I must make a definitive supervisory judgement rather than request iterative re-planning; however the case lacks the critical data needed to confirm OSA or exclude alternatives (insomnia, depression, medical causes, medication/substance effects).\n\n[DECISION] INCOMPLETE\n\n[FEEDBACK] Critical information required to make a supported diagnosis (list in order of priority):\n1. Objective sleep testing\n   - Overnight in-lab polysomnography (preferred) with AHI, oxygen desaturation indices, sleep architecture OR a validated home sleep apnea test plus overnight oximetry if PSG is not available.\n2. Quantify daytime sleepiness and objective sleepiness if needed\n   - Epworth Sleepiness Scale score.\n   - If daytime sleepiness is prominent and narcolepsy considered, Multiple Sleep Latency Test (MSLT) after PSG.\n3. Focused, structured sleep history\n   - Duration and temporal onset of fatigue/sleep problems.\n   - Frequency of difficulty initiating/maintaining sleep (≥3 nights/week?) and duration (≥3 months?) to assess chronic insomnia criteria.\n   - Specifics about unintentional daytime sleep episodes or napping.\n   - History of loud snoring, witnessed apneas/gasping/choking, nocturnal gasping, or morning headaches.\n4. Comprehensive medication/substance review\n   - Complete current medication list (prescription, OTC, supplements, herbals), including sedatives, opioids, stimulants.\n   - Detailed alcohol use (type, exact quantity per day, timing relative to bedtime) and tobacco use confirmation.\n5. Medical, psychiatric history and screening\n   - Past medical history (cardiovascular, pulmonary, endocrine (hypothyroidism), neurologic).\n   - Depression screen (PHQ-9) and brief psychiatric assessment for MDD as cause of fatigue.\n6. Anthropometrics and airway/ENT exam\n   - Measured BMI, neck circumference, nasal/upper airway exam for tonsillar hypertrophy, Mallampati score.\n7. Basic laboratory evaluation (to exclude medical mimics)\n   - TSH, CBC (for anemia), basic metabolic panel, as indicated.\n8. Sleep log/actigraphy\n   - At least 1–2 weeks of sleep diary and/or actigraphy to characterize sleep timing and continuity.\n\nObtaining the prioritized items above (especially PSG/home sleep test plus ESS and a structured sleep/medication history) will allow confirmation or refutation of OSA and differentiation from insomnia, depression, or substance-related sleep disturbance.",
+      "duration": 9.965075731277466
+    }
+  ],
+  "metadata": {
+    "mode": "qcc",
+    "turns": 15,
+    "max_turns": 16,
+    "role_records": [
+      {
+        "doctor_initial": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information and request necessary clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic (e.g., ask 'What are your symptoms?', never combine multiple questions).\n\nIn every turn, you execute one of the following actions in the corresponding format:\n1. [QUERY] followed by your atomic question to the patient.\n2. [TEST] followed by one specific examination or diagnostic test request to the Medical Analyst.\n3. [DIAGNOSIS] followed by The answer in the format of a single most likely diagnosis.\n\nOnce you have gathered sufficient evidence, ensure your diagnosis is final.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 0 / 16.\nLast reply:\n\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your main symptom or reason for coming in today?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 1 / 16.\nLast reply:\nI'm mainly coming because I've been feeling persistently fatigued.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] How long have you been experiencing this persistent fatigue?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 2 / 16.\nLast reply:\nI'm not sure — I don't recall how long I've had the fatigue.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you have trouble sleeping or any change in your sleep pattern (insomnia or sleeping more than usual)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 3 / 16.\nLast reply:\nYes — I have poor sleep quality.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] Do you feel excessively sleepy during the day or do you fall asleep unintentionally (e.g., while reading, watching TV, or driving)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 4 / 16.\nLast reply:\nI'm not sure — I don't recall whether I feel excessively sleepy during the day or fall asleep unintentionally.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[QUERY] What is your age and sex?"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1027
+        }
+      },
+      {
+        "patient": [
+          {
+            "role": "system",
+            "content": "You are a patient undergoing a medical interview.\nYour knowledge is strictly limited to the following list of indexed facts:\n1. 65-year-old male.\n2. The patient complains of persistent fatigue.\n3. The patient reports poor sleep quality.\n4. He mentions adopting a vegetarian diet in recent months to improve his energy levels but hasn't noticed significant benefits.\n5. The patient reports losing weight without trying over the last month.\n6. Jaundice\n7. No significant past medical history.\n8. Smokes 1 pack of cigarettes per day.\n9. Consumes 5 alcoholic beverages per day.\n10. The patient does not report any fever.\n11. The patient does not report any abdominal pain.\n12. The patient does not report any changes in bowel habits.\n\nResponse Protocols:\n1. Analyze the doctor's question and search your list for the specific item(s) that contain the answer.\n2. You must format your output using two distinct tags:\n   [REFERENCE] followed by the EXACT string(s) (including the index) from your list. You may select UP TO TWO facts if necessary to fully answer the question. If no fact exists, write 'N/A'.\n   [RESPONSE] followed by a natural language answer derived STRICTLY from the combined content of the selected [REFERENCE]s. Do not add outside information.\n3. If the doctor's question is not addressed by any fact in your list:\n   [REFERENCE] N/A\n   [RESPONSE] followed by a natural statement indicating you are unsure or do not recall."
+          },
+          {
+            "role": "assistant",
+            "content": "[REFERENCE] N/A\n[RESPONSE] I'm not sure; I don't recall."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 347
+        }
+      },
+      {
+        "reporter": [
+          {
+            "role": "system",
+            "content": "You are a specialized module named 'Measurement' responsible for reporting test results to the physician.\nYou have access to the following list of indexed facts:\nPhysical Examination and Diagnostic Test Data:\n1. AST: Elevated.\n2. ALT: Elevated.\n3. ALP: Significantly elevated.\n4. Bilirubin: Elevated.\n5. WBC: Normal.\n6. Hemoglobin: Normal.\n7. Platelets: Normal.\n8. Urine Analysis - Appearance: Amber colored.\n9. Urine Analysis - Bilirubin: Positive.\n10. Ultrasound Abdomen - Enlarged, thin-walled gallbladder.\n11. Ultrasound Abdomen - No evident stones.\n12. Temperature: 36.8°C (98°F).\n13. Blood Pressure: 130/85 mmHg.\n14. Heart Rate: 80 bpm.\n15. Respiratory Rate: 14 breaths/min.\n16. Mental Status: Alert and oriented.\n17. Icteric skin and sclera observed.\n18. Abdominal Inspection: No visible distension.\n19. Abdominal Auscultation: Normal bowel sounds.\n20. Abdominal Percussion: Resonant throughout abdominal quadrants.\n21. Abdominal Palpation: No palpable mass or tenderness.\n22. No hepatomegaly or splenomegaly was noted.\n23. Enlarged gallbladder without tenderness.\n\nResponse Protocols:\n1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+          },
+          {
+            "role": "assistant",
+            "content": "12. Temperature: 36.8°C (98°F).\n13. Blood Pressure: 130/85 mmHg.\n14. Heart Rate: 80 bpm.\n15. Respiratory Rate: 14 breaths/min.\nOxygen saturation: Normal\nHeight: Normal\nWeight: Normal"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 446
+        }
+      },
+      {
+        "planner": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Planner.\nYour objective is to generate a structured diagnostic plan based on the initial clinical presentation provided.\n\nCore Tasks:\n1. Formulate 3 candidate diagnoses (ranked by likelihood based on initial presentation).\n2. For each candidate diagnosis, identify 1 gold standard evidence that would strongly confirm or rule out that diagnosis.\n3. Identify up to 4 pieces of differential evidence that would help distinguish between the candidate diagnoses.\n\nOutput Format:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the initial presentation and justify your candidate diagnoses.\n\n[CANDIDATES]\n1. <Diagnosis 1 (most likely)>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n2. <Diagnosis 2>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n3. <Diagnosis 3>\n   - Gold Standard: <specific test/finding that confirms/rules out>\n\n[DIFFERENTIAL_EVIDENCE]\n1. <Evidence item 1 to differentiate between candidates>\n2. <Evidence item 2 to differentiate between candidates>\n3. <Evidence item 3 to differentiate between candidates>\n4. <Evidence item 4 to differentiate between candidates>\n"
+          },
+          {
+            "role": "user",
+            "content": "### Initial Clinical Presentation ###\n\nDoctor: What is your main symptom or reason for coming in today?\n\nPatient: I'm mainly coming because I've been feeling persistently fatigued.\n\nDoctor: How long have you been experiencing this persistent fatigue?\n\nPatient: I'm not sure — I don't recall how long I've had the fatigue.\n\nDoctor: Do you have trouble sleeping or any change in your sleep pattern (insomnia or sleeping more than usual)?\n\nPatient: Yes — I have poor sleep quality.\n\nDoctor: Do you feel excessively sleepy during the day or do you fall asleep unintentionally (e.g., while reading, watching TV, or driving)?\n\nPatient: I'm not sure — I don't recall whether I feel excessively sleepy during the day or fall asleep unintentionally.\n\nDoctor: What is your age and sex?\n\nPatient: I am a 65-year-old male.\n\n\nGenerate a diagnostic plan with 3 candidate diagnoses, their gold standard evidence, and differential evidence items.\n\nPlanner:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The patient is a 65-year-old man reporting persistent fatigue and poor sleep quality. In an older male persistent fatigue with disturbed sleep raises high suspicion for sleep-disordered breathing (especially obstructive sleep apnea) because prevalence is higher in older men and OSA commonly causes poor sleep quality and daytime fatigue. Chronic insomnia is also likely given reported poor sleep quality and difficulty recalling duration of symptoms. Mood disorder (major depressive disorder) is a common medical/psychiatric cause of both fatigue and disturbed sleep in older adults and should be considered. Other medical causes (hypothyroidism, anemia, medication side effects) are possible but less directly suggested by the limited history; these should be screened during workup.\n\n[CANDIDATES]\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n[DIFFERENTIAL_EVIDENCE]\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA.\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia.\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA).\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1733
+        }
+      },
+      {
+        "summarizer": [
+          {
+            "role": "system",
+            "content": "You are a professional medical documentarian and clinical scribe.\nYour objective is to synthesize the dialogue between a doctor and a patient into a high-fidelity structured medical summary.\n\nCore Principles:\n1. Strict Adherence: You must NOT invent, infer, or hallucinate any information not explicitly present in the dialogue.\n2. Precision: Retain all precise measurements, dates, dosages, and technical medical terms exactly as stated.\n3. Objectivity: Maintain a professional, clinical tone throughout the summary.\n\nOutput Process:\n[THOUGHT]\nAnalyze the dialogue to extract key clinical facts and reasoning.\n\n[SUMMARY]\nGenerate a professional, structured clinical note.\n"
+          },
+          {
+            "role": "user",
+            "content": "### Dialogue History ###\n\nDoctor: What is your main symptom or reason for coming in today?\n\nPatient: I'm mainly coming because I've been feeling persistently fatigued.\n\nDoctor: How long have you been experiencing this persistent fatigue?\n\nPatient: I'm not sure — I don't recall how long I've had the fatigue.\n\nDoctor: Do you have trouble sleeping or any change in your sleep pattern (insomnia or sleeping more than usual)?\n\nPatient: Yes — I have poor sleep quality.\n\nDoctor: Do you feel excessively sleepy during the day or do you fall asleep unintentionally (e.g., while reading, watching TV, or driving)?\n\nPatient: I'm not sure — I don't recall whether I feel excessively sleepy during the day or fall asleep unintentionally.\n\nDoctor: What is your age and sex?\n\nPatient: I am a 65-year-old male.\n\nDoctor: What medical conditions have you been diagnosed with in the past (e.g., hypertension, heart disease, lung disease, diabetes, stroke, psychiatric conditions)?\n\nPatient: I have no significant past medical history.\n\nDoctor: What prescription medications, over-the-counter drugs, or supplements do you currently take (include dose/frequency if known)?\n\nPatient: I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\n\nDoctor: Please provide one recent set of vital signs: blood pressure, heart rate, respiratory rate, temperature, oxygen saturation, and your height and weight if known.\n\nMeasurement: 12. Temperature: 36.8°C (98°F).\n13. Blood Pressure: 130/85 mmHg.\n14. Heart Rate: 80 bpm.\n15. Respiratory Rate: 14 breaths/min.\nOxygen saturation: Normal\nHeight: Normal\nWeight: Normal\n\nDoctor: Do you currently smoke tobacco or use vaping products (yes/no)?\n\nPatient: Yes — I smoke one pack of cigarettes per day.\n\nDoctor: Do you drink alcohol? If yes, how many standard drinks per week do you usually consume?\n\nPatient: Yes — I consume five alcoholic beverages per day.\n\nDoctor: What is your current or most recent occupation, and do you work night or rotating shifts?\n\nPatient: I'm not sure — I don't recall my current or most recent occupation, and I don't remember whether I work night or rotating shifts.\n\nDoctor: Do you snore loudly (loud enough that others complain or can hear you in another room)?\n\nPatient: I'm not sure — I don't recall being told that I snore loudly.\n\nDoctor: Do you experience excessive daytime sleepiness (for example, do you fall asleep unintentionally during the day or feel very drowsy despite trying to stay awake)? (yes/no)\n\nPatient: Yes. I have persistent fatigue and poor sleep quality.\n\nDoctor: Has anyone ever witnessed you stop breathing, gasp, choke, or wake you because you were gasping during sleep, or do you frequently wake with headaches in the morning? (yes/no)\n\nPatient: I'm not sure — I don't recall anyone witnessing me stop breathing or gasping during sleep, and I don't recall frequently waking with headaches.\n\nDoctor: Do you have trouble falling asleep or staying asleep at least 3 nights per week for 3 months or longer? (yes/no)\n\nPatient: I'm not sure; I don't recall.\n\nDoctor: \n\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\nPatient is a 65-year-old male presenting with persistent fatigue and poor sleep quality. Many historical details are unknown or the patient does not recall (duration of fatigue, medication use, occupation, snoring/witnessed apneas, insomnia duration). Relevant positive findings: persistent fatigue, poor sleep quality, excessive daytime sleepiness, current tobacco use (1 pack/day), and alcohol use (five alcoholic beverages per day). Vitals were provided. No past medical diagnoses reported. No medications recalled. No assessment or treatment plan was documented in the dialogue.\n\n[SUMMARY]\nChief complaint\n- Persistent fatigue.\n\nHistory of present illness\n- 65-year-old male reports persistent fatigue and poor sleep quality.\n- Patient does not recall how long the fatigue has been present.\n- Reports excessive daytime sleepiness (affirmative when asked).\n- Unable to recall whether he falls asleep unintentionally during the day.\n- Unable to recall whether trouble falling asleep or staying asleep has occurred ≥3 nights/week for ≥3 months.\n\nPast medical history\n- Patient states: \"no significant past medical history.\"\n\nMedications\n- Patient: \"I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\"\n\nAllergies\n- Not documented in dialogue.\n\nSocial history\n- Tobacco: smokes one pack of cigarettes per day.\n- Alcohol: consumes five alcoholic beverages per day.\n- Occupation: patient does not recall current or most recent occupation or whether he works night/rotating shifts.\n\nSleep-related history\n- Sleep quality: reports poor sleep quality.\n- Daytime sleepiness: reports excessive daytime sleepiness.\n- Snoring: patient does not recall being told he snores loudly.\n- Witnessed apneas/gasping/choking or morning headaches: patient does not recall any witnessed events or frequent morning headaches.\n- Insomnia duration (falling/staying asleep ≥3 nights/week for ≥3 months): patient does not recall.\n\nReview of systems (pertinent negatives/unknown)\n- Patient uncertain or does not recall responses to several specific sleep/apnea-related questions as noted above.\n- No other systems were queried or documented in the dialogue.\n\nVital signs (as provided)\n- Temperature: 36.8°C (98°F).\n- Blood pressure: 130/85 mmHg.\n- Heart rate: 80 bpm.\n- Respiratory rate: 14 breaths/min.\n- Oxygen saturation: \"Normal\" (as stated).\n- Height: \"Normal\" (as stated).\n- Weight: \"Normal\" (as stated).\n\nAssessment/Plan\n- No assessment, diagnostic impressions, or treatment plan were provided or discussed in the dialogue."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 1994
+        }
+      },
+      {
+        "diagnostician": [
+          {
+            "role": "system",
+            "content": "You are a senior diagnostic physician specializing in complex differential diagnosis.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to analyze the provided structured clinical summary along with the pre-generated candidate diagnoses to formulate a precise diagnosis.\n\nYou will receive:\n1. A clinical summary of the patient encounter.\n2. A list of candidate diagnoses (including any that were pruned during evidence collection).\n3. The evidence checklist with completion status.\n\nImportant: Even if a candidate was pruned by the evidence-gathering physician, you should reconsider ALL candidates based on the complete evidence. A pruned diagnosis may be revived if evidence supports it.\n\nYou must follow a strict reasoning process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Review each candidate diagnosis against the collected evidence.\n   - Consider if any pruned diagnoses should be revived.\n   - Explain your differential analysis.\n\n[DIAGNOSIS]\n   - Provide the The answer in the format of a single most likely diagnosis..\n\n[CONFIDENCE]\n   - CONFIDENT: Evidence strongly supports the diagnosis.\n   - UNCERTAIN: Evidence is insufficient for a confident diagnosis.\n"
+          },
+          {
+            "role": "user",
+            "content": "### Case Summary ###\nChief complaint\n- Persistent fatigue.\n\nHistory of present illness\n- 65-year-old male reports persistent fatigue and poor sleep quality.\n- Patient does not recall how long the fatigue has been present.\n- Reports excessive daytime sleepiness (affirmative when asked).\n- Unable to recall whether he falls asleep unintentionally during the day.\n- Unable to recall whether trouble falling asleep or staying asleep has occurred ≥3 nights/week for ≥3 months.\n\nPast medical history\n- Patient states: \"no significant past medical history.\"\n\nMedications\n- Patient: \"I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\"\n\nAllergies\n- Not documented in dialogue.\n\nSocial history\n- Tobacco: smokes one pack of cigarettes per day.\n- Alcohol: consumes five alcoholic beverages per day.\n- Occupation: patient does not recall current or most recent occupation or whether he works night/rotating shifts.\n\nSleep-related history\n- Sleep quality: reports poor sleep quality.\n- Daytime sleepiness: reports excessive daytime sleepiness.\n- Snoring: patient does not recall being told he snores loudly.\n- Witnessed apneas/gasping/choking or morning headaches: patient does not recall any witnessed events or frequent morning headaches.\n- Insomnia duration (falling/staying asleep ≥3 nights/week for ≥3 months): patient does not recall.\n\nReview of systems (pertinent negatives/unknown)\n- Patient uncertain or does not recall responses to several specific sleep/apnea-related questions as noted above.\n- No other systems were queried or documented in the dialogue.\n\nVital signs (as provided)\n- Temperature: 36.8°C (98°F).\n- Blood pressure: 130/85 mmHg.\n- Heart rate: 80 bpm.\n- Respiratory rate: 14 breaths/min.\n- Oxygen saturation: \"Normal\" (as stated).\n- Height: \"Normal\" (as stated).\n- Weight: \"Normal\" (as stated).\n\nAssessment/Plan\n- No assessment, diagnostic impressions, or treatment plan were provided or discussed in the dialogue.\n\n### Candidate Diagnoses ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nDiagnostician:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT]\n- Review of candidates vs evidence:\n  - Obstructive sleep apnea (OSA)\n    - Supporting features: older male (65), reports excessive daytime sleepiness, heavy alcohol use (≈5 drinks/day) and active tobacco use (1 ppd) both increase OSA risk. Normal oxygen saturation and vitals do not exclude OSA. Many patients with OSA are unaware of witnessed apneas or snoring reports; the patient’s inability to recall snoring/witnessed events does not rule OSA out.\n    - Missing definitive evidence: no PSG performed, no Epworth Sleepiness Scale, no bedpartner history, BMI not clearly stated (weight described as \"normal\").\n  - Chronic insomnia disorder\n    - Supporting features: patient reports poor sleep quality.\n    - Against / missing: no clear history establishing difficulty initiating/maintaining sleep ≥3 nights/week for ≥3 months, no sleep diary/actigraphy, and patient cannot recall symptom frequency or duration—insufficient to meet DSM/ICSD criteria.\n  - Major depressive disorder (MDD)\n    - Supporting features: fatigue and poor sleep can be symptoms.\n    - Against / missing: no documented core depressive symptoms (depressed mood or anhedonia), no PHQ-9 or structured interview, no other psychiatric symptoms documented.\n- Differential synthesis:\n  - The clinical picture most strongly suggests a sleep-disordered breathing etiology given age, sex, daytime sleepiness, and alcohol/tobacco exposure. Insomnia could still be present but diagnostic criteria are not documented. MDD is less supported by the available history.\n  - None of the candidates have gold‑standard confirmation in the record; objective testing (overnight PSG) is indicated to confirm OSA. Other testing (sleep diary/actigraphy, PHQ‑9) would be needed to confirm insomnia or MDD.\n- Conclusion: The single most likely diagnosis, based on pretest probability from the available history, is obstructive sleep apnea. This is a clinical provisional diagnosis pending PSG confirmation.\n\n[DIAGNOSIS]\nObstructive sleep apnea (provisionally most likely)\n\n[CONFIDENCE]\nUNCERTAIN"
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2144
+        }
+      },
+      {
+        "verifier": [
+          {
+            "role": "system",
+            "content": "You are a Clinical Diagnostic Supervisor for the QCC framework.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to evaluate the diagnosis and determine if the consultation should continue, conclude, or require re-planning.\n\nEvaluation Criteria:\n1. Evidence Completeness: Assess if the checklist items have been adequately addressed.\n2. Diagnostic Confidence: Consider the diagnostician's confidence level.\n3. Turn Budget: If more than 3 turns remain and evidence is insufficient, re-planning may be warranted.\n4. Force Decision: If 3 or fewer turns remain, force a final decision.\n\nOutput Format:\n\n[THOUGHT] <Your Analysis>\n   - Analyze checklist completion and diagnostic confidence.\n\n[DECISION] <Status>\n   - Output 'PASS' if the diagnosis is sufficient.\n   - Output 'INCOMPLETE' if critical clinical information is missing and more evidence gathering is needed (without re-planning).\n   - Output 'REPLAN' if the current candidates do not fit the evidence and a new diagnostic plan is needed (only if > 3 turns remaining and diagnostician is UNCERTAIN).\n\n[FEEDBACK] <Guidance>\n   - If PASS: Leave this section empty.\n   - If INCOMPLETE: Specify exactly what critical information is required.\n   - If REPLAN: Suggest a new direction for the diagnostic plan.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns: 15 / 16 (Remaining: 1).\n### Case Summary ###\nChief complaint\n- Persistent fatigue.\n\nHistory of present illness\n- 65-year-old male reports persistent fatigue and poor sleep quality.\n- Patient does not recall how long the fatigue has been present.\n- Reports excessive daytime sleepiness (affirmative when asked).\n- Unable to recall whether he falls asleep unintentionally during the day.\n- Unable to recall whether trouble falling asleep or staying asleep has occurred ≥3 nights/week for ≥3 months.\n\nPast medical history\n- Patient states: \"no significant past medical history.\"\n\nMedications\n- Patient: \"I'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\"\n\nAllergies\n- Not documented in dialogue.\n\nSocial history\n- Tobacco: smokes one pack of cigarettes per day.\n- Alcohol: consumes five alcoholic beverages per day.\n- Occupation: patient does not recall current or most recent occupation or whether he works night/rotating shifts.\n\nSleep-related history\n- Sleep quality: reports poor sleep quality.\n- Daytime sleepiness: reports excessive daytime sleepiness.\n- Snoring: patient does not recall being told he snores loudly.\n- Witnessed apneas/gasping/choking or morning headaches: patient does not recall any witnessed events or frequent morning headaches.\n- Insomnia duration (falling/staying asleep ≥3 nights/week for ≥3 months): patient does not recall.\n\nReview of systems (pertinent negatives/unknown)\n- Patient uncertain or does not recall responses to several specific sleep/apnea-related questions as noted above.\n- No other systems were queried or documented in the dialogue.\n\nVital signs (as provided)\n- Temperature: 36.8°C (98°F).\n- Blood pressure: 130/85 mmHg.\n- Heart rate: 80 bpm.\n- Respiratory rate: 14 breaths/min.\n- Oxygen saturation: \"Normal\" (as stated).\n- Height: \"Normal\" (as stated).\n- Weight: \"Normal\" (as stated).\n\nAssessment/Plan\n- No assessment, diagnostic impressions, or treatment plan were provided or discussed in the dialogue.\n\n### Proposed Diagnosis ###\nObstructive sleep apnea (provisionally most likely)\n\n[CONFIDENCE]\nUNCERTAIN\n\n### Diagnostician Confidence ###\nUNCERTAIN\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\n"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] The current workup is substantially incomplete. The proposed diagnosis (obstructive sleep apnea, OSA) is reasonable given persistent fatigue, poor sleep quality, excessive daytime sleepiness, heavy alcohol use, and smoking, but almost all decisive items on the evidence checklist are missing (no objective sleep testing, no structured sleep/mood measures, incomplete symptom timing and witness reports, limited medical/medication history, no BMI/airway exam or labs). The diagnostician’s confidence is appropriately UNCERTAIN. With only one turn remaining I must make a definitive supervisory judgement rather than request iterative re-planning; however the case lacks the critical data needed to confirm OSA or exclude alternatives (insomnia, depression, medical causes, medication/substance effects).\n\n[DECISION] INCOMPLETE\n\n[FEEDBACK] Critical information required to make a supported diagnosis (list in order of priority):\n1. Objective sleep testing\n   - Overnight in-lab polysomnography (preferred) with AHI, oxygen desaturation indices, sleep architecture OR a validated home sleep apnea test plus overnight oximetry if PSG is not available.\n2. Quantify daytime sleepiness and objective sleepiness if needed\n   - Epworth Sleepiness Scale score.\n   - If daytime sleepiness is prominent and narcolepsy considered, Multiple Sleep Latency Test (MSLT) after PSG.\n3. Focused, structured sleep history\n   - Duration and temporal onset of fatigue/sleep problems.\n   - Frequency of difficulty initiating/maintaining sleep (≥3 nights/week?) and duration (≥3 months?) to assess chronic insomnia criteria.\n   - Specifics about unintentional daytime sleep episodes or napping.\n   - History of loud snoring, witnessed apneas/gasping/choking, nocturnal gasping, or morning headaches.\n4. Comprehensive medication/substance review\n   - Complete current medication list (prescription, OTC, supplements, herbals), including sedatives, opioids, stimulants.\n   - Detailed alcohol use (type, exact quantity per day, timing relative to bedtime) and tobacco use confirmation.\n5. Medical, psychiatric history and screening\n   - Past medical history (cardiovascular, pulmonary, endocrine (hypothyroidism), neurologic).\n   - Depression screen (PHQ-9) and brief psychiatric assessment for MDD as cause of fatigue.\n6. Anthropometrics and airway/ENT exam\n   - Measured BMI, neck circumference, nasal/upper airway exam for tonsillar hypertrophy, Mallampati score.\n7. Basic laboratory evaluation (to exclude medical mimics)\n   - TSH, CBC (for anemia), basic metabolic panel, as indicated.\n8. Sleep log/actigraphy\n   - At least 1–2 weeks of sleep diary and/or actigraphy to characterize sleep timing and continuity.\n\nObtaining the prioritized items above (especially PSG/home sleep test plus ESS and a structured sleep/medication history) will allow confirmation or refutation of OSA and differentiation from insomnia, depression, or substance-related sleep disturbance."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 2479
+        }
+      },
+      {
+        "doctor_qcc": [
+          {
+            "role": "system",
+            "content": "You are a licensed physician conducting a medical consultation.\nThe task objective is to identify the single most likely diagnosis based on the collected evidence.\nYour objective is to efficiently gather information guided by a diagnostic checklist while maintaining standard clinical interview practices.\nYou have access to a Medical Analyst who can retrieve specific test results upon request.\n\nYou must adhere to the following operational constraints:\n1. Efficiency: Gather sufficient information in as few turns as possible.\n2. Turn Limit: You strictly cannot exceed 16 total turns.\n3. No Repetition: Never ask a question or request a test that has already been covered.\n4. Atomic Inquiries: Each question must address a single, specific topic.\n5. MANDATORY Basic History: Before focusing on checklist-specific evidence, you MUST collect:\n   - Patient demographics (age, sex) if not already known\n   - Relevant past medical history and current medications\n   - Basic vital signs (at least request one set if available)\n   - Relevant social history (smoking, alcohol, occupation) when clinically appropriate\n6. Checklist Guidance: After collecting basic history, use the evidence checklist to guide diagnostic-specific inquiries. The checklist is your MINIMUM requirement.\n7. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] to remove it from active consideration. This helps focus the remaining investigation.\n\nIn every turn, follow a strict 'Reasoning-then-Acting' process:\n\n[THOUGHT] <Your Clinical Reasoning>\n   - Analyze the current clinical picture and identify critical information gaps.\n   - Reference which checklist items or basic history you are targeting.\n   - Consider if any candidate can be pruned based on current evidence.\n\nExecute exactly ONE of the following commands:\n   - [QUERY] followed by your atomic question to the patient.\n   - [TEST] followed by one specific examination or diagnostic test request.\n   - [PRUNE] <diagnosis_number> <reasoning> - Remove a candidate diagnosis from active consideration when evidence clearly rules it out. Example: [PRUNE] 2 Blood alcohol normal, ruling out intoxication.\n   - [FINISH] use this command ONLY when you have gathered sufficient information (both basic history AND checklist items) to form a conclusive diagnosis.\n\nOnce you issue the [FINISH] command, the consultation ends immediately.\n"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 5 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI am a 65-year-old male.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Need the patient's past medical history to identify comorbidities that affect sleep (e.g., hypertension, heart disease, COPD, diabetes, prior stroke, psychiatric diagnoses) and to guide differential between OSA, insomnia, and depression. This addresses the mandatory basic history requirement. No candidate can be pruned yet.\n\n[QUERY] What medical conditions have you been diagnosed with in the past (e.g., hypertension, heart disease, lung disease, diabetes, stroke, psychiatric conditions)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 6 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI have no significant past medical history.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still need current medications (including OTC/supplements) to identify agents that affect sleep or mood (e.g., sedatives, stimulants, antidepressants, beta-blockers). This satisfies the mandatory basic history requirement. No candidate can be pruned yet.\n\n[QUERY] What prescription medications, over-the-counter drugs, or supplements do you currently take (include dose/frequency if known)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 7 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI'm not sure — I don't recall any prescription medications, over-the-counter drugs, or supplements that I'm currently taking.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need at least one set of vital signs (mandatory basic history). This will help assess cardiovascular risk and indicators for OSA (e.g., hypertension), and allow calculation of BMI. Gathering vitals is distinct from social history and symptom questions, so I'll request that first.\n\n[TEST] Please provide one recent set of vital signs: blood pressure, heart rate, respiratory rate, temperature, oxygen saturation, and your height and weight if known."
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 8 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\n12. Temperature: 36.8°C (98°F).\n13. Blood Pressure: 130/85 mmHg.\n14. Heart Rate: 80 bpm.\n15. Respiratory Rate: 14 breaths/min.\nOxygen saturation: Normal\nHeight: Normal\nWeight: Normal\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I need the required social history items (smoking, alcohol, occupation). Per constraints, each must be asked separately and efficiently. No candidates can be pruned yet.\n\n[QUERY] Do you currently smoke tobacco or use vaping products (yes/no)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 9 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nYes — I smoke one pack of cigarettes per day.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I have smoking status but still must collect alcohol use and occupation per mandatory basic history before moving to checklist items. Alcohol can affect sleep and daytime sleepiness and is required now. No candidates can be pruned yet.\n\n[QUERY] Do you drink alcohol? If yes, how many standard drinks per week do you usually consume?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 10 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nYes — I consume five alcoholic beverages per day.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] I still must collect occupation as part of mandatory basic history. Knowing his work schedule (shift work) could contribute to sleep disturbance and affect differential between insomnia and OSA. Targeting basic history checklist. No candidate can yet be pruned.\n\n[QUERY] What is your current or most recent occupation, and do you work night or rotating shifts?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 11 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI'm not sure — I don't recall my current or most recent occupation, and I don't remember whether I work night or rotating shifts.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Need key symptom favoring OSA: loud snoring. This is a single, specific basic-checklist question. No candidates pruned yet.\n\n[QUERY] Do you snore loudly (loud enough that others complain or can hear you in another room)?"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 12 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI'm not sure — I don't recall being told that I snore loudly.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Key gap: whether he has excessive daytime sleepiness — this strongly favors OSA (or narcolepsy) over primary insomnia and helps prioritize further testing. Gathering this now addresses the differential evidence item #2. No candidates can be pruned yet.\n\n[QUERY] Do you experience excessive daytime sleepiness (for example, do you fall asleep unintentionally during the day or feel very drowsy despite trying to stay awake)? (yes/no)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 13 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nYes. I have persistent fatigue and poor sleep quality.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Critical gap: whether others have witnessed apneas/gasping/choking or he has morning headaches — this strongly supports OSA per the checklist differential evidence item #1. I will ask this single specific question next. No candidates pruned yet.\n\n[QUERY] Has anyone ever witnessed you stop breathing, gasp, choke, or wake you because you were gasping during sleep, or do you frequently wake with headaches in the morning? (yes/no)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 14 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI'm not sure — I don't recall anyone witnessing me stop breathing or gasping during sleep, and I don't recall frequently waking with headaches.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] Need to assess insomnia criteria per the checklist: frequency (≥3 nights/week) and duration (≥3 months) of difficulty initiating/maintaining sleep. This is a single atomic question. No candidates pruned yet.\n\n[QUERY] Do you have trouble falling asleep or staying asleep at least 3 nights per week for 3 months or longer? (yes/no)"
+          },
+          {
+            "role": "user",
+            "content": "Turns used: 15 / 16.\n### Active Candidates ###\n1. Obstructive sleep apnea (OSA) — most likely\n   - Gold Standard: Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).\n2. Chronic insomnia disorder\n   - Gold Standard: Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.\n3. Major depressive disorder (MDD) presenting with fatigue and sleep disturbance\n   - Gold Standard: Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.\n\n### Evidence Checklist ###\n=== Gold Standard Evidence ===\n1. (Obstructive sleep apnea (OSA) — most likely) Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness). [○ Pending]\n2. (Chronic insomnia disorder) Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment. [○ Pending]\n3. (Major depressive disorder (MDD) presenting with fatigue and sleep disturbance) Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity. [○ Pending]\n\n=== Differential Evidence ===\n1. History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA. [○ Pending]\n2. Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia. [○ Pending]\n3. Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA). [○ Pending]\n4. Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance. [○ Pending]\n\nLast reply:\nI'm not sure; I don't recall.\n\nDoctor:"
+          },
+          {
+            "role": "assistant",
+            "content": "[THOUGHT] We collected required basic history (65-year-old male, no significant past medical history, no meds, vitals stable, smokes 1 pack/day, drinks heavily ~5 drinks/day). Key diagnostic data: persistent daytime sleepiness/fatigue reported. He does not recall loud snoring, witnessed apneas, or morning headaches; insomnia frequency/duration and mood symptoms remain unclear. Of the three active candidates, age and male sex plus marked daytime sleepiness make obstructive sleep apnea (OSA) the single most likely diagnosis despite absence of reported snoring/witnessed apneas and a non-obese body habitus (normal height/weight). Chronic insomnia and major depression are possible but less supported by the current evidence. The gold‑standard test (overnight attended polysomnography) is still pending and would confirm OSA.\n\n[FINISH] Most likely diagnosis: Obstructive sleep apnea (OSA). Rationale: older male smoker with persistent excessive daytime sleepiness — clinical pattern most consistent with OSA; absence of reported snoring/witnessed apneas does not exclude OSA, and heavy alcohol use may worsen sleep-disordered breathing. Recommend overnight in-lab polysomnography (PSG) to confirm (AHI criteria) and, if confirmed, initiation of CPAP therapy and counseling on alcohol reduction and smoking cessation."
+          }
+        ],
+        "token_usage": {
+          "total_tokens": 8961
+        }
+      }
+    ],
+    "diagnostic_plan": {
+      "candidates": [
+        {
+          "diagnosis": "Obstructive sleep apnea (OSA) — most likely",
+          "gold_standard": "Overnight attended in-laboratory polysomnography (PSG) demonstrating an apnea–hypopnea index (AHI) ≥15 events/hour (or AHI ≥5 with symptoms such as daytime sleepiness).",
+          "is_pruned": false,
+          "prune_reason": ""
+        },
+        {
+          "diagnosis": "Chronic insomnia disorder",
+          "gold_standard": "Clinical diagnosis using DSM-5/ICSD-3 criteria confirmed by a consistent ≥3-month sleep diary and/or actigraphy showing difficulty initiating/maintaining sleep ≥3 nights/week with daytime impairment.",
+          "is_pruned": false,
+          "prune_reason": ""
+        },
+        {
+          "diagnosis": "Major depressive disorder (MDD) presenting with fatigue and sleep disturbance",
+          "gold_standard": "Structured clinical interview confirming DSM-5 criteria for MDD (e.g., SCID) demonstrating core symptoms (depressed mood or anhedonia plus requisite additional symptoms) for ≥2 weeks; supplemented by validated scale (PHQ-9) for severity.",
+          "is_pruned": false,
+          "prune_reason": ""
+        }
+      ],
+      "differential_evidence": [
+        {
+          "description": "History of loud snoring, witnessed apneas/gasping, nocturnal choking, or morning headaches — presence strongly favors OSA.",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Excessive daytime sleepiness quantified by Epworth Sleepiness Scale and objective sleepiness on MSLT (if indicated) — high scores/objective sleepiness favor OSA (or narcolepsy) over primary insomnia.",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Sleep diary/actigraphy pattern: prolonged sleep latency and frequent nocturnal awakenings with preserved sleep opportunity (suggests insomnia) versus fragmented sleep with apneic events (suggests OSA).",
+          "collected": false,
+          "result": ""
+        },
+        {
+          "description": "Mood screening (PHQ-9) and review of anhedonia, low mood, appetite/weight change, psychomotor change, suicidal ideation — positive findings favor MDD as primary cause of fatigue/sleep disturbance.",
+          "collected": false,
+          "result": ""
+        }
+      ]
+    }
+  },
+  "coverage": {
+    "information_coverage_rate": 0.2857142857142857,
+    "patient_coverage": 0.5,
+    "exam_coverage": 0.17391304347826086,
+    "ground_truth_patient_facts": [
+      "1. 65-year-old male.",
+      "2. The patient complains of persistent fatigue.",
+      "3. The patient reports poor sleep quality.",
+      "4. He mentions adopting a vegetarian diet in recent months to improve his energy levels but hasn't noticed significant benefits.",
+      "5. The patient reports losing weight without trying over the last month.",
+      "6. Jaundice",
+      "7. No significant past medical history.",
+      "8. Smokes 1 pack of cigarettes per day.",
+      "9. Consumes 5 alcoholic beverages per day.",
+      "10. The patient does not report any fever.",
+      "11. The patient does not report any abdominal pain.",
+      "12. The patient does not report any changes in bowel habits."
+    ],
+    "ground_truth_exam_facts": [
+      "1. AST: Elevated.",
+      "2. ALT: Elevated.",
+      "3. ALP: Significantly elevated.",
+      "4. Bilirubin: Elevated.",
+      "5. WBC: Normal.",
+      "6. Hemoglobin: Normal.",
+      "7. Platelets: Normal.",
+      "8. Urine Analysis - Appearance: Amber colored.",
+      "9. Urine Analysis - Bilirubin: Positive.",
+      "10. Ultrasound Abdomen - Enlarged, thin-walled gallbladder.",
+      "11. Ultrasound Abdomen - No evident stones.",
+      "12. Temperature: 36.8°C (98°F).",
+      "13. Blood Pressure: 130/85 mmHg.",
+      "14. Heart Rate: 80 bpm.",
+      "15. Respiratory Rate: 14 breaths/min.",
+      "16. Mental Status: Alert and oriented.",
+      "17. Icteric skin and sclera observed.",
+      "18. Abdominal Inspection: No visible distension.",
+      "19. Abdominal Auscultation: Normal bowel sounds.",
+      "20. Abdominal Percussion: Resonant throughout abdominal quadrants.",
+      "21. Abdominal Palpation: No palpable mass or tenderness.",
+      "22. No hepatomegaly or splenomegaly was noted.",
+      "23. Enlarged gallbladder without tenderness."
+    ],
+    "collected_patient_facts": [
+      "1. 65-year-old male.",
+      "2. The patient complains of persistent fatigue.",
+      "3. The patient reports poor sleep quality.",
+      "7. No significant past medical history.",
+      "8. Smokes 1 pack of cigarettes per day.",
+      "9. Consumes 5 alcoholic beverages per day."
+    ],
+    "collected_exam_facts": [
+      "12. Temperature: 36.8°C (98°F).",
+      "13. Blood Pressure: 130/85 mmHg.",
+      "14. Heart Rate: 80 bpm.",
+      "15. Respiratory Rate: 14 breaths/min."
+    ]
+  },
+  "judge_response": "ANALYSIS: The predicted diagnosis (obstructive sleep apnea) is entirely different from the reference (pancreatic adenocarcinoma). They involve different organ systems, etiologies, clinical features, diagnostic evaluations, and management, so the prediction does not match the reference.\n\nVERDICT: INCORRECT"
+}
