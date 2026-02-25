@@ -10,7 +10,7 @@ from eid.scenarios.roleplay import RoleplayScenario
 from eid.scenarios.react import ReactScenario
 from eid.scenarios.sc import SCScenario
 from eid.scenarios.refine import RefineScenario
-from eid.scenarios.qcc import QCCScenario
+from eid.scenarios.qcc import ProgressiveQCCScenario as QCCScenario
 
 __all__ = [
     "BaseScenario",

@@ -102,8 +102,12 @@ class PromptManager:
             "\n"
             "Response Protocols:\n"
             "1. Search the provided list for ALL facts that are relevant to the doctor's specific test request.Do not provide information that was not explicitly requested.\n"
-            "2. Return the relevant facts exactly as they appear in the source list (verbatim), including their indices.\n"
-            "3. If the requested test results are not found in the list, assume the finding is non-significant and return 'Normal'.\n"
+            "2. Return the relevant facts exactly as they appear in the source list (verbatim), "
+            "including their index numbers (e.g., '1. Temperature: 36.8°C').\n"
+            "The leading numbers are internal reference IDs — always include them as-is.\n"
+            "3. If the requested test or examination is NOT found in your data:\n"
+            "   - Return 'Not performed / Not available'\n"
+            "   - Do NOT return 'Normal' — absence of a test result does not mean the result is normal.\n"
         )
 
     # =========================================================================
@@ -425,8 +429,10 @@ class PromptManager:
         return (
             "You are a licensed physician conducting a medical consultation.\n"
             f"{self.task_description}\n"
-            "Your objective is to efficiently gather information guided by a diagnostic "
-            "checklist while maintaining standard clinical interview practices.\n"
+            # "Your objective is to efficiently gather information guided by a diagnostic "
+            # "checklist while maintaining standard clinical interview practices.\n"
+            "Your objective is to efficiently gather information to uncover the true pathology, \n"
+            "using the diagnostic checklist as a strategic reference while maintaining standard clinical interview practices\n"
             "You have access to a Medical Analyst who can retrieve specific test results upon request.\n"
             "\n"
             "You must adhere to the following operational constraints:\n"
@@ -434,21 +440,30 @@ class PromptManager:
             "2. Turn Limit: You strictly cannot exceed {max_turns} total turns.\n"
             "3. No Repetition: Never ask a question or request a test that has already been covered.\n"
             "4. Atomic Inquiries: Each question must address a single, specific topic.\n"
-            "5. MANDATORY Basic History: Before focusing on checklist-specific evidence, you MUST collect:\n"
-            "   - Patient demographics (age, sex) if not already known\n"
-            "   - Relevant past medical history and current medications\n"
-            "   - Basic vital signs (at least request one set if available)\n"
-            "   - Relevant social history (smoking, alcohol, occupation) when clinically appropriate\n"
-            "6. Checklist Guidance: After collecting basic history, use the evidence checklist to guide "
+            # "5. MANDATORY Basic History: Before focusing on checklist-specific evidence, you MUST collect:\n"
+            # "   - Patient demographics (age, sex) if not already known\n"
+            # "   - Relevant past medical history and current medications\n"
+            # "   - Basic vital signs (at least request one set if available)\n"
+            # "   - Relevant social history (smoking, alcohol, occupation) when clinically appropriate\n"
+            # "6. Checklist Guidance: After collecting basic history, use the evidence checklist to guide "
+            # "diagnostic-specific inquiries. The checklist is your MINIMUM requirement.\n"
+            # "7. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] "
+            # "to remove it from active consideration. This helps focus the remaining investigation.\n"
+            "5. Checklist Guidance: use the evidence checklist to guide "
             "diagnostic-specific inquiries. The checklist is your MINIMUM requirement.\n"
-            "7. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] "
+            "but Do not let the checklist restrict you from investigating findings that suggest diagnoses outside the initial candidates.\n"
+            # "prioritize unexpected clinical clues immediately if they appear.\n"
+            "6. Active Pruning: When evidence clearly rules out a candidate diagnosis, use [PRUNE] "
             "to remove it from active consideration. This helps focus the remaining investigation.\n"
+            "7. Eliminate the Candidates: If the objective data systematically rules out the pre-planned candidates, \n"
+            "you MUST stop trying to fit the evidence into those categories. \n"
+            "Instead, search your internal medical knowledge for the diagnosis that best fits the specific morphologyand systemic history  provided in the summary."
             "\n"
             "In every turn, follow a strict 'Reasoning-then-Acting' process:\n"
             "\n"
             "[THOUGHT] <Your Clinical Reasoning>\n"
             "   - Analyze the current clinical picture and identify critical information gaps.\n"
-            "   - Reference which checklist items or basic history you are targeting.\n"
+            "   - Reference which checklist items, basic history, or unexpected clinical clues you are targeting.\n"
             "   - Consider if any candidate can be pruned based on current evidence.\n"
             "\n"
             "Execute exactly ONE of the following commands:\n"
@@ -457,7 +472,7 @@ class PromptManager:
             "   - [PRUNE] <diagnosis_number> <reasoning> - Remove a candidate diagnosis from active "
             "consideration when evidence clearly rules it out. Example: [PRUNE] 2 Blood alcohol normal, ruling out intoxication.\n"
             "   - [FINISH] use this command ONLY when you have gathered sufficient information "
-            "(both basic history AND checklist items) to form a conclusive diagnosis.\n"
+            "(both basic information AND checklist items) to form a conclusive diagnosis.\n"
             "\n"
             "Once you issue the [FINISH] command, the consultation ends immediately.\n"
         )
@@ -655,5 +670,342 @@ class PromptManager:
             "Generate a revised diagnostic plan. You MUST include at least one NEW candidate "
             "diagnosis not in the original list. You may retain candidates that still fit "
             "the evidence.\n\n"
+            "Planner:"
+        )
+
+    # =========================================================================
+    # Progressive QCC Prompts
+    # =========================================================================
+
+    def get_progressive_planner_system_prompt(self) -> str:
+        """Get system prompt for Progressive Planner.
+        
+        Progressive Planner provides system-level directions (not specific diagnoses).
+        Its internal reasoning (suspected diagnosis) is NOT visible to Doctor.
+        """
+        return (
+            "You are a Progressive Diagnostic Planner.\n"
+            f"{self.task_description}\n"
+            "Your role is to guide the diagnostic investigation by providing "
+            "SYSTEM-LEVEL directions rather than specific diagnoses.\n\n"
+            
+            "### Your Responsibilities ###\n"
+            "1. Analyze collected evidence and suggest BODY SYSTEMS to investigate\n"
+            "2. Prioritize evidence types the Doctor should collect\n"
+            "3. Maintain internal reasoning about suspected diagnoses (for Verifier review only)\n"
+            "4. Adjust directions based on new evidence and feedback\n\n"
+            
+            "### Key Principles ###\n"
+            "- Give COARSE system-level guidance early (e.g., 'Cardiovascular', 'Respiratory')\n"
+            "- You may refine to more specific directions as confidence increases\n"
+            "- NEVER tell the Doctor specific diagnoses to look for\n"
+            "- Your internal suspicion should guide your directions but stay hidden from Doctor\n"
+            "- Consider the total available turns and adjust urgency accordingly\n\n"
+            
+            "### Vital Signs Assessment ###\n"
+            "At every planning intervention, check whether vital signs relevant to the chief complaint "
+            "have been obtained. If NOT, evaluate whether they are clinically indicated:\n"
+            "- Fever / infection / postpartum / post-surgical presentations → Temperature is ESSENTIAL\n"
+            "- Syncope / loss of consciousness / dizziness → Orthostatic vitals (supine + standing BP/HR) are ESSENTIAL\n"
+            "- Cardiovascular / respiratory / shock presentations → Full vitals (BP, HR, RR, SpO2, Temp) are ESSENTIAL\n"
+            "- Musculoskeletal / dermatologic / isolated pain → Vitals are LOW priority (skip unless red flags)\n"
+            "If essential vitals are missing AND have NOT yet been requested, list "
+            "'Obtain [specific vitals]' as the FIRST item in [SYSTEM_DIRECTIONS] with Priority: HIGH.\n"
+            "However, if a vital sign or test was already requested and returned "
+            "'Not performed / Not available', treat it as UNAVAILABLE in this clinical setting. "
+            "Do NOT re-request it. Move on to the next most productive line of inquiry.\n\n"
+            
+            "### Output Format ###\n"
+            "[SYSTEM_DIRECTIONS]\n"
+            "1. {System} (Priority: HIGH/MEDIUM/LOW) - {brief basis}\n"
+            "...\n\n"
+            "[PRIORITY_EVIDENCE]\n"
+            "1. {Evidence type} - {why this is important now}\n"
+            "...\n\n"
+            "[INTERNAL_REASONING]\n"
+            "Internal suspicion: {specific disease(s) you suspect}\n"
+            "Basis: {your reasoning based on evidence}\n"
+            "Excluded/deprioritized: {directions you ruled out and why}\n\n"
+            
+            "NOTE: [INTERNAL_REASONING] is visible ONLY to the Verifier, not to the Doctor."
+        )
+
+    def get_progressive_planner_instruction(
+        self,
+        dialogue_history: str,
+        current_turn: int,
+        max_turns: int,
+        previous_state: "PlannerState | None" = None,
+        significant_finding: str = "",
+    ) -> str:
+        """Get instruction for Progressive Planner intervention.
+
+        Args:
+            dialogue_history: Full dialogue history
+            current_turn: Current turn number
+            max_turns: Maximum turns allowed
+            previous_state: Previous planner state (for updates)
+            significant_finding: Doctor's significant finding if any
+
+        Returns:
+            Formatted instruction string
+        """
+        turns_remaining = max_turns - current_turn
+        
+        context = f"### Current Status ###\nTurn: {current_turn}/{max_turns} ({turns_remaining} remaining)\n\n"
+        
+        if significant_finding:
+            context += f"### SIGNIFICANT FINDING from Doctor ###\n{significant_finding}\n\n"
+        
+        context += f"### Dialogue History ###\n{dialogue_history}\n\n"
+        
+        if previous_state:
+            context += f"### Your Previous Planning ###\n{previous_state.get_directions_for_doctor()}\n\n"
+            context += (
+                "Update your planning based on new evidence. Consider:\n"
+                "- Should any directions be deprioritized?\n"
+                "- Are there new systems to investigate?\n"
+                "- What evidence is now most critical?\n\n"
+            )
+        else:
+            context += (
+                "This is your first planning intervention. Based on the evidence collected so far:\n"
+                "- Identify key body systems that need investigation\n"
+                "- Suggest priority evidence types to collect\n"
+                "- Form initial internal hypothesis (keep hidden from Doctor)\n\n"
+            )
+        
+        return context + "Planner:"
+
+    def get_progressive_doctor_system_prompt(self) -> str:
+        """Get system prompt for Doctor in Progressive QCC.
+        
+        Doctor maintains autonomy while referencing Planner's system directions.
+        Doctor can mark [SIGNIFICANT_FINDING] to trigger extra Planner intervention.
+        """
+        return (
+            "You are a licensed physician conducting a medical consultation.\n"
+            f"{self.task_description}\n"
+            "Your objective is to efficiently gather information and request necessary "
+            "clinical examinations or laboratory tests to enable a subsequent diagnostic analysis.\n"
+            "You have access to a Medical Analyst who can retrieve specific test results upon request.\n\n"
+            
+            "A Diagnostic Planner may periodically provide SYSTEM DIRECTIONS to guide your "
+            "investigation. Treat these as advisory guidance, not strict orders. "
+            "You should use your own clinical judgment and may deviate if you have good reason.\n\n"
+            
+            "### Operational Constraints ###\n"
+            "1. Efficiency: Gather sufficient information in as few turns as possible.\n"
+            "2. Turn Limit: You strictly cannot exceed {max_turns} total turns.\n"
+            "3. No Repetition: Never ask a question or request a test that has already been covered.\n"
+            "4. Atomic Inquiries: Each question must address a single, specific topic.\n\n"
+            
+            "### Significant Findings ###\n"
+            "When you discover an important, unexpected, or pivotal finding, mark it as:\n"
+            "[SIGNIFICANT_FINDING] {{description of the finding}}\n"
+            "This will trigger the Planner to update their guidance.\n\n"
+            
+            "### Output Format ###\n"
+            "In every turn, follow a strict 'Reasoning-then-Acting' process:\n\n"
+            "[THOUGHT] <Your Clinical Reasoning>\n"
+            "   - Analyze the current clinical picture and identify critical information gaps.\n\n"
+            "Execute exactly ONE of the following commands:\n"
+            "   - [QUERY] followed by your atomic question to the patient.\n"
+            "   - [TEST] followed by one specific examination or diagnostic test request.\n"
+            "   - [FINISH] use this command ONLY when you believe you have gathered all "
+            "necessary information. You don't need to make a diagnosis.\n\n"
+            
+            "Optionally include [SIGNIFICANT_FINDING] before your action "
+            "if you found something important.\n\n"
+            
+            "Once you issue the [FINISH] command, the consultation ends immediately."
+        )
+
+    def get_progressive_doctor_turn_instruction(
+        self,
+        current_turns: int,
+        max_turns: int,
+        last_reply: str,
+        system_directions: str = "",
+    ) -> str:
+        """Get turn instruction for Doctor in Progressive QCC.
+
+        Args:
+            current_turns: Current turn count
+            max_turns: Maximum turns allowed
+            last_reply: Last response from patient/reporter
+            system_directions: Current system directions from Planner
+
+        Returns:
+            Formatted instruction string
+        """
+        turns_left = max_turns - current_turns
+        
+        instruction = f"### Turn {current_turns + 1}/{max_turns} ({turns_left} turns remaining) ###\n\n"
+        
+        if last_reply:
+            instruction += f"### Last Response ###\n{last_reply}\n\n"
+        
+        if system_directions:
+            instruction += f"### Planner Guidance ###\n{system_directions}\n\n"
+            instruction += (
+                "Consider the Planner's guidance to inform your clinical reasoning, "
+                "but use your own judgment on what action to take next.\n"
+                "If a previous test or exam returned 'Not performed / Not available', "
+                "that test is UNAVAILABLE in this setting — do NOT re-request it.\n\n"
+            )
+        
+        # Add pacing guidance based on turn budget
+        if turns_left <= max_turns // 2:
+            instruction += (
+                "### Pacing Reminder ###\n"
+                f"You have {turns_left} turns remaining. "
+                "If you have not yet performed physical examination or ordered key tests, "
+                "prioritize [TEST] actions now to maximize diagnostic yield "
+                "before turns run out.\n\n"
+            )
+        
+        instruction += (
+            "Provide your [THOUGHT] reasoning, then execute exactly ONE action: "
+            "[QUERY], [TEST], or [FINISH].\n"
+            "If you notice something significant, include [SIGNIFICANT_FINDING] before your action.\n\n"
+            "Doctor:"
+        )
+        
+        return instruction
+
+    def get_progressive_verifier_system_prompt(self) -> str:
+        """Get system prompt for Verifier in Progressive QCC.
+        
+        Extended verifier responsibilities:
+        1. Original REFINE duties: check evidence completeness
+        2. NEW: check Planner's planning quality and provide feedback
+        """
+        return (
+            "You are a Clinical Diagnostic Supervisor with DUAL responsibilities.\n"
+            f"{self.task_description}\n"
+            "Your objective is to evaluate sufficiency of the diagnosis and quality of the "
+            "planning direction, based strictly on the available evidence.\n\n"
+            
+            "### Responsibility 1: Evidence Assessment ###\n"
+            "- Evaluate if sufficient evidence has been collected\n"
+            "- Check if key differential diagnoses have been explored\n"
+            "- Determine if the diagnosis is well-supported by the evidence\n\n"
+            
+            "### Responsibility 2: Planner Assessment ###\n"
+            "- Review the Planner's system directions and internal reasoning\n"
+            "- Check if the planning direction is appropriate given the evidence\n"
+            "- Identify if Planner may have missed important directions\n"
+            "- Detect if Planner's internal suspicion is leading to tunnel vision\n\n"
+            
+            "### Turn Limit Policy ###\n"
+            "- If INCOMPLETE: only valid when remaining turns > 1\n"
+            "- If the maximum turn limit has been reached, you MUST issue PASS "
+            "based on the best possible interpretation of existing data.\n\n"
+            
+            "### Output Format ###\n"
+            "[THOUGHT] <Your Analysis>\n"
+            "   - Identify if any critical symptoms or tests are missing.\n"
+            "   - Assess Planner's direction quality.\n\n"
+            
+            "[DECISION] PASS / INCOMPLETE\n\n"
+            
+            "[EVIDENCE_ASSESSMENT]\n"
+            "- Key evidence collected: {list}\n"
+            "- Missing critical evidence: {list or 'None'}\n"
+            "- Diagnosis support level: STRONG / MODERATE / WEAK\n\n"
+            
+            "[PLANNER_ASSESSMENT]\n"
+            "- Planning direction: Reasonable / Has errors\n"
+            "- Error details: {specific issues if any, or 'None'}\n"
+            "- Possibly missed: {body systems or evidence types to consider}\n\n"
+            
+            "[DOCTOR_FEEDBACK]\n"
+            "{Feedback for Doctor on evidence collection}\n"
+            "   - If PASS: Leave this section empty.\n"
+            "   - If INCOMPLETE: Specify exactly what critical information is required.\n\n"
+            
+            "[PLANNER_FEEDBACK]\n"
+            "{Include ONLY if planning errors detected, otherwise omit this section}\n"
+            "- Error reason: {specific issue}\n"
+            "- Suggested adjustment: {what Planner should consider}\n"
+        )
+
+    def get_progressive_verifier_instruction(
+        self,
+        current_turns: int,
+        max_turns: int,
+        summary: str,
+        diagnosis: str,
+        confidence: str,
+        planner_state: str = "",
+    ) -> str:
+        """Get instruction for Progressive Verifier.
+
+        Args:
+            current_turns: Current turn count
+            max_turns: Maximum turns allowed
+            summary: Case summary from summarizer
+            diagnosis: Proposed diagnosis from diagnostician
+            confidence: Confidence level (CONFIDENT/UNCERTAIN)
+            planner_state: Full planner state including internal reasoning
+
+        Returns:
+            Formatted instruction string
+        """
+        turns_remaining = max_turns - current_turns
+        
+        instruction = (
+            f"### Verification Request ###\n"
+            f"Turn: {current_turns}/{max_turns} ({turns_remaining} remaining)\n\n"
+            f"### Case Summary ###\n{summary}\n\n"
+            f"### Proposed Diagnosis ###\n{diagnosis}\n"
+            f"Confidence: {confidence}\n\n"
+        )
+        
+        if planner_state:
+            instruction += f"### Planner's Full State (including internal reasoning) ###\n{planner_state}\n\n"
+        
+        instruction += (
+            "Evaluate BOTH the evidence collection AND the Planner's planning.\n"
+            "Provide feedback to Doctor and/or Planner as needed.\n\n"
+            "Verifier:"
+        )
+        
+        return instruction
+
+    def get_planner_feedback_instruction(
+        self,
+        dialogue_history: str,
+        current_turn: int,
+        max_turns: int,
+        previous_state: "PlannerState",
+        verifier_feedback: str,
+    ) -> str:
+        """Get instruction for Planner when receiving Verifier feedback.
+
+        Args:
+            dialogue_history: Full dialogue history
+            current_turn: Current turn number
+            max_turns: Maximum turns allowed
+            previous_state: Current planner state
+            verifier_feedback: Feedback from Verifier about planning errors
+
+        Returns:
+            Formatted instruction string
+        """
+        turns_remaining = max_turns - current_turn
+        
+        return (
+            "### PLANNER FEEDBACK RECEIVED ###\n"
+            "The Verifier has identified issues with your planning.\n\n"
+            f"### Verifier Feedback ###\n{verifier_feedback}\n\n"
+            f"### Current Status ###\nTurn: {current_turn}/{max_turns} ({turns_remaining} remaining)\n\n"
+            f"### Your Previous Planning ###\n{previous_state.get_directions_for_doctor()}\n\n"
+            f"### Dialogue History ###\n{dialogue_history}\n\n"
+            "Based on this feedback, update your planning:\n"
+            "- Address the identified errors\n"
+            "- Consider the suggested adjustments\n"
+            "- Re-evaluate your internal suspicions\n\n"
             "Planner:"
         )

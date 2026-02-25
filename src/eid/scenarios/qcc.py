@@ -1,7 +1,9 @@
-"""QCC (Quality Controlled Consultation) scenario.
+"""Progressive QCC (Quality Controlled Consultation) scenario.
 
-Extends REFINE with a Planner agent that generates candidate diagnoses
-and an evidence checklist to guide systematic evidence collection.
+A progressive planning approach where a Planner agent provides system-level
+diagnostic directions (not specific diagnoses) to guide the Doctor's
+investigation. Extends REFINE with periodic Planner intervention, significant
+finding triggers, and extended verification with Planner feedback.
 """
 
 from __future__ import annotations
@@ -18,105 +20,121 @@ if TYPE_CHECKING:
     from eid.config import ModelConfig
     from eid.agents.chat_agent import AgentWrapper
 
+# =============================================================================
+# Progressive QCC Data Structures
+# =============================================================================
 
 @dataclass
-class CandidateDiagnosis:
-    """A candidate diagnosis with its gold standard evidence."""
+class SystemDirection:
+    """A system-level diagnostic direction from Planner.
     
-    diagnosis: str
-    gold_standard: str
-    is_pruned: bool = False
-    prune_reason: str = ""
-
-
-@dataclass
-class EvidenceItem:
-    """An evidence item in the checklist."""
+    Unlike CandidateDiagnosis which specifies exact diagnoses,
+    this represents a body system or organ system to investigate.
+    """
     
-    description: str
-    collected: bool = False
-    result: str = ""
-    associated_candidate: int | None = None  # Index of associated candidate, None for differential
+    system: str  # e.g., "Cardiovascular", "Respiratory", "Neurological"
+    priority: str  # "HIGH", "MEDIUM", "LOW"
+    basis: str  # Why this direction is suggested
+    is_deprioritized: bool = False
+    deprioritize_reason: str = ""
 
 
 @dataclass
-class DiagnosticPlan:
-    """Container for the diagnostic plan from Planner."""
+class PriorityEvidence:
+    """An evidence type that Planner suggests Doctor should collect."""
     
-    candidates: list[CandidateDiagnosis] = field(default_factory=list)
-    differential_evidence: list[EvidenceItem] = field(default_factory=list)
+    evidence_type: str  # e.g., "cardiac enzymes", "chest imaging"
+    reason: str  # Why this evidence is important
+    associated_system: str = ""  # Which system direction this relates to
+
+
+@dataclass
+class PlannerState:
+    """Container for Progressive Planner's state.
     
-    def get_active_candidates(self) -> list[tuple[int, CandidateDiagnosis]]:
-        """Return list of (index, candidate) for non-pruned candidates."""
-        return [(i, c) for i, c in enumerate(self.candidates) if not c.is_pruned]
+    Key differences from DiagnosticPlan:
+    - system_directions: Coarse system-level directions (not specific diagnoses)
+    - priority_evidence: Evidence types to collect (not a checklist to complete)
+    - internal_reasoning: Planner's private reasoning (visible only to Verifier)
+    - planning_history: Record of all planning updates for context
+    """
     
-    def get_all_candidates_str(self) -> str:
-        """Format all candidates with pruned status."""
-        lines = []
-        for i, c in enumerate(self.candidates):
-            status = " [PRUNED]" if c.is_pruned else ""
-            lines.append(f"{i+1}. {c.diagnosis}{status}")
-            lines.append(f"   - Gold Standard: {c.gold_standard}")
-            if c.is_pruned:
-                lines.append(f"   - Prune Reason: {c.prune_reason}")
-        return "\n".join(lines)
+    system_directions: list[SystemDirection] = field(default_factory=list)
+    priority_evidence: list[PriorityEvidence] = field(default_factory=list)
+    internal_reasoning: str = ""  # Planner's suspected diagnosis - NOT visible to Doctor
+    internal_excluded: str = ""  # What Planner has deprioritized and why
+    planning_history: list[dict] = field(default_factory=list)  # [{turn: int, content: str}]
     
-    def get_active_candidates_str(self) -> str:
-        """Format active (non-pruned) candidates."""
-        lines = []
-        for i, c in self.get_active_candidates():
-            lines.append(f"{i+1}. {c.diagnosis}")
-            lines.append(f"   - Gold Standard: {c.gold_standard}")
-        return "\n".join(lines)
+    def get_active_directions(self) -> list[tuple[int, SystemDirection]]:
+        """Return list of (index, direction) for non-deprioritized directions."""
+        return [(i, d) for i, d in enumerate(self.system_directions) if not d.is_deprioritized]
     
-    def get_checklist_str(self) -> str:
-        """Format evidence checklist with completion status."""
-        lines = []
-        
-        # Gold standard evidence for active candidates
-        lines.append("=== Gold Standard Evidence ===")
-        for i, c in enumerate(self.candidates):
-            if c.is_pruned:
-                status = "[PRUNED - skipped]"
-            elif c.gold_standard in [e.description for e in self.differential_evidence if e.collected]:
-                status = "[✓ Collected]"
+    def get_directions_for_doctor(self) -> str:
+        """Format system directions visible to Doctor."""
+        lines = ["[SYSTEM_DIRECTIONS]"]
+        for i, d in enumerate(self.system_directions):
+            if d.is_deprioritized:
+                status = " [DEPRIORITIZED]"
+                lines.append(f"{i+1}. {d.system} (Priority: {d.priority}){status}")
+                lines.append(f"   - Reason: {d.deprioritize_reason}")
             else:
-                # Check if explicitly collected
-                status = "[○ Pending]"
-            lines.append(f"{i+1}. ({c.diagnosis}) {c.gold_standard} {status}")
+                lines.append(f"{i+1}. {d.system} (Priority: {d.priority})")
+                lines.append(f"   - Basis: {d.basis}")
         
-        # Differential evidence
-        lines.append("\n=== Differential Evidence ===")
-        for i, e in enumerate(self.differential_evidence):
-            if e.associated_candidate is not None and self.candidates[e.associated_candidate].is_pruned:
-                status = "[PRUNED - skipped]"
-            elif e.collected:
-                status = f"[✓ {e.result[:50]}...]" if len(e.result) > 50 else f"[✓ {e.result}]"
-            else:
-                status = "[○ Pending]"
-            lines.append(f"{i+1}. {e.description} {status}")
+        lines.append("")
+        lines.append("[PRIORITY_EVIDENCE]")
+        for i, e in enumerate(self.priority_evidence):
+            lines.append(f"{i+1}. {e.evidence_type}")
+            lines.append(f"   - Why: {e.reason}")
         
         return "\n".join(lines)
     
-    def prune_candidate(self, index: int, reason: str) -> bool:
-        """Mark a candidate as pruned."""
-        if 0 <= index < len(self.candidates) and not self.candidates[index].is_pruned:
-            self.candidates[index].is_pruned = True
-            self.candidates[index].prune_reason = reason
+    def get_full_state_for_verifier(self) -> str:
+        """Format full state including internal reasoning for Verifier."""
+        lines = [self.get_directions_for_doctor()]
+        lines.append("")
+        lines.append("[INTERNAL_REASONING]")
+        lines.append(f"Internal suspicion: {self.internal_reasoning}")
+        lines.append(f"Excluded/deprioritized: {self.internal_excluded}")
+        return "\n".join(lines)
+    
+    def deprioritize_direction(self, index: int, reason: str) -> bool:
+        """Mark a direction as deprioritized (done by Planner, not Doctor)."""
+        if 0 <= index < len(self.system_directions) and not self.system_directions[index].is_deprioritized:
+            self.system_directions[index].is_deprioritized = True
+            self.system_directions[index].deprioritize_reason = reason
             return True
         return False
+    
+    def add_planning_record(self, turn: int, content: str) -> None:
+        """Record a planning update for history tracking."""
+        self.planning_history.append({"turn": turn, "content": content})
 
 
-class QCCScenario(BaseScenario):
-    """QCC (Quality Controlled Consultation) evaluation scenario.
+# =============================================================================
+# Progressive QCC Scenario
+# =============================================================================
 
-    Extends REFINE with:
-    - Planner agent: generates candidate diagnoses and evidence checklist
-    - Guided evidence collection: Doctor follows checklist
-    - Dynamic pruning: Doctor can prune candidates during collection
-    - Re-planning: If candidates don't fit evidence, generate new plan
+class ProgressiveQCCScenario(BaseScenario):
+    """Progressive QCC (Quality Controlled Consultation) evaluation scenario.
+
+    A progressive planning approach with:
+    - Planner agent: provides system-level directions (not specific diagnoses)
+    - Periodic intervention: Planner intervenes every ~3 turns
+    - Significant finding triggers: Doctor can mark [SIGNIFICANT_FINDING] to trigger extra planning
+    - Extended verification: Verifier checks both evidence and planning quality
+    - Independent diagnosis: Diagnostician generates final diagnosis same as REFINE
+    
+    Key differences from original QCC:
+    - Planner does NOT generate candidate diagnoses visible to Doctor
+    - Doctor does NOT prune candidates (Planner handles direction changes)
+    - Planner intervenes multiple times, not just once after initial turns
+    - Verifier provides feedback to both Doctor AND Planner
     """
-
+    
+    # Planner intervention schedule: every N turns
+    PLANNER_INTERVAL = 3
+    
     def __init__(
         self,
         dataset_name: str,
@@ -128,9 +146,9 @@ class QCCScenario(BaseScenario):
         diagnostician_config: "ModelConfig | None" = None,
         verifier_config: "ModelConfig | None" = None,
         planner_config: "ModelConfig | None" = None,
-        initial_turns: int = 5,
+        free_exploration_turns: int = 3,
     ) -> None:
-        """Initialize QCC scenario.
+        """Initialize Progressive QCC scenario.
 
         Args:
             dataset_name: Name of the dataset
@@ -138,11 +156,11 @@ class QCCScenario(BaseScenario):
             patient_config: Model configuration for patient simulator
             reporter_config: Model configuration for reporter simulator
             max_turns: Maximum interaction turns
-            summarizer_config: Model configuration for summarizer role (default: doctor_config)
-            diagnostician_config: Model configuration for diagnostician role (default: doctor_config)
-            verifier_config: Model configuration for verifier role (default: doctor_config)
-            planner_config: Model configuration for planner role (default: doctor_config)
-            initial_turns: Number of initial turns before planning (default: 2)
+            summarizer_config: Model configuration for summarizer role
+            diagnostician_config: Model configuration for diagnostician role
+            verifier_config: Model configuration for verifier role
+            planner_config: Model configuration for planner role
+            free_exploration_turns: Number of free exploration turns before first planning
         """
         super().__init__(dataset_name)
         self.doctor_config = doctor_config
@@ -153,123 +171,172 @@ class QCCScenario(BaseScenario):
         self.diagnostician_config = diagnostician_config or doctor_config
         self.verifier_config = verifier_config or doctor_config
         self.planner_config = planner_config or doctor_config
-        self.initial_turns = initial_turns
+        self.free_exploration_turns = free_exploration_turns
         self.prompts = PromptManager(dataset_name)
+
+    # =========================================================================
+    # Helper Methods
+    # =========================================================================
+    
+    def _should_planner_intervene(self, current_turn: int, has_significant_finding: bool) -> bool:
+        """Determine if Planner should intervene at this turn.
+        
+        Planner intervenes:
+        - Every PLANNER_INTERVAL turns (3, 6, 9, 12, 15...)
+        - When Doctor marks [SIGNIFICANT_FINDING]
+        - When Verifier provides feedback (handled separately)
+        """
+        if current_turn < self.free_exploration_turns:
+            return False
+        
+        if has_significant_finding:
+            return True
+        
+        if current_turn > 0 and current_turn % self.PLANNER_INTERVAL == 0:
+            return True
+        
+        return False
 
     # =========================================================================
     # Parsing Methods
     # =========================================================================
 
     @staticmethod
-    def parse_planner_response(text: str) -> DiagnosticPlan:
-        """Parse planner response into DiagnosticPlan.
-
-        Args:
-            text: Planner agent response
-
-        Returns:
-            DiagnosticPlan with candidates and differential evidence
-        """
-        plan = DiagnosticPlan()
+    def parse_progressive_planner_response(text: str) -> PlannerState:
+        """Parse Progressive Planner response into PlannerState.
         
-        # Extract candidates section
-        candidates_match = re.search(
-            r"\[CANDIDATES\]\s*([\s\S]*?)(?=\[DIFFERENTIAL_EVIDENCE\]|\Z)",
+        Expected format:
+        [SYSTEM_DIRECTIONS]
+        1. {System} (Priority: HIGH/MEDIUM/LOW) - {basis}
+        ...
+        
+        [PRIORITY_EVIDENCE]
+        1. {Evidence type} - {why important}
+        ...
+        
+        [INTERNAL_REASONING]
+        Internal suspicion: {specific disease Planner suspects}
+        Excluded/deprioritized: {directions and reasons}
+        """
+        state = PlannerState()
+        
+        # Extract system directions section
+        directions_match = re.search(
+            r"\[SYSTEM_DIRECTIONS\]\s*([\s\S]*?)(?=\[PRIORITY_EVIDENCE\]|\[INTERNAL_REASONING\]|\Z)",
             text
         )
-        if candidates_match:
-            candidates_text = candidates_match.group(1)
-            # Parse each candidate: "1. Diagnosis\n   - Gold Standard: ..."
-            candidate_pattern = re.compile(
-                r"(\d+)\.\s*([^\n]+)\n\s*-\s*Gold Standard:\s*([^\n]+)",
+        if directions_match:
+            directions_text = directions_match.group(1)
+            direction_pattern = re.compile(
+                r"(\d+)\.\s*([^(\\n]+)\s*\(Priority:\s*(HIGH|MEDIUM|LOW)\)\s*[-:]?\s*(.*)",
                 re.IGNORECASE
             )
-            for match in candidate_pattern.finditer(candidates_text):
-                plan.candidates.append(CandidateDiagnosis(
-                    diagnosis=match.group(2).strip(),
-                    gold_standard=match.group(3).strip(),
+            for match in direction_pattern.finditer(directions_text):
+                state.system_directions.append(SystemDirection(
+                    system=match.group(2).strip(),
+                    priority=match.group(3).upper().strip(),
+                    basis=match.group(4).strip(),
                 ))
         
-        # Extract differential evidence section
-        diff_match = re.search(
-            r"\[DIFFERENTIAL_EVIDENCE\]\s*([\s\S]*)",
+        # Extract priority evidence section
+        evidence_match = re.search(
+            r"\[PRIORITY_EVIDENCE\]\s*([\s\S]*?)(?=\[INTERNAL_REASONING\]|\Z)",
             text
         )
-        if diff_match:
-            diff_text = diff_match.group(1)
-            # Parse each evidence item: "1. Evidence description"
-            evidence_pattern = re.compile(r"(\d+)\.\s*([^\n]+)")
-            for match in evidence_pattern.finditer(diff_text):
-                plan.differential_evidence.append(EvidenceItem(
-                    description=match.group(2).strip(),
+        if evidence_match:
+            evidence_text = evidence_match.group(1)
+            evidence_pattern = re.compile(r"(\d+)\.\s*([^-\\n]+)\s*[-:]?\s*(.*)")
+            for match in evidence_pattern.finditer(evidence_text):
+                state.priority_evidence.append(PriorityEvidence(
+                    evidence_type=match.group(2).strip(),
+                    reason=match.group(3).strip(),
                 ))
         
-        return plan
+        # Extract internal reasoning section
+        internal_match = re.search(
+            r"\[INTERNAL_REASONING\]\s*([\s\S]*)",
+            text
+        )
+        if internal_match:
+            internal_text = internal_match.group(1)
+            suspicion_match = re.search(r"Internal suspicion:\s*(.+?)(?=Basis:|Excluded|$)", internal_text, re.IGNORECASE | re.DOTALL)
+            if suspicion_match:
+                state.internal_reasoning = suspicion_match.group(1).strip()
+            excluded_match = re.search(r"Excluded[^:]*:\s*(.+)", internal_text, re.IGNORECASE | re.DOTALL)
+            if excluded_match:
+                state.internal_excluded = excluded_match.group(1).strip()
+        
+        return state
 
     @staticmethod
-    def extract_prune_action(text: str) -> tuple[int | None, str]:
-        """Extract prune action from doctor response.
+    def extract_significant_finding(text: str) -> tuple[bool, str]:
+        """Extract [SIGNIFICANT_FINDING] marker from Doctor response."""
+        finding_match = re.search(
+            r"\[SIGNIFICANT_FINDING\]\s*(.+?)(?=\[|$)",
+            text,
+            re.IGNORECASE | re.DOTALL
+        )
+        if finding_match:
+            return True, finding_match.group(1).strip()
+        return False, ""
 
-        Args:
-            text: Doctor response text
-
+    @staticmethod
+    def extract_verifier_decision_progressive(text: str) -> tuple[str, str, str]:
+        """Extract decision and feedback from Progressive QCC verifier response.
+        
         Returns:
-            Tuple of (candidate_index or None, prune_reason)
+            Tuple of (decision, doctor_feedback, planner_feedback)
         """
-        prune_match = re.search(r"\[PRUNE\]\s*(\d+)\s*([\s\S]*?)(?=\[|$)", text)
-        if prune_match:
-            try:
-                index = int(prune_match.group(1)) - 1  # Convert to 0-indexed
-                reason = prune_match.group(2).strip()
-                return index, reason
-            except ValueError:
-                pass
-        return None, ""
+        decision_match = re.search(r"\[DECISION\]\s*(\w+)", text)
+        doctor_fb_match = re.search(
+            r"\[DOCTOR_FEEDBACK\]\s*([\s\S]*?)(?=\[PLANNER_FEEDBACK\]|$)",
+            text
+        )
+        planner_fb_match = re.search(
+            r"\[PLANNER_FEEDBACK\]\s*([\s\S]*)",
+            text
+        )
+
+        decision = decision_match.group(1).upper() if decision_match else "PASS"
+        if decision not in ("PASS", "INCOMPLETE"):
+            decision = "PASS"
+        
+        doctor_feedback = doctor_fb_match.group(1).strip() if doctor_fb_match else ""
+        planner_feedback = planner_fb_match.group(1).strip() if planner_fb_match else ""
+
+        return decision, doctor_feedback, planner_feedback
+
+    # =========================================================================
+    # Confidence Extraction
+    # =========================================================================
 
     @staticmethod
     def extract_confidence(text: str) -> str:
         """Extract confidence level from diagnostician response.
 
-        Args:
-            text: Diagnostician response text
-
         Returns:
-            Confidence level: 'CONFIDENT' or 'UNCERTAIN'
+            'CONFIDENT' or 'UNCERTAIN'
         """
-        confidence_match = re.search(r"\[CONFIDENCE\]\s*(\w+)", text)
-        if confidence_match:
-            confidence = confidence_match.group(1).upper()
-            if confidence in ("CONFIDENT", "UNCERTAIN"):
-                return confidence
-        return "UNCERTAIN"  # Default to uncertain
-
-    @staticmethod
-    def extract_verifier_decision_qcc(text: str) -> tuple[str, str]:
-        """Extract decision and feedback from QCC verifier response.
-
-        Args:
-            text: Verifier agent response
-
-        Returns:
-            Tuple of (decision, feedback)
-            decision is one of: 'PASS', 'INCOMPLETE', 'REPLAN'
-        """
-        decision_match = re.search(r"\[DECISION\]\s*(\w+)", text)
-        feedback_match = re.search(r"\[FEEDBACK\]\s*([\s\S]*)", text)
-
-        decision = decision_match.group(1).upper() if decision_match else "PASS"
-        if decision not in ("PASS", "INCOMPLETE", "REPLAN"):
-            decision = "PASS"
-        feedback = feedback_match.group(1).strip() if feedback_match else ""
-
-        return decision, feedback
+        match = re.search(r"\[CONFIDENCE\]\s*(\w+)", text, re.IGNORECASE)
+        if match:
+            level = match.group(1).upper()
+            if level in ("CONFIDENT", "UNCERTAIN"):
+                return level
+        return "UNCERTAIN"
 
     # =========================================================================
-    # Main Run Method
+    # Core Run Method
     # =========================================================================
 
     def run(self, case_input: CaseInput) -> ScenarioResult:
-        """Execute QCC scenario on a single case.
+        """Execute Progressive QCC scenario on a single case.
+
+        Flow:
+        1. Free exploration phase (first N turns with no Planner)
+        2. Planner intervenes periodically, on [SIGNIFICANT_FINDING],
+           or on Verifier feedback
+        3. Doctor acts with Planner's system directions as guidance
+        4. Verification pipeline at [FINISH] or turn limit
 
         Args:
             case_input: Input data for the case
@@ -281,10 +348,10 @@ class QCCScenario(BaseScenario):
         patient_facts_str = "\n".join(case_input.patient_facts)
         exam_facts_str = "\n".join(case_input.exam_facts)
 
-        # Create agents
-        initial_doctor = create_agent(
-            role_id="doctor_initial",
-            system_prompt=self.prompts.get_base_doctor_system_prompt().format(
+        # Create agents -------------------------------------------------------
+        doctor = create_agent(
+            role_id="doctor",
+            system_prompt=self.prompts.get_progressive_doctor_system_prompt().format(
                 max_turns=self.max_turns
             ),
             config=self.doctor_config,
@@ -314,9 +381,9 @@ class QCCScenario(BaseScenario):
 
         planner = create_agent(
             role_id="planner",
-            system_prompt=self.prompts.get_qcc_planner_system_prompt(),
+            system_prompt=self.prompts.get_progressive_planner_system_prompt(),
             config=self.planner_config,
-            message_window_size=3,
+            message_window_size=8,
             summarize_threshold=80,
         )
 
@@ -330,183 +397,113 @@ class QCCScenario(BaseScenario):
 
         diagnostician = create_agent(
             role_id="diagnostician",
-            system_prompt=self.prompts.get_qcc_diagnostician_system_prompt(),
+            system_prompt=self.prompts.get_diagnostician_system_prompt(),
             config=self.diagnostician_config,
             message_window_size=3,
             summarize_threshold=90,
         )
 
         verifier = create_agent(
-            role_id="verifier",
-            system_prompt=self.prompts.get_qcc_verifier_system_prompt(),
+            role_id="diagnostician_verifier",
+            system_prompt=self.prompts.get_progressive_verifier_system_prompt(),
             config=self.verifier_config,
             message_window_size=3,
             summarize_threshold=80,
         )
 
-        # Initialize state
+        # State ----------------------------------------------------------------
         trace: list[dict] = []
         dialogue_history = ""
         last_reply = ""
         answer = ""
         current_turn = 0
-        diagnostic_plan: DiagnosticPlan | None = None
-        qcc_doctor: "AgentWrapper | None" = None
+        planner_state: PlannerState | None = None
 
-        # =====================================================================
-        # Phase 1: Initial Evidence Collection (First 2 turns)
-        # =====================================================================
-        while current_turn < self.initial_turns and current_turn < self.max_turns:
-            instruction = self.prompts.get_doctor_turn_instruction(
-                current_turns=current_turn,
-                max_turns=self.max_turns,
-                last_reply=last_reply,
-            )
+        # Main interaction loop ------------------------------------------------
+        while current_turn <= self.max_turns:
 
-            doctor_response = initial_doctor.step(instruction)
-            duration = initial_doctor.get_last_duration()
-
-            trace.append({
-                "role_id": "doctor_initial",
-                "content": doctor_response,
-                "duration": duration,
-            })
-
-            action_type, action_content = self.extract_action(doctor_response)
-            dialogue_history += f"\nDoctor: {action_content}\n"
-
-            # Early finish during initial phase
-            if action_type == "finish" or action_type == "diagnosis":
-                answer = action_content if action_type == "diagnosis" else ""
-                return self._finalize_result(
-                    trace=trace,
-                    answer=answer,
-                    current_turn=current_turn,
-                    diagnostic_plan=None,
-                    agents=[
-                        ("doctor_initial", initial_doctor),
-                        ("patient", patient),
-                        ("reporter", reporter),
-                        ("planner", planner),
-                        ("summarizer", summarizer),
-                        ("diagnostician", diagnostician),
-                        ("verifier", verifier),
-                    ],
+            # --- Planner phase (before Doctor acts) --------------------------
+            # Check last Doctor response for significant finding
+            has_significant_finding = False
+            significant_finding_text = ""
+            if trace and trace[-1].get("role_id") == "doctor":
+                has_significant_finding, significant_finding_text = (
+                    self.extract_significant_finding(trace[-1]["content"])
                 )
 
-            current_turn += 1
-
-            # Route to simulator
-            if action_type == "test":
-                m_instruction = self.prompts.get_reporter_turn_instruction(action_content)
-                m_response = reporter.step(m_instruction)
-                m_duration = reporter.get_last_duration()
-
-                trace.append({
-                    "role_id": "reporter",
-                    "content": m_response,
-                    "duration": m_duration,
-                })
-                last_reply = m_response
-                dialogue_history += f"\nMeasurement: {m_response}\n"
-            else:
-                p_instruction = self.prompts.get_patient_turn_instruction(action_content)
-                p_response = patient.step(p_instruction)
-                p_duration = patient.get_last_duration()
+            if self._should_planner_intervene(current_turn, has_significant_finding):
+                p_instruction = self.prompts.get_progressive_planner_instruction(
+                    dialogue_history=dialogue_history,
+                    current_turn=current_turn,
+                    max_turns=self.max_turns,
+                    previous_state=planner_state,
+                    significant_finding=significant_finding_text,
+                )
+                p_response = planner.step(p_instruction)
+                p_duration = planner.get_last_duration()
 
                 trace.append({
-                    "role_id": "patient",
+                    "role_id": "planner",
                     "content": p_response,
                     "duration": p_duration,
                 })
-                last_reply = self.extract_patient_response(p_response)
-                dialogue_history += f"\nPatient: {last_reply}\n"
 
-        # =====================================================================
-        # Planning Phase: Generate Diagnostic Plan
-        # =====================================================================
-        planner_instruction = self.prompts.get_planner_instruction(dialogue_history)
-        planner_response = planner.step(planner_instruction)
-        planner_duration = planner.get_last_duration()
+                planner_state = self.parse_progressive_planner_response(p_response)
+                planner_state.add_planning_record(current_turn, p_response)
 
-        trace.append({
-            "role_id": "planner",
-            "content": planner_response,
-            "duration": planner_duration,
-        })
+            # --- Doctor phase ------------------------------------------------
+            system_directions = ""
+            if planner_state is not None:
+                system_directions = planner_state.get_directions_for_doctor()
 
-        diagnostic_plan = self.parse_planner_response(planner_response)
-
-        # Create QCC doctor with checklist awareness
-        qcc_doctor = create_agent(
-            role_id="doctor_qcc",
-            system_prompt=self.prompts.get_qcc_doctor_system_prompt().format(
-                max_turns=self.max_turns
-            ),
-            config=self.doctor_config,
-            message_window_size=24,
-            summarize_threshold=80,
-        )
-
-        # =====================================================================
-        # Phase 2: Guided Evidence Collection
-        # =====================================================================
-        while current_turn < self.max_turns:
-            instruction = self.prompts.get_qcc_doctor_turn_instruction(
+            instruction = self.prompts.get_progressive_doctor_turn_instruction(
                 current_turns=current_turn,
                 max_turns=self.max_turns,
                 last_reply=last_reply,
-                checklist=diagnostic_plan.get_checklist_str(),
-                active_candidates=diagnostic_plan.get_active_candidates_str(),
+                system_directions=system_directions,
             )
 
-            doctor_response = qcc_doctor.step(instruction)
-            duration = qcc_doctor.get_last_duration()
+            doctor_response = doctor.step(instruction)
+            duration = doctor.get_last_duration()
 
             trace.append({
-                "role_id": "doctor_qcc",
+                "role_id": "doctor",
                 "content": doctor_response,
                 "duration": duration,
             })
 
-            # Check for prune action
-            prune_index, prune_reason = self.extract_prune_action(doctor_response)
-            if prune_index is not None:
-                diagnostic_plan.prune_candidate(prune_index, prune_reason)
-                trace.append({
-                    "role_id": "system",
-                    "content": f"Candidate {prune_index + 1} pruned: {prune_reason}",
-                    "duration": 0,
-                })
-
+            # Parse doctor action
             action_type, action_content = self.extract_action(doctor_response)
+
+            # Update dialogue history
             dialogue_history += f"\nDoctor: {action_content}\n"
 
-            # Check for finish
-            if action_type == "finish":
-                answer, should_continue, diagnostic_plan = self._run_qcc_verification_pipeline(
+            # --- Finish / verification ----------------------------------------
+            if action_type == "finish" or current_turn >= self.max_turns:
+                answer, verified = self._run_progressive_verification_pipeline(
                     trace=trace,
                     dialogue_history=dialogue_history,
-                    diagnostic_plan=diagnostic_plan,
                     summarizer=summarizer,
                     diagnostician=diagnostician,
                     verifier=verifier,
-                    planner=planner,
-                    qcc_doctor=qcc_doctor,
+                    doctor=doctor,
                     patient=patient,
                     reporter=reporter,
+                    planner=planner,
+                    planner_state=planner_state,
                     current_turn=current_turn,
                 )
 
-                if not should_continue or current_turn >= self.max_turns - 1:
+                if verified or current_turn >= self.max_turns - 1:
                     break
 
+                # Verifier requested more evidence – continue
                 current_turn += 1
                 continue
 
             current_turn += 1
 
-            # Route to simulator
+            # --- Route to simulator ------------------------------------------
             if action_type == "test":
                 m_instruction = self.prompts.get_reporter_turn_instruction(action_content)
                 m_response = reporter.step(m_instruction)
@@ -532,80 +529,51 @@ class QCCScenario(BaseScenario):
                 last_reply = self.extract_patient_response(p_response)
                 dialogue_history += f"\nPatient: {last_reply}\n"
 
-        # Final verification if we hit turn limit
-        if current_turn >= self.max_turns and not answer:
-            answer, _, _ = self._run_qcc_verification_pipeline(
-                trace=trace,
-                dialogue_history=dialogue_history,
-                diagnostic_plan=diagnostic_plan,
-                summarizer=summarizer,
-                diagnostician=diagnostician,
-                verifier=verifier,
-                planner=planner,
-                qcc_doctor=qcc_doctor,
-                patient=patient,
-                reporter=reporter,
-                current_turn=current_turn,
-            )
-
-        # Collect all agents for final result
-        all_agents = [
-            ("doctor_initial", initial_doctor),
-            ("patient", patient),
-            ("reporter", reporter),
-            ("planner", planner),
-            ("summarizer", summarizer),
-            ("diagnostician", diagnostician),
-            ("verifier", verifier),
-        ]
-        if qcc_doctor:
-            all_agents.append(("doctor_qcc", qcc_doctor))
-
-        return self._finalize_result(
-            trace=trace,
+        # Collect role records and return result
+        return self._finalize_progressive_result(
             answer=answer,
+            trace=trace,
             current_turn=current_turn,
-            diagnostic_plan=diagnostic_plan,
-            agents=all_agents,
+            planner_state=planner_state,
+            agents=[
+                ("doctor", doctor),
+                ("patient", patient),
+                ("reporter", reporter),
+                ("planner", planner),
+                ("summarizer", summarizer),
+                ("diagnostician", diagnostician),
+                ("verifier", verifier),
+            ],
         )
 
     # =========================================================================
     # Verification Pipeline
     # =========================================================================
 
-    def _run_qcc_verification_pipeline(
+    def _run_progressive_verification_pipeline(
         self,
         trace: list[dict],
         dialogue_history: str,
-        diagnostic_plan: DiagnosticPlan,
         summarizer: "AgentWrapper",
         diagnostician: "AgentWrapper",
         verifier: "AgentWrapper",
-        planner: "AgentWrapper",
-        qcc_doctor: "AgentWrapper",
+        doctor: "AgentWrapper",
         patient: "AgentWrapper",
         reporter: "AgentWrapper",
+        planner: "AgentWrapper",
+        planner_state: "PlannerState | None",
         current_turn: int,
-    ) -> tuple[str, bool, DiagnosticPlan]:
-        """Run the QCC verification pipeline.
+    ) -> tuple[str, bool]:
+        """Run summarizer -> diagnostician -> verifier pipeline.
 
-        Args:
-            trace: Interaction trace list
-            dialogue_history: Accumulated dialogue
-            diagnostic_plan: Current diagnostic plan
-            summarizer: Summarizer agent
-            diagnostician: Diagnostician agent
-            verifier: Verifier agent
-            planner: Planner agent (for re-planning)
-            qcc_doctor: QCC Doctor agent
-            patient: Patient agent
-            reporter: Reporter agent
-            current_turn: Current turn count
+        Extended from REFINE:
+        - Passes planner state (including internal reasoning) to Verifier
+        - Handles [PLANNER_FEEDBACK] from Verifier -> triggers Planner update
 
         Returns:
-            Tuple of (answer, should_continue, updated_plan)
+            (answer, verified) – verified=True means PASS or at turn limit
         """
-        # Summarizer phase
+        # --- Summarizer phase ------------------------------------------------
         s_instruction = self.prompts.get_summarizer_instruction(dialogue_history)
         s_response = summarizer.step(s_instruction)
         s_duration = summarizer.get_last_duration()
@@ -618,12 +586,8 @@ class QCCScenario(BaseScenario):
 
         summary = self.extract_summary(s_response)
 
-        # Diagnostician phase
-        d_instruction = self.prompts.get_qcc_diagnostician_instruction(
-            summary=summary,
-            all_candidates=diagnostic_plan.get_all_candidates_str(),
-            checklist=diagnostic_plan.get_checklist_str(),
-        )
+        # --- Diagnostician phase ---------------------------------------------
+        d_instruction = self.prompts.get_diagnostician_instruction(summary)
         d_response = diagnostician.step(d_instruction)
         d_duration = diagnostician.get_last_duration()
 
@@ -638,66 +602,68 @@ class QCCScenario(BaseScenario):
             answer = d_response
         confidence = self.extract_confidence(d_response)
 
-        # Verifier phase
-        v_instruction = self.prompts.get_qcc_verifier_instruction(
+        # --- Verifier phase --------------------------------------------------
+        planner_full_state = ""
+        if planner_state is not None:
+            planner_full_state = planner_state.get_full_state_for_verifier()
+
+        v_instruction = self.prompts.get_progressive_verifier_instruction(
             current_turns=current_turn,
             max_turns=self.max_turns,
             summary=summary,
             diagnosis=answer,
             confidence=confidence,
-            checklist=diagnostic_plan.get_checklist_str(),
+            planner_state=planner_full_state,
         )
         v_response = verifier.step(v_instruction)
         v_duration = verifier.get_last_duration()
 
         trace.append({
-            "role_id": "verifier",
+            "role_id": "diagnostician_verifier",
             "content": v_response,
             "duration": v_duration,
         })
 
-        decision, feedback = self.extract_verifier_decision_qcc(v_response)
-        turns_remaining = self.max_turns - current_turn
+        decision, doctor_feedback, planner_feedback = (
+            self.extract_verifier_decision_progressive(v_response)
+        )
 
-        # Handle different decisions
-        if decision == "PASS":
-            return answer, False, diagnostic_plan
-
-        elif decision == "REPLAN" and turns_remaining > 3 and confidence == "UNCERTAIN":
-            # Re-planning: generate new diagnostic plan
-            replan_instruction = self.prompts.get_replan_instruction(
-                original_candidates=diagnostic_plan.get_all_candidates_str(),
-                collected_evidence=dialogue_history,
-                feedback=feedback,
+        # --- Handle Planner feedback from Verifier ---------------------------
+        if planner_feedback and planner_state is not None:
+            pf_instruction = self.prompts.get_planner_feedback_instruction(
+                dialogue_history=dialogue_history,
+                current_turn=current_turn,
+                max_turns=self.max_turns,
+                previous_state=planner_state,
+                verifier_feedback=planner_feedback,
             )
-            replan_response = planner.step(replan_instruction)
-            replan_duration = planner.get_last_duration()
+            pf_response = planner.step(pf_instruction)
+            pf_duration = planner.get_last_duration()
 
             trace.append({
                 "role_id": "planner",
-                "content": replan_response,
-                "duration": replan_duration,
+                "content": pf_response,
+                "duration": pf_duration,
             })
 
-            # Parse new plan
-            new_plan = self.parse_planner_response(replan_response)
-            if new_plan.candidates:
-                diagnostic_plan = new_plan
+            # Update planner state with revised planning
+            planner_state = self.parse_progressive_planner_response(pf_response)
+            planner_state.add_planning_record(current_turn, pf_response)
 
-            return answer, True, diagnostic_plan
-
-        elif decision == "INCOMPLETE" and turns_remaining > 1:
-            # Continue evidence collection with feedback
-            fb_instruction = self.prompts.get_doctor_feedback_instruction(feedback)
-            fb_response = qcc_doctor.step(fb_instruction)
-            fb_duration = qcc_doctor.get_last_duration()
+        # --- Handle INCOMPLETE decision --------------------------------------
+        if decision == "INCOMPLETE" and current_turn < self.max_turns - 1:
+            # Doctor receives feedback and gathers more evidence
+            fb_instruction = self.prompts.get_doctor_feedback_instruction(doctor_feedback)
+            fb_response = doctor.step(fb_instruction)
+            fb_duration = doctor.get_last_duration()
 
             trace.append({
-                "role_id": "doctor_qcc",
+                "role_id": "doctor",
                 "content": fb_response,
                 "duration": fb_duration,
             })
 
+            # Parse doctor response to feedback
             action_type, action_content = self.extract_action(fb_response)
 
             # Route to simulator
@@ -711,7 +677,7 @@ class QCCScenario(BaseScenario):
                     "content": m_response,
                     "duration": m_duration,
                 })
-            elif action_type == "query":
+            else:
                 p_instruction = self.prompts.get_patient_turn_instruction(action_content)
                 p_response = patient.step(p_instruction)
                 p_duration = patient.get_last_duration()
@@ -722,63 +688,56 @@ class QCCScenario(BaseScenario):
                     "duration": p_duration,
                 })
 
-            return answer, True, diagnostic_plan
+            return answer, False  # Not verified, continue gathering
 
-        # Default: accept diagnosis (at turn limit or forced)
-        return answer, False, diagnostic_plan
+        return answer, True  # PASS or at turn limit
 
     # =========================================================================
-    # Helper Methods
+    # Finalization Helpers
     # =========================================================================
 
-    def _finalize_result(
+    def _finalize_progressive_result(
         self,
-        trace: list[dict],
         answer: str,
+        trace: list[dict],
         current_turn: int,
-        diagnostic_plan: DiagnosticPlan | None,
+        planner_state: "PlannerState | None",
         agents: list[tuple[str, "AgentWrapper"]],
     ) -> ScenarioResult:
-        """Finalize and return the scenario result.
-
-        Args:
-            trace: Interaction trace
-            answer: Final diagnosis answer
-            current_turn: Final turn count
-            diagnostic_plan: Final diagnostic plan (if any)
-            agents: List of (role_id, agent) tuples
-
-        Returns:
-            ScenarioResult with all metadata
-        """
+        """Build the final ScenarioResult with progressive metadata."""
         role_records = self._collect_role_records(agents)
 
-        metadata = {
+        metadata: dict = {
             "mode": "qcc",
+            "framework": "progressive",
             "turns": current_turn,
             "max_turns": self.max_turns,
             "role_records": role_records,
         }
 
-        if diagnostic_plan:
-            metadata["diagnostic_plan"] = {
-                "candidates": [
+        if planner_state is not None:
+            metadata["planner_state"] = {
+                "system_directions": [
                     {
-                        "diagnosis": c.diagnosis,
-                        "gold_standard": c.gold_standard,
-                        "is_pruned": c.is_pruned,
-                        "prune_reason": c.prune_reason,
+                        "system": d.system,
+                        "priority": d.priority,
+                        "basis": d.basis,
+                        "is_deprioritized": d.is_deprioritized,
+                        "deprioritize_reason": d.deprioritize_reason,
                     }
-                    for c in diagnostic_plan.candidates
+                    for d in planner_state.system_directions
                 ],
-                "differential_evidence": [
+                "priority_evidence": [
                     {
-                        "description": e.description,
-                        "collected": e.collected,
-                        "result": e.result,
+                        "evidence_type": e.evidence_type,
+                        "reason": e.reason,
+                        "associated_system": e.associated_system,
                     }
-                    for e in diagnostic_plan.differential_evidence
+                    for e in planner_state.priority_evidence
                 ],
+                "internal_reasoning": planner_state.internal_reasoning,
+                "internal_excluded": planner_state.internal_excluded,
+                "planning_history": planner_state.planning_history,
             }
 
         return ScenarioResult(
