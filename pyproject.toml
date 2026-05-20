@@ -1,14 +1,19 @@
 [project]
-name = "eid-benchmark"
+name = "qcc-framework"
 version = "0.1.0"
-description = "Evidence Elicitation in Interactive Diagnosis (EID) Benchmark - Evaluating LLM diagnostic capabilities through multi-turn patient-doctor interactions"
+description = "QCC: Quantify-Collect-Correct — A closed-loop multi-agent framework for evidence-driven emergency diagnosis"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
-    { name = "Your Name", email = "your.email@example.com" }
+    { name = "Haoyu Cao", email = "" },
+    { name = "Yueze Fu", email = "" },
+    { name = "Wenbo Gao", email = "" },
+    { name = "Yuxin Lin", email = "" },
+    { name = "Xiangyu Li", email = "" },
+    { name = "Wei Wang", email = "wangwei2019@hit.edu.cn" },
 ]
 requires-python = ">=3.10"
-keywords = ["medical diagnosis", "LLM evaluation", "benchmark", "multi-agent", "interactive diagnosis"]
+keywords = ["medical diagnosis", "LLM evaluation", "multi-agent", "emergency room", "evidence-driven", "clinical reasoning"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
@@ -39,15 +44,16 @@ dev = [
 ]
 
 [project.scripts]
-eid-eval = "eid.cli:main"
-eid-segment = "eid.segment:main"
+qcc-eval = "qcc.cli:main"
+qcc-segment = "qcc.segment:main"
+weci = "qcc.weci:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/eid"]
+packages = ["src/qcc"]
 
 [tool.ruff]
 line-length = 100

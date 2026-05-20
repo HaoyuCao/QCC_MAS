@@ -1,0 +1,121 @@
+"""Evaluation scenarios module.
+
+Each scenario defines a specific evaluation mode with its own
+interaction pattern between agents.
+"""
+
+from qcc.scenarios.base import BaseScenario, ScenarioResult
+from qcc.scenarios.cot import CoTScenario
+from qcc.scenarios.roleplay import RoleplayScenario
+from qcc.scenarios.react import ReactScenario
+from qcc.scenarios.sc import SCScenario
+from qcc.scenarios.refine import RefineScenario
+from qcc.scenarios.qcc import ProgressiveQCCScenario as QCCScenario
+
+__all__ = [
+    "BaseScenario",
+    "ScenarioResult",
+    "CoTScenario",
+    "RoleplayScenario",
+    "ReactScenario",
+    "SCScenario",
+    "RefineScenario",
+    "QCCScenario",
+    "get_scenario",
+]
+
+
+def get_scenario(
+    mode: str,
+    dataset_name: str,
+    doctor_config: "ModelConfig",  # noqa: F821
+    patient_config: "ModelConfig | None" = None,  # noqa: F821
+    reporter_config: "ModelConfig | None" = None,  # noqa: F821
+    max_turns: int = 16,
+    summarizer_config: "ModelConfig | None" = None,  # noqa: F821
+    diagnostician_config: "ModelConfig | None" = None,  # noqa: F821
+    verifier_config: "ModelConfig | None" = None,  # noqa: F821
+) -> BaseScenario:
+    """Factory function to create a scenario by mode name.
+
+    Args:
+        mode: Scenario mode (cot, roleplay, react, sc, refine)
+        dataset_name: Name of the dataset
+        doctor_config: Model config for doctor role
+        patient_config: Model config for patient simulator
+        reporter_config: Model config for reporter simulator
+        max_turns: Maximum interaction turns
+        summarizer_config: Model config for summarizer role (SC/REFINE)
+        diagnostician_config: Model config for diagnostician role (SC/REFINE)
+        verifier_config: Model config for verifier role (REFINE)
+
+    Returns:
+        Configured scenario instance
+
+    Raises:
+        ValueError: If mode is not recognized
+    """
+    scenarios = {
+        "cot": CoTScenario,
+        "roleplay": RoleplayScenario,
+        "react": ReactScenario,
+        "sc": SCScenario,
+        "refine": RefineScenario,
+        "qcc": QCCScenario,
+    }
+
+    if mode not in scenarios:
+        raise ValueError(f"Unknown scenario mode: {mode}. Available: {list(scenarios.keys())}")
+
+    scenario_class = scenarios[mode]
+
+    if mode == "cot":
+        return scenario_class(dataset_name=dataset_name, doctor_config=doctor_config)
+
+    # For roleplay modes, ensure simulator configs are provided
+    if patient_config is None:
+        patient_config = doctor_config
+    if reporter_config is None:
+        reporter_config = doctor_config
+
+    # SC and REFINE modes need additional configs
+    if mode == "sc":
+        return scenario_class(
+            dataset_name=dataset_name,
+            doctor_config=doctor_config,
+            patient_config=patient_config,
+            reporter_config=reporter_config,
+            max_turns=max_turns,
+            summarizer_config=summarizer_config,
+            diagnostician_config=diagnostician_config,
+        )
+    elif mode == "refine":
+        return scenario_class(
+            dataset_name=dataset_name,
+            doctor_config=doctor_config,
+            patient_config=patient_config,
+            reporter_config=reporter_config,
+            max_turns=max_turns,
+            summarizer_config=summarizer_config,
+            diagnostician_config=diagnostician_config,
+            verifier_config=verifier_config,
+        )
+    elif mode == "qcc":
+        return scenario_class(
+            dataset_name=dataset_name,
+            doctor_config=doctor_config,
+            patient_config=patient_config,
+            reporter_config=reporter_config,
+            max_turns=max_turns,
+            summarizer_config=summarizer_config,
+            diagnostician_config=diagnostician_config,
+            verifier_config=verifier_config,
+        )
+
+    return scenario_class(
+        dataset_name=dataset_name,
+        doctor_config=doctor_config,
+        patient_config=patient_config,
+        reporter_config=reporter_config,
+        max_turns=max_turns,
+    )
